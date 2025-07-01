@@ -1,0 +1,218 @@
+<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>Code it Content Manager</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/style.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES -->
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-fileupload.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.gritter.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/chosen.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.tagsinput.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/clockface.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-wysihtml5.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/datepicker.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/timepicker.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/colorpicker.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-toggle-buttons.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/daterangepicker.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/datetimepicker.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/multi-select-metro.css" />
+	<link href="media/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+	<!-- END PAGE LEVEL STYLES -->
+	<link rel="shortcut icon" href="media/image/favicon.ico" />
+</head><?phpinclude 'includes/header.php';include 'includes/sidebar.php';?> 
+		<div class="page-content">
+			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<div id="portlet-config" class="modal hide">
+				<div class="modal-header">
+					<button data-dismiss="modal" class="close" type="button"></button>
+					<h3>portlet Settings</h3>
+				</div>
+				<div class="modal-body">
+					<p>Here will be a configuration form</p>
+				</div>
+			</div>
+			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
+			<!-- BEGIN PAGE CONTAINER-->
+			<div class="container-fluid">
+				<!-- BEGIN PAGE HEADER-->   
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN STYLE CUSTOMIZER -->
+						<div class="color-panel hidden-phone">
+							<div class="color-mode-icons icon-color"></div>
+							<div class="color-mode-icons icon-color-close"></div>
+							<div class="color-mode">
+								<p>THEME COLOR</p>
+								<ul class="inline">
+									<li class="color-black current color-default" data-style="default"></li>
+									<li class="color-blue" data-style="blue"></li>
+									<li class="color-brown" data-style="brown"></li>
+									<li class="color-purple" data-style="purple"></li>
+									<li class="color-grey" data-style="grey"></li>
+									<li class="color-white color-light" data-style="light"></li>
+								</ul>
+								<label>
+									<span>Layout</span>
+									<select class="layout-option m-wrap small">
+										<option value="fluid" selected>Fluid</option>
+										<option value="boxed">Boxed</option>
+									</select>
+								</label>
+								<label>
+									<span>Header</span>
+									<select class="header-option m-wrap small">
+										<option value="fixed" selected>Fixed</option>
+										<option value="default">Default</option>
+									</select>
+								</label>
+								<label>
+									<span>Sidebar</span>
+									<select class="sidebar-option m-wrap small">
+										<option value="fixed">Fixed</option>
+										<option value="default" selected>Default</option>
+									</select>
+								</label>
+								<label>
+									<span>Footer</span>
+									<select class="footer-option m-wrap small">
+										<option value="fixed">Fixed</option>
+										<option value="default" selected>Default</option>
+									</select>
+								</label>
+							</div>
+						</div>
+						<!-- END BEGIN STYLE CUSTOMIZER -->   
+						<h3 class="page-title">
+							Edit Vacancy
+							 
+						</h3>
+						<ul class="breadcrumb">
+							
+							
+						</ul>
+					</div>
+				</div>
+				<!-- END PAGE HEADER-->
+				<!-- BEGIN PAGE CONTENT-->
+				
+				<div class="row-fluid">
+					<div class="span12">
+						<!-- BEGIN PORTLET-->   						<?php												$vac_id=$_GET['vacancy_id'];											if(isset($_POST['submitDownload'])){																																			// let's create some shortcuts// store the file										 $Title=$_POST['title']; $category=$_POST['Category']; $closingdate=$_POST['Closingdate']; $dateposteddate=date('Y-m-d');   $status=$_POST['status'];  $howto=$_POST['howto'];     $SQL3 = "UPDATE `vacancy` SET `Title`='$Title', `Closingdate`='$closingdate',`HowToApply`='$howto',`Status`='$status' WHERE `Job_id`='$vac_id'";     $result3= mysqli_query($conn,$SQL3);	   if($result3){     echo '<div class="alert alert-success"> The Vacancy has been Updated Successfully</div>'; echo "<script>window.location = 'VacancyList.php?status=Yes'</script>";    		}else {						 echo "<script>window.location = 'VacancyList.php?statusedit=No</script>";								//}		}	}?> 
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption"><i class="icon-reorder"></i>Edit Vacancy</div>
+								<div class="tools">
+									<a href="javascript:;" class="collapse"></a>
+									<a href="#portlet-config" data-toggle="modal" class="config"></a>
+									<a href="javascript:;" class="reload"></a>
+									<a href="javascript:;" class="remove"></a>
+								</div>
+							</div>
+							<div class="portlet-body form">
+								<!-- BEGIN FORM-->								<?php	$sql="SELECT `Job_id`, `Title`, `Date_posted`, `Closingdate`, `HowToApply`, `Status` FROM `vacancy` WHERE `Job_id`='$vac_id'";																$q1=mysqli_query($conn,$sql)or die(mysqli_error());                																while ($row2 = mysqli_fetch_array($q1)) {																																																?>
+								<form action="#" method="POST" class="form-horizontal">																  <div class="control-group">										<label class="control-label">Job Title<span class="required">*</span></label>										<div class="controls">									                                                               											<input type="text"  name="title" class="span6 m-wrap" value="<?php echo $row2['Title']; ?>" required />										</div>									</div>
+									<div class="control-group">
+										<label class="control-label">Closing Date</label>
+										<div class="controls">											<div class="controls">													<div class="input-append date date-picker" data-date="2012-02-02" data-date-format="yyyy-mm-dd" data-date-viewmode="years">														<input class="m-wrap m-ctrl-medium date-picker"  name="Closingdate" readonly size="16" type="text" value="<?php echo $row2['Closingdate']; ?>" /><span class="add-on"><i class="icon-calendar"></i></span>													</div>												</div>
+										</div>
+									</div>									 <div class="control-group">										<label class="control-label">How To apply<span class="required">*</span></label>										<div class="controls">									                                                               											<textarea type="text"   rows="7"  name="howto"  class="span6 m-wrap" required ><?php echo $row2['HowToApply']; ?></textarea>										</div>									</div>																								 <div class="control-group">										<label class="control-label">Status<span class="required">*</span></label>										<div class="controls">									<select  name="status" >                                                                     <Option value="<?php echo $row2['Status']; ?>"><?php echo $row2['Status']; ?></option>																	<option value="Published">Published</option>																	<option value="Unpublished">Unpublished</option>																																	</select>																					</div>									</div>																															<div class="form-actions">										<button type="submit" name="submitDownload" class="btn blue">Save</button>										<button type="button" class="btn">Cancel</button>                            									</div>
+									
+								</form>																<?php } ?>
+								
+								<!-- END FORM-->  
+							</div>
+						</div>
+						<!-- END PORTLET-->
+					</div>
+				</div>
+				
+				<!-- END PAGE CONTENT-->         
+			</div>
+			<!-- END PAGE CONTAINER-->
+		</div>
+		<!-- END PAGE -->  
+	</div>
+	<!-- END CONTAINER -->
+	<!-- BEGIN FOOTER -->
+	<div class="footer">
+		<div class="footer-inner">
+			2020 &copy; Code-It.
+		</div>
+		<div class="footer-tools">
+			<span class="go-top">
+			<i class="icon-angle-up"></i>
+			</span>
+		</div>
+	</div>
+	<!-- END FOOTER -->
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->
+	<script src="media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+	<script src="media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
+	<script src="media/js/bootstrap.min.js" type="text/javascript"></script>
+	<!--[if lt IE 9]>
+	<script src="media/js/excanvas.min.js"></script>
+	<script src="media/js/respond.min.js"></script>  
+	<![endif]-->   
+	<script src="media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery.blockui.min.js" type="text/javascript"></script>  
+	<script src="media/js/jquery.cookie.min.js" type="text/javascript"></script>
+	<script src="media/js/jquery.uniform.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL PLUGINS -->
+	<script type="text/javascript" src="media/js/ckeditor.js"></script>  
+	<script type="text/javascript" src="media/js/bootstrap-fileupload.js"></script>
+	<script type="text/javascript" src="media/js/chosen.jquery.min.js"></script>
+	<script type="text/javascript" src="media/js/select2.min.js"></script>
+	<script type="text/javascript" src="media/js/wysihtml5-0.3.0.js"></script> 
+	<script type="text/javascript" src="media/js/bootstrap-wysihtml5.js"></script>
+	<script type="text/javascript" src="media/js/jquery.tagsinput.min.js"></script>
+	<script type="text/javascript" src="media/js/jquery.toggle.buttons.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap-datetimepicker.js"></script>
+	<script type="text/javascript" src="media/js/clockface.js"></script>
+	<script type="text/javascript" src="media/js/date.js"></script>
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script> 
+	<script type="text/javascript" src="media/js/bootstrap-colorpicker.js"></script>  
+	<script type="text/javascript" src="media/js/bootstrap-timepicker.js"></script>
+	<script type="text/javascript" src="media/js/jquery.inputmask.bundle.min.js"></script>   
+	<script type="text/javascript" src="media/js/jquery.input-ip-address-control-1.0.min.js"></script>
+	<script type="text/javascript" src="media/js/jquery.multi-select.js"></script>   
+	<script src="media/js/bootstrap-modal.js" type="text/javascript" ></script>
+	<script src="media/js/bootstrap-modalmanager.js" type="text/javascript" ></script> 
+	<!-- END PAGE LEVEL PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="media/js/app.js"></script>
+	<script src="media/js/form-components.js"></script>     
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<script>
+		jQuery(document).ready(function() {       
+		   // initiate layout and plugins
+		   App.init();
+		   FormComponents.init();
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->   
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
+<!-- END BODY -->
+</html>

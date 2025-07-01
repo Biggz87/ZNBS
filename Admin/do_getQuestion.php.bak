@@ -1,0 +1,25 @@
+<?php 
+$DetailID=$_POST['detailID'];
+function findQuestionNumber($DetailID){
+	
+	 $propertySQL="SELECT * FROM `survey_questions` WHERE `sureveyid`='$DetailID'";
+											$results=mysqli_query($conn,$propertySQL);
+											$row5=mysqli_fetch_array($results);
+											$number=mysqli_num_rows($results);
+}
+
+include'../includes/Dbconnect.php';
+
+
+
+                        
+ $propertySQL="SELECT `questionid`, `question`, `sureveyid` FROM `survey_questions` WHERE `questionid`='$DetailID'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												echo $row5['question'];
+												
+
+}
+            ?>
+

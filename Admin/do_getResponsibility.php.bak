@@ -1,0 +1,14 @@
+<?php 
+include'../includes/Dbconnect.php';
+$DetailID=$_POST['detailID'];
+                        
+ $propertySQL="SELECT `respons_id`, `Responsibility`, `vanancy_id` FROM `vaca_responsibilites` WHERE `respons_id`='$DetailID'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												echo $row5['Description'];
+												
+											}
+											 
+            ?>
+

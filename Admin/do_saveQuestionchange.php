@@ -1,0 +1,26 @@
+<?php 
+include'../includes/Dbconnect.php';
+$DetailID=$_POST['detailID'];
+
+$Question=$_POST['Question'];
+                        
+ $propertySQL="UPDATE `survey_questions` SET `question`='$Question' WHERE `questionid`='$DetailID'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											 
+   if($results){
+   echo 'success';
+ ;
+    		
+}else {
+
+
+			
+			echo 'not successful';
+		
+//}
+
+	
+	}
+            ?>
+

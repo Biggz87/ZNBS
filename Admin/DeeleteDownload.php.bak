@@ -1,0 +1,26 @@
+<?php
+include'../includes/sessions.php';
+$DownloadID=$_GET['DownloadID'];
+
+	
+	echo $deleteQuery="DELETE FROM `downloads` WHERE `document_id`='$DownloadID'";
+	 $result3= mysqli_query($conn,$deleteQuery);
+   if($result3){
+   
+  echo "<script>window.location = 'Downloads.php?del=y'</script>";
+  !unlink($file_pointer);
+    		
+}else {
+
+
+			
+		echo "<script>window.location = 'Downloads.php?del=N'</script>";
+		
+//}
+
+	
+	}
+	
+
+  
+?>  

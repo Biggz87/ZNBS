@@ -1,0 +1,26 @@
+<?php 
+include'../includes/Dbconnect.php';
+$DetailID=$_POST['detailID'];
+
+$Description=$_POST['Description'];
+                        
+ $propertySQL="UPDATE `vanancy_descitipn` SET `Description`='$Description' WHERE `vac_descript_id`='$DetailID'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											 
+   if($results){
+   echo 'success';
+ ;
+    		
+}else {
+
+
+			
+			echo 'not successful';
+		
+//}
+
+	
+	}
+            ?>
+

@@ -1,0 +1,33 @@
+function subcatategory(){
+	
+	var e = document.getElementById('Category');
+	var catId= e.options[e.selectedIndex].value;
+
+$.ajax({
+       type: "POST",
+       url: 'do_subcat.php',
+       data: "category="+catId,
+       success: function(data)
+       {       
+		document.getElementById('subcat').innerHTML=data;
+       
+       }
+   });
+}
+function storeBranches(){
+	
+	var e = document.getElementById('stores');
+	var storeid= e.options[e.selectedIndex].value;
+	
+
+$.ajax({ 
+       type: "POST",
+       url: 'get_stores.php',
+       data: "storeid="+storeid,
+       success: function(data)
+       {       
+		document.getElementById('Branch').innerHTML=data;
+    
+       }
+   });
+}

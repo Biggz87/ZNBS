@@ -1,0 +1,18 @@
+<?php
+include '../includes/sessions.php';
+
+
+?>
+
+
+  <?php 
+  
+  if ($dbuser){
+    session_destroy();
+   echo "<script> location.href='login.php'; </script>";
+  }else {
+  
+  echo '<h1 align=center>You are not logged in</h1>';
+  }
+  ?>;
+ 

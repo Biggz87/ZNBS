@@ -1,0 +1,13 @@
+<?php function getEmpID(){
+	
+	include '../includes/Dbconnect.php';
+
+ $sql = "SHOW TABLE STATUS LIKE 'employees_tbl'";
+$result=$conn->query($sql);
+$row = $result->fetch_assoc();
+
+return  $row['Auto_increment'];
+}
+
+
+?>

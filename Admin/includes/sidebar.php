@@ -1,0 +1,430 @@
+<!-- 
+
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 2.3.1
+
+Version: 1.3
+
+Author: KeenThemes
+
+Website: http://www.keenthemes.com/preview/?theme=metronic
+
+
+		<!-- BEGIN SIDEBAR -->
+
+		<div class="page-sidebar nav-collapse collapse">
+
+			<!-- BEGIN SIDEBAR MENU -->        
+
+			<ul class="page-sidebar-menu">
+
+				<li>
+
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+					<div class="sidebar-toggler hidden-phone"></div>
+
+					<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+				</li>
+
+				<li>
+
+					<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+
+					<form class="sidebar-search">
+
+						<div class="input-box">
+
+							<a href="javascript:;" class="remove"></a>
+
+							<input type="text" placeholder="Search..." />
+
+							<input type="button" class="submit" value=" " />
+
+						</div>
+
+					</form>
+
+					<!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+				</li>
+
+				<li class="start active ">
+
+					<a href="index.php">
+
+					<i class="icon-home"></i> 
+
+					<span class="title">Dashboard</span>
+
+					<span class="selected"></span>
+
+					</a>
+
+				</li>
+			
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-user"></i> 
+
+					<span class="title">Users</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="SystemUsers.php">
+
+							Manage Users</a>
+
+						</li>
+
+						<li >
+
+							<a href="NewUser.php">
+
+							New User</a>
+
+						</li>
+
+						
+
+
+					</ul>
+
+				</li>
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-file"></i> 
+
+					<span class="title">Carousel</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="Header_scrawler.php">
+
+							Manage Carousel List</a>
+
+						</li>
+
+						
+						
+					</ul>
+
+				</li>
+
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-file"></i> 
+
+					<span class="title">Downloads</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="Downloads.php">
+
+							Download List</a>
+
+						</li>
+
+						<li >
+
+							<a href="NewDownload.php">
+
+							New Download</a>
+
+						</li>
+
+						
+					</ul>
+
+				</li>
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-group"></i> 
+
+					<span class="title">People</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="Employees.php">
+
+							Employee & Management</a>
+
+						</li>
+
+						<li >
+
+							<a href="Directors.php">
+
+							Board of Directors</a>
+
+						</li>
+						
+
+						
+					</ul>
+
+				</li>
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-file"></i> 
+
+					<span class="title">Branches</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="Branches.php">
+
+							Manage Branches</a>
+
+						</li>
+
+						<li >
+
+							<a href="NewBranch.php">
+
+							New Branch</a>
+
+						</li>
+
+						
+					</ul>
+
+				</li>
+				<li class="">
+
+					<a href="javascript:;">
+
+					<i class="icon-file"></i> 
+
+					<span class="title">Survey</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li >
+
+							<a href="Surveys.php">
+
+							Survey</a>
+
+						</li>
+
+						
+						
+					</ul>
+
+				</li>
+		
+
+				
+
+				<li>
+
+					<a class="active" href="javascript:;">
+
+					<i class="icon-sitemap"></i> 
+
+					<span class="title">Site Content</span>
+
+					<span class="arrow "></span>
+
+					</a>
+
+					<ul class="sub-menu">
+
+						<li>
+
+							<a href="javascript:;">
+
+							About Us
+
+							<span class="arrow"></span>
+
+							</a>
+
+							<ul class="sub-menu">
+
+								<li><a href="ArticleListAbout.php">About Us</a></li>
+
+								<li><a href="ArticleListVision.php">Mission & Vision</a></li>
+
+								<li><a href="ArticleListBackground.php">Background</a></li>
+
+							</ul>
+
+						</li>
+						<li>
+
+							<a href="ArticleListNews.php">
+
+							News
+
+							</a>
+
+						</li>
+
+						
+                          <li>
+
+							<a href="javascript:;">
+
+							Banking and Loans
+
+							<span class="arrow"></span>
+
+							</a>
+
+							<ul class="sub-menu">
+
+								<li><a href="ArticleListBanking.php">Banking</a></li>
+
+								<li><a href="ArticleListbranchNet.php">Branch Network</a></li>
+								<li><a href="ArticleListDigital.php">Digital Banking</a></li>
+								<li><a href="ArticleListLoans.php">Banking Loans</a></li>
+								<li><a href="ArticleListMortgage.php">Mortgages</a></li>
+
+							</ul>
+
+						</li>
+						<li>
+
+							<a href="javascript:;">
+
+							Know More
+
+							<span class="arrow"></span>
+
+							</a>
+
+							<ul class="sub-menu">
+
+								<li><a href="ArticleListProperties.php">ZNBS Properties</a></li>
+
+								<li><a href="ArticleListRent.php">Vacant Spaces/Rent</a></li>
+								<li><a href="ArticleListCustCare.php">Property Customer Care</a></li>
+								<li><a href="ArticleListOfficeApp.php">Office Space Application</a></li>
+								
+
+							</ul>
+
+						</li>
+							<li>
+
+							<a href="javascript:;">
+
+							Type of Accounts
+
+							<span class="arrow"></span>
+
+							</a>
+
+							<ul class="sub-menu">
+
+								<li><a href="ArticleListSavings.php">Savings Accounts</a></li>
+
+								<li><a href="ArticleListInvest.php">Investment Accounts</a></li>
+
+								<li><a href="ArticleListCurrent.php">Current</a></li>
+							
+								
+
+							</ul>
+
+						</li>
+
+						<li>
+
+							<a href="javascript:;">
+
+							Procurement
+
+							<span class="arrow"></span>
+
+							</a>
+
+							<ul class="sub-menu">
+
+								<li><a href="ArticleListRunningtend.php">Running Tenders</a></li>
+
+								<li><a href="ArticleListTendnotice.php">Tender Notices</a></li>
+
+								<li><a href="ArticleListProcurementPlan.php">Procurement Plan</a></li>
+							
+								
+
+							</ul>
+
+						</li>
+
+
+
+
+
+
+						<li>
+
+							<a href="ArticleListVacancies.php">
+
+							Job Vacancies
+
+							</a>
+
+						</li>
+
+					</ul>
+
+				</li>
+
+				
+
+				
+	
+				
+			</ul>
+
+			<!-- END SIDEBAR MENU -->
+
+		</div>

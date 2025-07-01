@@ -1,0 +1,100 @@
+<?php 
+
+
+
+function GetQuestions($survey_id){
+	include 'Dbconnect.php'; 
+	 $propertySQL="SELECT `questionid`, `question`, `sureveyid` FROM `survey_questions` WHERE `sureveyid`='$survey_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												 
+											
+	?>
+	
+	
+	<label class="form-check-label" for="inlineRadio3"><b><?php echo $row5['question']; ?></b></label><br>
+							
+							
+				<?php 
+				GetAnswers($row5['questionid']); ?>
+				
+				<br>
+				
+							<?php 				}				
+}
+
+
+ function GetAnswers($quest_id){
+	 include 'Dbconnect.php'; 
+	   
+ $propertySQL="SELECT * FROM `survey_quest_answer` INNER JOIN  `survey_questions` ON  `survey_questions`.`questionid`=`survey_quest_answer`.`question_id` WHERE `survey_questions`.`questionid`='$quest_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+											 
+            ?>
+	<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="Question<?php echo $row5['question_id']; ?>"  value="<?php echo $row5['answer']; ?>">
+							  <label class="form-check-label" for="inlineRadio1"><?php echo $row5['answer']; ?></label>
+							</div>	
+							
+	 
+	 <?php 
+											}
+	 
+ }
+ 
+ 
+
+
+
+
+
+
+function GetQuestions2($survey_id){
+	include 'Dbconnect.php'; 
+	 $propertySQL="SELECT `questionid`, `question`, `sureveyid` FROM `survey_questions` WHERE `sureveyid`='$survey_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												 
+											
+	?>
+	
+	
+	<label class="form-check-label" for="inlineRadio3"><b><?php echo $row5['question']; ?></b></label><br>
+							
+							
+				<?php 
+				GetAnswers2($row5['questionid']); ?>
+				
+				<br>
+				
+							<?php 				}				
+}
+
+
+ function GetAnswers2($quest_id){
+	 include 'Dbconnect.php'; 
+	   
+$propertySQL="SELECT * FROM `survey_quest_answer` INNER JOIN  `survey_questions` ON  `survey_questions`.`questionid`=`survey_quest_answer`.`question_id` WHERE `survey_questions`.`questionid`='$quest_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+											 
+            ?>
+	<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="Quest<?php echo $row5['question_no']; ?>"  value="<?php echo $row5['answer']; ?>">
+							  <label class="form-check-label" for="inlineRadio1"><?php echo $row5['answer']; ?></label>
+							</div>	
+							
+	 
+	 <?php 
+											}
+	 
+ }
+ 
+ 
+
+?>

@@ -1,0 +1,272 @@
+/************************************Designed by Fabian Shamano, fabianshamano@yahoo.com*************************************/
+/*Copyright (c) 2017 Fabian Shamano*/
+/* ==========================================================================
+   thumbnail-previews styles
+   ========================================================================== */
+
+.overlay2, .overlay-content{
+	position: relative;
+  	z-index: 1;
+}
+
+.overlay:after, .overlay-content:after {
+	background:rgba(0, 0, 0, 0.2);
+	content: "";
+	width: 100%;
+	height: auto;
+	position: absolute;
+	z-index: -1; 
+ 	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+}
+
+.overlay-content:after {
+	background:rgba(255,255,255,.8);
+}
+
+.overlay2 {
+	color:#FFF;
+	background:rgba(89,89,89,.8);
+}
+
+.horizontal-card{
+	position: relative;
+	border-radius: 6px;
+	cursor: pointer;
+	margin: 35px 0px;
+}
+
+.horizontal-card__img{
+	border-bottom-left-radius: 6px;
+	border-top-left-radius:6px;
+	overflow: hidden;
+}
+
+.horizontal-card__img img{
+	opacity: .7;
+}
+
+.horizontal-card__img img,.horizontal-card h1{
+	transition: .3s all ease-in;	
+}
+
+.horizontal-card:hover .horizontal-card__img img{
+	opacity: 1;
+}
+
+#thumbnail-preview {
+	margin-bottom:30px;
+}
+
+.thumbnail-preview-fade-in {
+    opacity:0;
+    transform: translateX(30px);
+    transition: all 0.9s ease-in-out;	
+}
+
+#thumbnail-preview.is-showing, .thumbnail-preview-fade-in h2.showing {
+      opacity: 1;
+      transform: translate(0px); 
+}
+
+#thumbnail-previewImg {
+	position:relative;
+	overflow:hidden;
+	border-radius:8px;
+	border: 1px solid rgba(255,255,255,.5);
+	box-shadow: 1px 1px 10px rgba(0,0,0,.2);
+}
+
+#thumbnail-preview img {
+	cursor: pointer;
+	width:100%;
+	transform:scale(1);
+    transition: all 0.6s ease-in-out;
+}
+
+#thumbnail-previewImg h2 {
+	padding-top: 10px;
+	font-size:1.5vw;
+}
+
+.tall-thumbnail-preview {
+	height:545px;
+}
+
+.tall-thumbnail-preview.col-lg-4.col-lg-4 img {
+	height:100%;
+	background-size:cover !important;
+}
+
+.tall-thumbnail-preview #thumbnail-previewImg, .long-thumbnail-preview #thumbnail-previewImg, .long-thumbnail-preview-small #thumbnail-previewImg {
+	height:100%;
+}
+
+.long-thumbnail-preview {
+	width:780px;
+	height:258px;
+}
+
+.long-thumbnail-preview img {
+	height:258px;
+	background-size:cover !important;
+}
+
+.long-thumbnail-preview #thumbnail-previewImg:hover img {
+	transform:skew(1,1);	
+}
+
+.overlay2 {
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+    cursor: pointer;
+
+    transition: all 0.6s ease-in-out;
+    transform: translateY(75%);
+}
+
+.tall-thumbnail-preview .overlay2 {
+	transform:translateY(88.5%);
+}
+
+#thumbnail-previewImg:hover .overlay2 {
+	transform:translateY(0px);
+}
+
+/*
+#banking #thumbnail-previewImg:hover .overlay2 {
+    transform: translateY(75%);
+}
+*/
+
+#thumbnail-previewImg:hover img {
+	transform:scale(1.2);
+}
+
+#thumbnail-preview h2 {
+	text-align:center;
+}
+
+.thumbnail-preview-fade-in h2 {
+	transform:translateY(60px);
+	opacity:0;
+    -webkit-transition: all 0.9s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+            transition: all 0.9s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.overlay2 p {
+	font-size:16px;
+	text-shadow:0px -1px #333;
+	text-align:justify;
+	padding: 15px;
+}
+
+.overlay2 p2 {
+	color:yellow;
+	text-decoration:none;
+	font-size:16px;
+	text-shadow:0px -1px #333;
+	padding: 15px;
+}
+
+@media screen and (min-width : 992px) and (max-width :1199px)  {
+.tall-thumbnail-preview {
+	height:453px;
+}
+
+#thumbnail-previewImg h2 {
+	font-size:1.5vw;
+}
+
+#thumbnail-previewImg p {
+	font-size:1.4vw;
+}
+
+.long-thumbnail-preview {
+	width:645px;
+	height:211px;
+}
+
+.long-thumbnail-preview img {
+	height:258px;
+	background-size:cover !important;
+}
+}
+
+@media screen and (min-width : 768px) and (max-width :991px)  {
+.tall-thumbnail-preview {
+	height:521px;
+}
+
+.long-thumbnail-preview {
+	width:375px;
+	height:246px;
+}
+
+.long-thumbnail-preview-small {
+	width:750px;
+	height:281px;
+}
+
+.long-thumbnail-preview-small img {
+	display:none;
+}
+}
+
+@media screen and (min-width : 0px) and (max-width :767px)  {
+.tall-thumbnail-preview, .long-thumbnail-preview, .long-thumbnail-preview-small {
+	width:100%;
+	height:430px;
+}
+
+.long-thumbnail-preview img {
+	height:100%;
+}
+
+#thumbnail-previewImg h2 {
+	font-size:5.8vw;
+}
+
+#thumbnail-previewImg p {
+	font-size:4.2vw;
+}
+
+#thumbnail-previewImg p2 {
+	font-size:4.8vw;
+}
+}
+
+@media screen and (min-width : 466px) and (max-width :767px)  {
+.overlay2, .tall-thumbnail-preview .overlay2 {
+    transform: translateY(80%);
+}
+}
+
+@media screen and (min-width : 0px) and (max-width :639px)  {
+.tall-thumbnail-preview, .long-thumbnail-preview, .long-thumbnail-preview-small {
+	width:100%;
+	height:60vw;
+}
+
+.overlay2, .tall-thumbnail-preview .overlay2 {
+    transform: translateY(80%);
+}
+}
+
+@media screen and (min-width : 0px) and (max-width :450px)  {
+.overlay2, .tall-thumbnail-preview .overlay2 {
+    transform: translateY(75%);
+}
+
+#thumbnail-previewImg p {
+	font-size:3.6vw;
+	margin-top:-15px;
+}
+}
+
+/******************************Designed by Fabian Shamano, fabianshamano@yahoo.com*******************************/

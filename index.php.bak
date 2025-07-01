@@ -1,0 +1,1413 @@
+<!--Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com-->
+<!DOCTYPE html>
+<html lang="en">
+<?php include 'includes/Dbconnect.php' ?>
+
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+
+		<title>ZNBS</title>
+
+		<!-- Bootstrap -->
+		<link href="css/owl.carousel.min.css" rel="stylesheet">
+		<link href="css/owl.theme.min.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">   
+		<link rel="stylesheet" href="css/lightbox.min.css">
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/parallaxing-background.css" rel="stylesheet">
+		
+		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+		
+		 <style>
+								* {
+								  box-sizing: border-box;
+								}
+
+								.columns {
+								  float: left;
+								  width: 50%;
+								  padding: 8px;
+								}
+
+								.price {
+								  list-style-type: none;
+								  border: 1px solid #ffff;
+								  margin: 0;
+								  padding: 0;
+								  -webkit-transition: 0.3s;
+								  transition: 0.3s;
+								}
+
+								.price:hover {
+								  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+								}
+
+								.price .header {
+								  background-color: #111;
+								  color: white;
+								  font-size: 25px;
+								}
+
+								.price li {
+								  border-bottom: 1px solid #ffff;
+								  padding: 20px;
+								  text-align: center;
+								}
+
+								.price .grey {
+								  background-color: #ffff;
+								  font-size: 20px;
+								}
+
+
+								@media only screen and (max-width: 600px) {
+								  .columns {
+									width: 100%;
+								  }
+								}
+								</style>
+<style>
+	H4{
+	color:#FFFFFF;
+	text-shadow: -1px -1px #000000;
+	 font-style: italic;
+	}
+	</style>
+
+	</head>
+	
+	<body>
+		
+	    <div id="loadScreenWrapper">
+        <div id="loadScreen">
+            <div id="loader">
+                <h1 class="display-1">LOADING</h1><br>
+                <h2 class="display-4">Please Wait...</h2>
+            </div>
+        </div>
+    	</div>
+		
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#">
+				<img src="/docs/4.2/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+				ZNBS
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#about">About</a>
+				  </li>
+				 <li class="nav-item">
+					<a class="nav-link" href="#news">News</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#banking">Banking & Mortgages</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#calculators">Calculators</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#property">Properties & Estates</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#contact-us">Contact Us</a>
+				  </li>
+				</ul>
+			  </div>
+			</nav>
+		</header>
+		<?php 
+
+					
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='17'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																 $content=$row5['At_content'];
+																
+																?>	
+		<!--pop-up-window-->
+		<div class="modal fade" id="news<?php echo $row5['article_id'];?>" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1><?php echo $title; ?></h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img src="Admin/images/<?php echo $row5['At_image']; ?>">
+						<p>
+						<?php echo $content; ?>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+																<?php } ?>
+																
+		<?php 
+					
+																$sql="SELECT * FROM `articles` WHERE `At_sub_cat`='27' OR `At_sub_cat`='26'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																 $content=$row5['At_content'];
+																
+																?>	
+		<!--pop-up-window-->
+		<div class="modal fade" id="tenders<?php echo $row5['article_id'];?>" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1><?php echo $title; ?></h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+						
+						<?php echo $content; ?>
+						<br></p><?php if($row5['Document']){
+							?> <a   class="button" target="_blank" style="animation-delay: 3s" href="Uploads/Document/<?php echo $row5['Document'] ?>">Download</a> <?php }?> 
+							
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+		
+		
+																<?php } ?>
+																
+																
+				<?php 
+						
+					
+																 $sql="SELECT * FROM `articles` WHERE `At_sub_cat`='29'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																 $content=$row5['At_content'];
+																
+																?>												
+			<div class="modal fade" id="jobs<?php echo $row5['article_id'];?>" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1><?php echo $title; ?></h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+						
+						<?php echo $content; ?>
+						<br></p><?php if($row5['Document']){
+							?> <a   class="button" target="_blank" style="animation-delay: 3s" href="Uploads/Document/<?php echo $row5['Document'] ?>">Download</a> <?php } ?> 
+							
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+																<?php } ?>
+																
+																 													
+																 
+		
+																
+																
+																
+		
+				<!--pop-up-window-->
+		<div class="modal fade" id="pop-up-window" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>Artical</h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img src="images/Asset 1.jpg">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+		
+		<div id="content">
+		<section id="slider">
+		
+			<div id="sliderWrapper">
+				<div class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#screenshot-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#screenshot-carousel" data-slide-to="1"></li>
+						<li data-target="#screenshot-carousel" data-slide-to="2"></li>
+						<li data-target="#screenshot-carousel" data-slide-to="3"></li>
+					</ol>
+
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item active">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide1.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated fadeInDown" style="animation-delay: 1s">We are <span>Creative</span></h2>
+								<h3 class="display-4 animated fadeInUp" style="animation-delay: 2s">Housing</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+						<div class=" carousel-item" role="listbox">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide2.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated fadeInLeft" style="animation-delay: 1s">We are <span>Specalists</span></h2>
+								<h3 class="display-4 animated fadeInRight" style="animation-delay: 2s">Apartments</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+						<div class="carousel-item" role="listbox">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide3.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated flipInX" style="animation-delay: 1s">We are <span>Visionaries</span></h2>
+								<h3 class="display-4 animated flipInY" style="animation-delay: 2s">Planning</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+						<div class="carousel-item" role="listbox">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide4.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated fadeInRight" style="animation-delay: 1s">We are <span>Funding</span></h2>
+								<h3 class="display-4 animated fadeInLeft" style="animation-delay: 2s">Financing</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+					</div><!-- End Carousel inner -->
+					<a href="#screenshot-carousel" class="left carousel-control" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a href="#screenshot-carousel" class="right carousel-control" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div><!-- End Carousel -->        
+			</div><!--end sliderWrapper-->
+		
+		</section><!--end silder-->
+		
+		<section id="about">
+			<div class="row">
+				<div class="col-lg-4 section-img"></div>
+
+				<div class="col-lg-5 col-md-8 section-content">
+					<div class="content-panel tab-1 animated fadeIn">
+						
+
+						<p class="text-justify">		<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='12'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																echo $content=$row5['At_content'];
+																}
+																?>		</p>		</div>
+					
+					<div class="content-panel tab-2 animated fadeIn">
+						<h1 class="display-2 text-center">Our Team</h1>
+						<h1 class="display-4 text-center">BOARD OF DIRECTORS</h1>
+						
+						<div class="card-deck">
+							<div class="row">
+						<?php 
+																$sql="SELECT `Identity`, `Title`, `Firstname`, `LastName`, `picture`, `Role` FROM `Directors`";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+                                                           $count=0;
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																$count++;	
+																
+																
+																
+																?>
+								<div class="card m-1">
+									<img class="card-img-top" src="images/staff/<?php echo $row5['picture']; ?>" >
+									<h5 class="card-title text-center"><?php echo $row5['Title']; ?> <?php echo $row5['Firstname']; ?> <?php echo $row5['LastName']; ?></h5>
+									<h6 class="card-title text-center"><?php echo $row5['Role']; ?> </h5>
+								</div><!-- end card-body-->
+																<?php
+                                                     if($count==3 OR $count==6){
+														 echo '</div> <div class="row">';
+													 } ?>
+													 
+													 
+													 
+												<?php				} ?>
+											
+													 
+						
+						
+							</div>
+							
+							
+							
+							
+						</div><!--end card deck-->
+					</div>
+					
+					<div class="content-panel tab-3 animated fadeIn">
+						<h1 class="display-2 text-center">Our Team</h1>
+						<h1 class="display-4 text-center">Senior Managers</h1>
+						
+						
+						<div class="card-deck">
+							<div class="row">
+							<?php 
+							include'includes/functions.php';
+																$sql="SELECT `emp_id`, `Title`, `first_name`, `last_name`, `date_of_birth`, `email`, `mobile_number`,
+																`whatsapp`, `address1`, `address2`, `city_town`, `genda`, `country`, `date_joined`, `jobRole`, `Qualification_level`, 
+																`qualification_Area`, `Category`, `Picture`, `brief_profile` FROM `employees_tbl` WHERE `Category`='Senior Management'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+                                                           $count=0;
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																$count++;	
+																
+																
+																
+																?>
+								<div class="card m-1">
+									<img class="card-img-top" src="images/staff/<?php echo $row5['Picture']; ?>" >
+									<h5 class="card-title text-center"><?php echo $row5['first_name']; ?> <?php echo $row5['last_name']; ?></h5>
+									<h6 class="card-title text-center"><?php echo $row5['jobRole']; ?> </h5>
+								</div><!-- end card-body-->
+																<?php
+                                                     if($count==3 OR $count==6 Or $count==9 ){
+														 echo '</div> <div class="row">';
+													 }
+																} ?>
+																</div>
+
+									
+							
+						</div><!--end card deck-->
+					</div>
+						
+					
+					<div class="content-panel tab-4 animated fadeIn">
+						<h1 class="display-2 text-center">ZNBS Background</h1>
+						
+						<p class="text-justify">
+						<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='18'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																echo $content=$row5['At_content'];
+																}
+																?>	
+						</p></div>
+					
+					
+					<div class="content-panel tab-5 animated fadeIn">
+						
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">
+					<?php   
+					  
+					 
+ $downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
+											$results=mysqli_query($conn,$downloadSQL);
+											$count=0;
+											while($row5=mysqli_fetch_array($results)){
+											$count++; 
+            ?>
+  <div class="card">
+    <a class="card-link" style="color: white;" data-toggle="collapse" href="#collapse<?php echo $count; ?>"><div class="card-header" style="background:rgba(201,96,10,1);">
+      
+        <?php  echo $row5['name']; ?>
+     
+    </div> </a>
+    <div id="collapse<?php echo $count; ?>" class="collapse <?php if($count==1){?>show<?php } ?>" data-parent="#accordion">
+      <div class="card-body">
+        				<ul>	
+
+<?php getDownloadItems($row5['Categoty_id']); ?>
+
+
+</ul>
+      </div>
+    </div>
+  </div>
+<?php } ?>
+						</p></div>
+						<div class="content-panel tab-6_survey animated fadeIn">
+						<h1 class="text-center">Quick Survey</h1>
+						<form action="" Onsubmit='return false' id="Form_survey" method="submit" class="p-4">
+							<input class="form-control" type="text" id="FirstName" placeholder="First Name" required>
+							<br>
+                             <input class="form-control" type="text" id="LastName" placeholder="Last  Name" required><span></span><br>
+							<input type="email" class="form-control" id="Email" placeholder="Your Email" required><br>
+							
+							<label class="form-check-label" for="inlineRadio3"><b>How Did You Know About ZNBS ?</b></label><br>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio" value="Radio">
+							  <label class="form-check-label" for="inlineRadio1">Radio</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Television" value="Television">
+							  <label class="form-check-label" for="inlineRadio2">TV</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Newspaper" value="Newspaper" >
+							  <label class="form-check-label" for="inlineRadio3">Newspaper</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Friends" value="Friends" >
+							  <label class="form-check-label" for="inlineRadio3">Friends</label>
+							</div>
+							<div class="form-check form-check-inline">
+							  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Internet" value="Internet" >
+							  <label class="form-check-label" for="inlineRadio3">Internet</label>
+							</div>
+							<br>
+
+							<input class="p-3 m-2" type="submit" onclick='' value="Submit" id="calculate-btn" />
+						</form>
+						<div id="Survey_Response"> </div></div>
+					
+						
+						
+						
+				</div><!--end section-content-->
+				
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<h1 class="display-4 text-center">About Us</h1>
+					<ul class="read-more-list">
+						<li class="active" data-list="tab-1">Mission & Vision</li>
+						<li data-list="tab-2">BOARD OF DIRECTORS</li>
+						<li data-list="tab-3">SENIOR MANAGERS</li>
+						<li data-list="tab-4">BACKGROUND</li>
+						<li data-list="tab-5">PUBLICATIONS & DOWNLOAD </li>
+						<li data-list="tab-6_survey">QUICK SERVEY</li>
+					</ul>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+					<div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+			
+			</div>
+		</section>
+			
+		<section id="news">
+			<div class="news-bg"></div>
+			<div class="news-gird">
+				<h1 class="text-center display-1">Latest News</h1>
+				<h1 class="text-center display-3">Keep Up With Current Events</h1>
+
+				<div class="container">
+				
+
+
+					<div id="testimonial-slider" class="owl-carousel owl-theme">
+					<?php 
+					include 'includes/trunc.php';
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='17'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																 $content=$row5['At_content'];
+																
+																?>	
+					
+							<span class="icon fa fa-quote-left"></span>
+						<div class="testimonial">
+							<h2><?php echo $title; ?></h2>
+							<img style="height:250px" src="Admin/images/<?php echo $row5['At_image']; ?>">
+							<p class="description">
+							<?php 
+							
+							echo $shortdesc = myTruncate($content, 170);;
+
+							?>
+									</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#news<?php echo $row5['article_id']; ?>"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>
+
+							
+							
+						<?php } ?>	
+							</div>
+				
+				</div>
+
+							
+			</div><!--end about-gird-->
+
+		</section><!--end news-->
+			
+		<section id="banking">
+			<div class="row">
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<h1 class="display-4 text-center">Banking & Mortgages</h1>
+					<ul class="read-more-list p-0">
+						<li class="main-list-tab active" data-list="tab-6">Banking</li>
+						<li class="main-list-tab" data-list="tab-7">BRANCH NETWORK</li>
+						
+						<li class="main-list-tab dropdown-toggle"   data-toggle="collapse" data-target="#collapseTypesofAccounts">Types of Accounts</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse" id="collapseTypesofAccounts" data-list="tab-20" data-parent="#banking">
+								<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='21'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+								<li data-list="tab-8-account-<?php echo $row5['article_id']; ?>"><?php echo $title; ?></li>
+																<?php } ?>
+							</ul>
+						</div>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-17"  data-toggle="collapse" data-target="#collapseMobileBanking" aria-expanded="false" aria-controls="collapseTwo">Digital Banking</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse"  id="collapseMobileBanking" data-list="tab-20" aria-labelledby="heading1" data-parent="#banking">
+														<?php $sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='22'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content']; ?>
+									 
+								<li data-list="tab-6-digital<?php echo $row5['article_id']; ?>"><?php echo $row5['At_Title']; ?></li>
+																<?php  } ?>
+								
+								
+							</ul>
+						</div>
+						
+						<li class="main-list-tab" data-list="tab-18">Banking Loans</li>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-17"  data-toggle="collapse" data-target="#collapseMortgages">Mortgages</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse"  id="collapseMortgages" data-list="tab-20" data-parent="#banking">
+								<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='24'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+								<li data-list="tab-6-Mortgage<?php echo $row5['article_id']; ?>"><?php echo $row5['At_Title']; ?></li>
+																<?php  } ?>
+								
+							</ul>
+						</div>
+					</ul>
+				</div><!--end section-content-->
+				
+				<div class="col-lg-5 col-md-8 section-content">
+					<div class="content-panel tab-6 animated fadeIn">
+					
+					<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='1'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+						
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"><?php echo $content; ?>
+						<img src='Admin/images/<?php echo $row5['At_image']; ?>'>
+						</p>
+						<?php } ?>
+						</div>
+						
+						<?php $sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='24'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content']; ?>
+							<div class="content-panel tab-6-Mortgage<?php echo $row5['article_id']; ?> animated fadeIn">
+				
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"><?php echo $content; ?>
+						<?php if($row5['At_image']){?><img src='Admin/images/<?php echo $row5['At_image']; ?>'><?php } ?>
+						</p></div>
+						<?php } ?>
+						
+						<?php $sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='22'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content']; ?>
+							<div class="content-panel tab-6-digital<?php echo $row5['article_id']; ?> animated fadeIn">
+				
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"><?php echo $content; ?>
+						<?php if($row5['At_image']){?><img src='Admin/images/<?php echo $row5['At_image']; ?>'><?php } ?>
+						</p></div>
+						<?php } ?>
+						
+					
+					<div class="content-panel tab-7 animated fadeIn">
+					<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='20'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+						
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify">
+						<img src='Admin/images/<?php echo $row5['At_image']; ?>'>
+						</p>
+						<?php } ?>
+						</div>
+						<div class="content-panel tab-18 animated fadeIn">
+												 
+
+								<h1 class="display-4 text-center">Banking Loans</h1>
+								<?php
+					
+					
+																$sql="SELECT `loan_id`, `loan_name`, `interest`, `maximum_tanure`, `minum_tanure` FROM `loan_types` WHERE `loan_name`!='Mortgage'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																
+																
+																 ?>
+								<div class="columns">
+								  <ul class="price" >
+									<li class="header" style="background-color:rgba(201,96,10,1)" ><?php echo $row5['loan_name']; ?></li>
+									<li class="grey">Interest: <?php echo $row5['interest']; ?>% / year</li>
+									<li>Get Upto ZMW 1,000,000.00</li>
+									<li>Maximum tenure: <?php echo $row5['maximum_tanure']; ?> Months</li>
+									
+									<li class="grey"><a href="#" class="Button">Apply</a></li>
+								  </ul>
+								</div>
+								
+								
+                            <?php } ?>
+								
+								
+						</div>
+						
+						
+					<?php 
+					
+					
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='21'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+					<div class="content-panel tab-8-account-<?php echo $row5['article_id']; ?> animated fadeIn">
+					
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"> <?php echo $content; ?></p>	</div>
+					
+					<?php } ?>
+					<div class="content-panel tab-10 animated fadeIn">
+						<h1 class="display-2 text-center">Company Profile</h1>
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					
+					<div class="content-panel tab-11 animated fadeIn">
+						<h1 class="display-2 text-center">Downloads</h1>
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+				  <div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+				
+				<div class="col-lg-4 section-img"></div>
+				
+			</div>
+		</section>
+			
+			</section>
+			
+			<section id="calculators">
+			<div class="row">
+				<div class="col-4 section-content-left">
+					<div class="overlay-white"></div>
+					<div class="section-content">
+						<h1 class="display-4 text-center">Banking Loan Calculator</h1>
+						<h1 class="text-center">Calculate Your Repayments</h1>
+						<form action="" Onsubmit='Return false' id="loan_calculator_form" method="submit" class="p-4">
+							<select class="input-box p-3 m-2"  name="input"  id="product_loan" required >
+							<option value=''>--Select Product--</option>
+								<?php 
+				$prod_sql="SELECT `loan_id`, `loan_name`, `interest`, `maximum_tanure`, `minum_tanure` FROM `loan_types`  WHERE `loan_name`!='Mortgage'";
+				$product = mysqli_query($conn,$prod_sql);
+                    while ($row = mysqli_fetch_array($product)) {
+						?>
+							<option value='<?php echo $row['interest']; ?>'><?php echo $row['loan_name']; ?></option>
+					<?php } ?>
+							</select>
+							<br>
+                             <input class="input-box p-3 m-2" type="number" name="input" onKeyup="checkPeriod_loan()" placeholder="Period (Months)" id="period_loan" required><span id="period_response_loan" ></span><br>
+							<input class="input-box p-3 m-2" type="number" name="input" placeholder="Amount (ZMK)" id="amount_loan" required ><br>
+
+							<input class="p-3 m-2" type="submit" onclick='' value="Calculate" id="calculate-btn" />
+						</form>
+						<div id="loan_repayment_response"> </div>
+					</div><!--end section-content-->
+				</div><!--end section-content-left-->
+
+				<div class="col-4 section-img"></div>
+
+				<div class="col-4 section-content-right">
+					<div class="overlay-white"></div>
+					<div class="section-content">
+						<h1 class="display-4 text-center">Mortgage Loan Calculator</h1>
+						<h1 class="text-center">Calculate Your Repayments</h1>
+						<form action="" method="POST" Onsubmit='Return false' class="p-4" id='Modgage_calculator_form'>
+							<select class="input-box p-3 m-2"  name="input"  id="product_modgage" required>
+							<option value=''>--Select Product--</option>
+								<?php 
+				$prod_sql="SELECT `loan_id`, `loan_name`, `interest`, `maximum_tanure`, `minum_tanure` FROM `loan_types` WHERE `loan_name`='Mortgage'";
+				$product = mysqli_query($conn,$prod_sql);
+                    while ($row = mysqli_fetch_array($product)) {
+						?>
+							<option value='<?php echo $row['interest']; ?>'><?php echo $row['loan_name']; ?></option>
+					<?php } ?>
+							</select>
+							<br>
+                             <input class="input-box p-3 m-2" type="number" name="input" placeholder="Period (Months)" onKeyup='checkPeriod_Morgage()' id="period_Mortgage" required><span id="period_response_mortgage" ></span><br>
+							<input class="input-box p-3 m-2" type="number" name="input" placeholder="Amount (ZMK)" id="amount_Mortgage" required><br>
+
+							<input class="p-3 m-2" type="submit" onclick='' value="Calculate" id="calculate-btn" />
+						</form>
+						<div id="Mortgage_repayment_response"> </div>
+					</div><!--end section-content-->
+					
+				</div><!--end section-content-right-->
+				
+			</div><!--row-->
+		</section>
+		
+		<section id="property">
+			<div class="row">
+				<div class="col-lg-4 section-img"></div>
+				
+				<div class="col-lg-5 col-md-8 section-content">
+					<?php 
+					
+					
+																$sql="SELECT * FROM `articles` WHERE `At_category`='6'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+					<div class="content-panel tab-21-prop-<?php echo $row5['article_id']; ?> animated fadeIn">
+					
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"> <?php echo $content; ?> <br></p><?php if($row5['Document']){
+							?> <a   class="button" target="_blank" style="animation-delay: 3s" href="Uploads/Document/<?php echo $row5['Document'] ?>">Download</a> <?php }?> </div>
+					
+					<?php  
+					
+																} ?>
+																
+					<div class="content-panel tab-21-tenders animated fadeIn">
+					<h1 class="display-4 text-center">Running Tenders</h1>
+					
+					<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='27'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+						
+						
+						<a data-toggle="modal" data-target="#tenders<?php echo $row5['article_id']; ?>"><h5 class="button"><?php echo $title=$row5['At_Title']; ?></h5></a>
+						<?php } ?>
+					
+						</div>
+
+                        <div class="content-panel tab-21-tenders-notice animated fadeIn">
+					<h1 class="display-4 text-center">Tender Award Notices</h1>
+					
+					<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='26'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+						
+						
+						<a data-toggle="modal" data-target="#tenders<?php echo $row5['article_id']; ?>"><h5 class="button"><?php echo $title=$row5['At_Title']; ?></h5></a>
+						<?php } ?>
+						
+						</div>	
+                      <?php 
+					
+					
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='28'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+					<div class="content-panel tab-21-proc-plan animated fadeIn">
+					
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"> <?php echo $content; ?> <br></p><?php if($row5['Document']){
+							?> <a   class="button" target="_blank" style="animation-delay: 3s" href="Uploads/Document/<?php echo $row5['Document'] ?>">Download</a> <?php }?> </div>
+					
+					<?php  
+					
+																} ?>						
+					
+				</div><!--end section-content-->
+				
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<h1 class="display-4 text-center">Know More</h1>
+					<ul class="read-more-list">
+						<?php 
+					
+					
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_category`='6'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																$content=$row5['At_content'];
+																 ?>
+						<li data-list="tab-21-prop-<?php echo $row5['article_id']; ?> "><?php echo $title; ?></li>
+						<?php } ?>
+						
+						
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-30"  data-toggle="collapse" data-target="#procurement">Procurement</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse" id="procurement" data-list="tab-20" data-parent="#property">
+							<li data-list="tab-21-tenders">Running Tenders</li>
+							<li data-list="tab-21-tenders-notice">Tender Award Notices</li>
+							<li data-list="tab-21-proc-plan">Procurement Plan</li>
+							
+							
+						
+								
+								
+							</ul>
+						</div>
+					</ul>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+				  <div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+				
+			</div>
+		</section>
+			
+		<section id="contact-us">
+			<div class="row">
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<ul class="read-more-list p-0">
+						<li class="main-list-tab active" data-list="tab-30-main">Contact Us</li>
+						
+						
+						<li class="main-list-tab" data-list="tab-30-jobs">Career Oppotunities</li>
+						<li class="main-list-tab" data-list="tab-301">Main BRANCH</li>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-17"  data-toggle="collapse" data-target="#collapseBranches">Other Branches</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse" id="collapseBranches" data-list="tab-20" data-parent="#contact-us">
+							 <?php 
+																$sql="SELECT * FROM `branch_tbl` WHERE `branch_name`!='Main Branch'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																
+																 ?>
+						
+								<li data-list="tab-30<?php echo $row5['branch_id']; ?>"><?php echo $row5['branch_name']; ?></li>
+								
+																<?php } ?>
+								
+								
+							</ul>
+						</div>
+					
+					
+					</ul>
+				</div><!--end section-content-->
+				
+				<div class="col-lg-5 col-md-8 section-content">
+				<div class="content-panel tab-30-main animated fadeIn">
+				<h1 class="display-4 text-center">Contact Us</h1>
+					<form action="" onsubmit="return false" method="" class="p-4">
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Name" id="Name" >
+
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Email" id="email" ><br>
+							
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Mobile Number" id="Number" >
+							
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Subject" id="Subject" ><br>
+						
+							<textarea class="input-box message" type="text" name="input" placeholder="Message" id="message" ></textarea><br>
+						
+							<input class="p-3 m-2" type="submit" value="Send" onclick="sendEnquiry()" id="send-btn" />
+					</form>
+					<div id="ResponseMesage"></div>
+					</div>
+				<?php 
+					
+					
+																$sql="SELECT `branch_id`, `branch_name`, `Address1`, `Address 2`, `Town`, `Contact_no1`, `Contact_no2`, `email`, `google_map` FROM `branch_tbl`";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['branch_name'];
+																
+																 ?>
+					<div class="content-panel tab-30<?php echo $row5['branch_id']; ?> animated fadeIn">
+					
+						<h1 class="display-4 text-center"><?php echo $title; ?></h1>
+						<p class="text-justify"> <?php  ?> <br></p> 
+						<div class="col-lg-12">
+                        
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h2><img style="height:30px; width:30px;" src="images/location-icon.png"></h2>
+                                <p><?php echo $row5['Address1']; ?>, <?php echo $row5['Address 2']; ?></p>
+								<p><?php echo $row5['Town']; ?>, Zambia</p>
+                            </div>
+            
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h2><img style="height:30px; width:30px;" src="images/mail-icon.png"></h2>
+                                <p id="branch_<?php echo $row5['branch_id']; ?> "><?php echo $row5['email']; ?></p>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <h2><img style="height:30px; width:30px;" src="images/handset-icon.png"></h2>
+                                <p><?php echo $row5['Contact_no1']; ?> <?php if($row5['Contact_no2'])?> / <?php echo $row5['Contact_no2']; ?></p>
+                            </div>   
+                        
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                            
+                               
+																					<a href="https://tweeter.com"><img style="height:30px; width:30px;" src="images/whatsapp-256.png"></a>
+                                                    <a href="https://web.facebook.com/"><img style="height:30px; width:30px;" src="images/facebook_circle-512.png"></a>
+													<a href="https://tweeter.com"><img style="height:30px; width:30px;" src="images/Twitter.png"></a>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+						</div>
+						
+					
+					<?php  
+					
+																} ?>
+						
+<div class="content-panel tab-30-jobs animated fadeIn">	
+<h1 class="display-4 text-center">Job Vacancies</h1>
+					
+				 <?php 
+					
+					
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='29'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+										
+																	
+																
+																 ?>
+					
+					
+						
+				<a data-toggle="modal" href="" data-target="#jobs<?php echo $row5['article_id']; ?>"><h5 class="button"><?php echo $title=$row5['At_Title']; ?></h5></a>
+				
+				
+					
+					<?php  
+					
+																} ?>
+
+                   </div>																
+					
+					
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+				  <div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+				
+				<div class="col-lg-4 col-md-12 section-img"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.7732147387223!2d28.342191414192005!3d-15.442786818517378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19408cf8c4dea087%3A0xdb9a7456c096968a!2sMosi-o-tunya+Rd%2C+Lusaka%2C+Zambia!5e0!3m2!1sen!2s!4v1460979285470" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+				
+			</div><!--end row-->
+		
+		</section>
+			
+		<section>
+			<div id="footer">
+				<div class="row">
+					<div class="col-md-4">
+						<p>copyright Zambia National Building Society<br>
+						</p>
+					</div>
+					
+					<div class="col-md-4">
+						<p>Developed by : CODE-IT & Chesha<br>
+							<a href="http://www.code-it.online" target="_blank">www.code-it.online</a>
+						</p>
+					</div>
+					
+					<div class="col-md-4">
+						<p>email address : <a href="info@code-it.online">info@code-it.online</a> <br>
+						email address : <a href="info@code-it.online">info@chesha.com
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		</div><!--end content-->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script>
+	
+		$("#testimonial-slider").owlCarousel({
+			items:3,
+			itemsDesktop:[1000,3],
+			itemsDesktopSmall:[979,2],
+			itemsTablet:[768,2],
+			itemsMobile:[650,1],
+			pagination:true,
+			autoPlay:true
+		});
+	</script>
+	<script src="js/lightbox-plus-jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<script src="scripts/claculator.js"></script>
+	<script src="scripts/message.js"></script>
+	
+	<!-- Import Trumbowyg -->
+
+
+	</body>
+</html>
+	
+<!--Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com-->

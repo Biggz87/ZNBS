@@ -1,0 +1,65 @@
+<?php
+
+
+function getDescriptiont($vac_id){
+ include 'Dbconnect.php'; 	
+	
+	
+	 $propertySQL="SELECT `vac_descript_id`, `Description`, `vanancy_id` FROM `vanancy_descitipn` WHERE `vanancy_id`='$vac_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												echo '<li>'.$row5['Description'].'</li>';
+												
+												
+											}
+}
+
+function getQualification($vac_id){
+include 'Dbconnect.php'; 	
+	
+	
+	 $propertySQL="SELECT `Qualif_id`, `qualification`, `Vacancy_id` FROM `vacancy_qualification` WHERE `Vacancy_id`='$vac_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												echo '<li>'.$row5['qualification'].'</li>';
+												
+												
+											}
+	
+}
+
+function getResponsibilities($vac_id){
+ include 'Dbconnect.php'; 	
+	
+	
+	 $propertySQL="SELECT `respons_id`, `Responsibility`, `vanancy_id` FROM `vaca_responsibilites` WHERE `vanancy_id`='$vac_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												echo '<li>'.$row5['Responsibility'].'</li>';
+												
+												
+											}
+	
+	
+}
+
+function getDownloadItems($cate_id){
+ include'Dbconnect.php'; 	
+	
+	
+	 $propertySQL="SELECT `document_id`, `tittle`, `address`, `category`, `Status` FROM `downloads` WHERE `category`='$cate_id'";
+											$results=mysqli_query($conn,$propertySQL);
+											
+											while($row5=mysqli_fetch_array($results)){
+												echo '<li><a target="_new" href="'.$row5['address'].'" ">'.$row5['tittle'].'</a></li>';
+												
+												
+											}
+	
+	
+}
+
+?>

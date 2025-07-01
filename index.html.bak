@@ -1,0 +1,864 @@
+<!--Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com-->
+<!DOCTYPE html>
+<html lang="en">
+<?php include 'includes/Dbconnect.php' ?>
+
+	<head>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+
+		<title>ZNBS</title>
+
+		<!-- Bootstrap -->
+		<link href="css/owl.carousel.min.css" rel="stylesheet">
+		<link href="css/owl.theme.min.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">   
+		<link rel="stylesheet" href="css/lightbox.min.css">
+		<link href="css/animate.css" rel="stylesheet">
+		<link href="css/parallaxing-background.css" rel="stylesheet">
+		
+		<link rel="stylesheet" href="css/styles.css" type="text/css" media="screen" />
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+
+	</head>
+	
+	<body>
+		
+	    <div id="loadScreenWrapper">
+        <div id="loadScreen">
+            <div id="loader">
+                <h1 class="display-1">LOADING</h1><br>
+                <h2 class="display-4">Please Wait...</h2>
+            </div>
+        </div>
+    	</div>
+		
+		<header>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="#">
+				<img src="/docs/4.2/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+				ZNBS
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#about">About</a>
+				  </li>
+				 <li class="nav-item">
+					<a class="nav-link" href="#news">News</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#banking">Banking & Mortgages</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#calculators">Calculators</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#property">Properties & Estates</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#contact-us">Contact Us</a>
+				  </li>
+				</ul>
+			  </div>
+			</nav>
+		</header>
+		
+		<!--pop-up-window-->
+		<div class="modal fade" id="pop-up-window" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>Artical</h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img src="images/Asset 1.jpg">
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+						</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+		
+		<div id="content">
+		<section id="slider">
+		
+			<div id="sliderWrapper">
+				<div class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#screenshot-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#screenshot-carousel" data-slide-to="1"></li>
+						<li data-target="#screenshot-carousel" data-slide-to="2"></li>
+						<li data-target="#screenshot-carousel" data-slide-to="3"></li>
+					</ol>
+
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item active">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide1.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated fadeInDown" style="animation-delay: 1s">We are <span>Creative</span></h2>
+								<h3 class="display-4 animated fadeInUp" style="animation-delay: 2s">Housing</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+						<div class=" carousel-item" role="listbox">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide2.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated fadeInLeft" style="animation-delay: 1s">We are <span>Specalists</span></h2>
+								<h3 class="display-4 animated fadeInRight" style="animation-delay: 2s">Apartments</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+						<div class="carousel-item" role="listbox">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide3.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated flipInX" style="animation-delay: 1s">We are <span>Visionaries</span></h2>
+								<h3 class="display-4 animated flipInY" style="animation-delay: 2s">Planning</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+						<div class="carousel-item" role="listbox">
+							<div class="banner d-block w-100 overlay-black" style="background-image: url(images/slide4.jpg)"></div>
+							<div class="carousel-caption">
+								<h2 class="display-2 animated fadeInRight" style="animation-delay: 1s">We are <span>Funding</span></h2>
+								<h3 class="display-4 animated fadeInLeft" style="animation-delay: 2s">Finacing</h3>
+								<p><a href="#" class="display-4 animated zoomIn" style="animation-delay: 3s">Contact Us</a></p>
+							</div><!--end carousel-->
+						</div><!--end item-->
+
+					</div><!-- End Carousel inner -->
+					<a href="#screenshot-carousel" class="left carousel-control" data-slide="prev">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a href="#screenshot-carousel" class="right carousel-control" data-slide="next">
+						<span class="glyphicon glyphicon-chevron-right"></span>
+					</a>
+				</div><!-- End Carousel -->        
+			</div><!--end sliderWrapper-->
+		
+		</section><!--end silder-->
+		
+		<section id="about">
+			<div class="row">
+				<div class="col-lg-4 section-img"></div>
+
+				<div class="col-lg-5 col-md-8 section-content">
+					<div class="content-panel tab-1 animated fadeIn">
+						<h1 class="display-2 text-center">About Us</h1>
+						<h1 class="display-4 text-center">Zambia Building Society</h1>
+						<p class="text-justify">		<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='12'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																echo $content=$row5['At_content'];
+																}
+																?>		</p>		</div>
+					
+					<div class="content-panel tab-2 animated fadeIn">
+						<h1 class="display-2 text-center">Our Team</h1>
+						<h1 class="display-4 text-center">BOARD OF DIRECTORS</h1>
+						
+						<div class="card-deck">
+							<div class="row">
+								<div class="card m-1">
+									<img class="card-img-top" src="images/chair.jpg">
+									<h5 class="card-title text-center">Title</h5>
+								</div><!-- end card-body-->
+
+								<div class="card m-1">
+									<img class="card-img-top" src="images/director mpundu.jpg">
+									<h5 class="card-title text-center">Title</h5>
+								</div><!-- end card-body-->
+
+								<div class="card m-1">
+									<img class="card-img-top" src="images/1.jpg">
+									<h5 class="card-title text-center">Title</h5>
+								</div><!-- end card-body-->
+							</div>
+							
+							<div class="row">
+								<div class="card m-1">
+									<img class="card-img-top" src="images/chair.jpg">
+									<h5 class="card-title text-center">Title</h5>
+								</div><!-- end card-body-->
+
+								<div class="card m-1">
+									<img class="card-img-top" src="images/director mpundu.jpg">
+									<h5 class="card-title text-center">Title</h5>
+								</div><!-- end card-body-->
+
+								<div class="card m-1">
+									<img class="card-img-top" src="images/1.jpg">
+									<h5 class="card-title text-center">Title</h5>
+								</div><!-- end card-body-->
+							</div>	
+							
+						</div><!--end card deck-->
+					</div>
+					
+					<div class="content-panel tab-3 animated fadeIn">
+						<h1 class="display-2 text-center">Our Team</h1>
+						<h1 class="display-4 text-center">Seinor Managers</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-4 animated fadeIn">
+						<h1 class="display-2 text-center">Company Profile</h1>
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">
+						<?php 
+																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+																`At_status` FROM `articles` WHERE `At_sub_cat`='18'";
+																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+        
+                                                               
+																while ($row5 = mysqli_fetch_array($q1)) {
+																	
+																$title=$row5['At_Title'];
+																echo $content=$row5['At_content'];
+																}
+																?>	
+						</p></div>
+					
+					
+					<div class="content-panel tab-5 animated fadeIn">
+						<h1 class="display-2 text-center">Downloads</h1>
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">
+						<?php   
+					 
+					 include 'includes/functions.php';
+ $downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
+											$results=mysqli_query($conn,$downloadSQL);
+											$count=0;
+											while($row5=mysqli_fetch_array($results)){
+											$count++; 
+            ?>
+  <div class="card">
+    <a class="card-link" style="color: white;" data-toggle="collapse" href="#collapse<?php echo $count; ?>"><div class="card-header" style="background:rgba(201,96,10,1);">
+      
+        <?php  echo $row5['name']; ?>
+     
+    </div> </a>
+    <div id="collapse<?php echo $count; ?>" class="collapse <?php if($count==1){?>show<?php } ?>" data-parent="#accordion">
+      <div class="card-body">
+        				<ul>	
+
+<?php getDownloadItems($row5['Categoty_id']); ?>
+						</p></div>
+				</div><!--end section-content-->
+				
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<h1 class="display-4 text-center">Know More</h1>
+					<ul class="read-more-list">
+						<li class="active" data-list="tab-1">About us</li>
+						<li data-list="tab-2">BOARD OF DIRECTORS</li>
+						<li data-list="tab-3">SENIOR MANAGERS</li>
+						<li data-list="tab-4">COMPANY PROFILE</li>
+						<li data-list="tab-5">DOWNLOADS</li>
+						<li data-list="tab-6">QUICK SERVEY</li>
+					</ul>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+					<div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+			
+			</div>
+		</section>
+			
+		<section id="news">
+			<div class="news-bg"></div>
+			<div class="news-gird">
+				<h1 class="text-center display-1">Latest News</h1>
+				<h1 class="text-center display-3">Keep Up With Current Events</h1>
+
+				<div class="container">
+
+					<div id="testimonial-slider" class="owl-carousel owl-theme">
+
+						<div class="testimonial">
+							<span class="icon fa fa-quote-left"></span>
+							<h2>Artical Title</h2>
+							<img src="images/Asset 1.jpg">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+							</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#pop-up-window"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>
+
+						<div class="testimonial">
+							<span class="icon fa fa-quote-left"></span>
+							<h2>Artical Title</h2>
+							<img src="images/Asset 2.jpg">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+							</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#pop-up-window"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>
+
+						<div class="testimonial">
+							<span class="icon fa fa-quote-left"></span>
+							<h2>Artical Title</h2>
+							<img src="images/Asset 3.jpg">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+							</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#pop-up-window"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>
+
+					   <div class="testimonial">
+							<span class="icon fa fa-quote-left"></span>
+							<h2>Artical Title</h2>
+							<img src="images/Asset 4.jpg">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+							</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#pop-up-window"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>     
+					   <div class="testimonial">
+							<span class="icon fa fa-quote-left"></span>
+							<h2>Artical Title</h2>
+							<img src="images/Asset 1.jpg">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+							</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#pop-up-window"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>     
+					   <div class="testimonial">
+							<span class="icon fa fa-quote-left"></span>
+							<h2>Artical Title</h2>
+							<img src="images/Asset 2.jpg">
+							<p class="description">
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam justo neque, aliquet sit amet elementum vel, vehicula eget eros. Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.Vivamus arcu metus, mattis sed sagittis at, sagittis quis neque. Praesent.
+							</p>
+							<div class="testimonial-content">
+								<a data-toggle="modal" data-target="#pop-up-window"><div class="pic align-items-center"><p>Read More</p></div></a>
+							</div>
+						</div>
+					</div>
+				
+				</div>
+
+			</div><!--end about-gird-->
+
+		</section><!--end news-->
+			
+		<section id="banking">
+			<div class="row">
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<h1 class="display-4 text-center">Banking & Mortgages</h1>
+					<ul class="read-more-list p-0">
+						<li class="main-list-tab active" data-list="tab-6">Banking</li>
+						<li class="main-list-tab" data-list="tab-7">BRANCH NETWORK</li>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-6"  data-toggle="collapse" data-target="#collapseTypesofAccounts">Types of Accounts</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse" id="collapseTypesofAccounts" data-list="tab-20" data-parent="#banking">
+								<li data-list="tab-9">Personal Account</li>
+								<li data-list="tab-10">Life Assurance Account</li>
+								<li data-list="tab-11">Salary Account</li>
+								<li data-list="tab-12">Fixed Deposit Account</li>
+								<li data-list="tab-13">Stop Order Account</li>
+								<li data-list="tab-14">Stop Order Plus</li>
+								<li data-list="tab-15">Musika</li>
+								<li data-list="tab-16">Pensioners</li>
+							</ul>
+						</div>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-17"  data-toggle="collapse" data-target="#collapseMobileBanking" aria-expanded="false" aria-controls="collapseTwo">Mobile Banking</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse"  id="collapseMobileBanking" data-list="tab-20" aria-labelledby="heading1" data-parent="#banking">
+								<li>Types of Mortgages</li>
+								<li data-list="tab-6">Mortgage Requirments</li>
+								<li data-list="tab-22">FAQ</li>
+							</ul>
+						</div>
+						
+						<li class="main-list-tab" data-list="tab-18">Banking Loans</li>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-17"  data-toggle="collapse" data-target="#collapseMortgages">Mortgages</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse"  id="collapseMortgages" data-list="tab-20" data-parent="#banking">
+								<li data-list="tab-6">Types of Mortgages</li>
+								<li data-list="tab-6">Mortgage Requirments</li>
+								<li data-list="tab-22">FAQ</li>
+							</ul>
+						</div>
+					</ul>
+				</div><!--end section-content-->
+				
+				<div class="col-lg-5 col-md-8 section-content">
+					<div class="content-panel tab-6 animated fadeIn">
+						<h1 class="display-2 text-center">Banking</h1>
+						<h1 class="display-4 text-center">Zambia Building Society</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-7 animated fadeIn">
+						<h1 class="display-2 text-center">Branch Networks</h1>
+						<h1 class="display-4 text-center">Accounts</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-8 animated fadeIn">
+						<h1 class="display-2 text-center">Accounts</h1>
+						<h1 class="display-4 text-center">Types of Accounts</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-9 animated fadeIn">
+						<h1 class="display-2 text-center">Accounts</h1>
+						<h1 class="display-4 text-center">Life Assurance Account</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-10 animated fadeIn">
+						<h1 class="display-2 text-center">Company Profile</h1>
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					
+					<div class="content-panel tab-11 animated fadeIn">
+						<h1 class="display-2 text-center">Downloads</h1>
+						<h1 class="display-4 text-center">Download Here</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+				  <div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+				
+				<div class="col-lg-4 section-img"></div>
+				
+			</div>
+		</section>
+			
+		<section id="calculators">
+			<div class="row">
+				<div class="col-lg-4 col-md-12 section-content-left">
+					<div class="overlay-white"></div>
+					<div class="section-content">
+						<h1 class="display-4 text-center">Banking Loan Calculator</h1>
+						<h1 class="text-center">Calculate Your Mortgage Repayments</h1>
+						<form action="" method="" class="p-4">
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Select Product" id="product" ><br>
+
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Amount (ZMK)" id="amount" ><br>
+
+							<input class="p-3 m-2" type="submit" value="Calculate" id="calculate-btn" />
+						</form>
+					</div><!--end section-content-->
+				</div><!--end section-content-left-->
+
+				<div class="col-lg-4 section-img"></div>
+
+				<div class="col-lg-4 col-md-12 section-content-right">
+					<div class="overlay-white"></div>
+					<div class="section-content">
+						<h1 class="display-4 text-center">Mortgage Loan Calculator</h1>
+						<h1 class="text-center">Calculate Your Repayments</h1>
+						<form action="" method="" class="p-4">
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Select Product" id="product" ><br>
+
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Amount (ZMK)" id="amount" ><br>
+
+							<input class="p-3 m-2" type="submit" value="Calculate" id="calculate-btn" />
+						</form>
+					</div><!--end section-content-->
+				</div><!--end section-content-right-->
+				
+			</div><!--row-->
+		</section>
+		
+		<section id="property">
+			<div class="row">
+				<div class="col-lg-4 section-img"></div>
+				
+				<div class="col-lg-5 col-md-8 section-content">
+					<div class="content-panel tab-20 animated fadeIn">
+						<h1 class="display-4 text-center">Property and Estates</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-21 animated fadeIn">
+						<h1 class="display-4 text-center">ZNBS Properties</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-22 animated fadeIn">
+						<h1 class="display-4 text-center">Vacant Spaces For Rent</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					<div class="content-panel tab-23 animated fadeIn">
+						<h1 class="display-4 text-center">Office Space Application</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+					
+					
+					<div class="content-panel tab-24 animated fadeIn">
+						<h1 class="display-4 text-center">Property Customer Care</h1>
+						<p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.<br><br>
+
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime, esse possimus architecto sunt natus reprehenderit debitis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus quos cumque odio soluta harum error sequi laudantium, est nam perspiciatis eveniet maxime.</p>
+					</div>
+				</div><!--end section-content-->
+				
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<h1 class="display-4 text-center">Know More</h1>
+					<ul class="read-more-list">
+						<li class="active" data-list="tab-20">Property and Estates</li>
+						<li data-list="tab-21">ZNBS Properties</li>
+						<li data-list="tab-22">Vacant Spaces For Rent</li>
+						<li data-list="tab-23">Office Space Application</li>
+						<li data-list="tab-24">Property Customer Care</li>
+					</ul>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+				  <div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+				
+			</div>
+		</section>
+			
+		<section id="contact-us">
+			<div class="row">
+				<div class="col-lg-3 col-md-4 section-read-more">
+					<ul class="read-more-list p-0">
+						<li class="main-list-tab active" data-list="tab-25">Contact Us</li>
+						<li class="main-list-tab" data-list="tab-35">Call for Bids</li>
+						<li class="main-list-tab" data-list="tab-35">Career Oppotunities</li>
+						<li class="main-list-tab" data-list="tab-26">Main BRANCH</li>
+						
+						<li class="main-list-tab dropdown-toggle" data-list="tab-17"  data-toggle="collapse" data-target="#collapseBranches">Other Branches</li>
+						<div class="drop-down">
+							<ul class="p-0 collapse" id="collapseBranches" data-list="tab-20" data-parent="#contact-us">
+								<li data-list="tab-27">Branch</li>
+								<li data-list="tab-28">Branch</li>
+								<li data-list="tab-29">Branch</li>
+								<li data-list="tab-30">Branch</li>
+								<li data-list="tab-31">Branch</li>
+								<li data-list="tab-32">Branch</li>
+								<li data-list="tab-33">Branch</li>
+								<li data-list="tab-34">Branch</li>
+							</ul>
+						</div>
+					</ul>
+				</div><!--end section-content-->
+				
+				<div class="col-lg-5 col-md-8 section-content">
+					<h1 class="display-4 text-center">Contact Us</h1>
+					<form action="" method="" class="p-4">
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Name" id="product" >
+
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Email" id="amount" ><br>
+							
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Number" id="amount" >
+							
+							<input class="input-box p-3 m-2" type="text" name="input" placeholder="Subject" id="amount" ><br>
+						
+							<textarea class="input-box message" type="text" name="input" placeholder="Message" id="chatMessage" ></textarea><br>
+						
+							<input class="p-3 m-2" type="submit" value="Send" id="send-btn" />
+					</form>
+				</div><!--end section-content-->
+				
+				<!--mobile list-->
+				<div id="accordion">
+				  <div class="row">
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<button class="btn btn-link">
+							  Collapsible Group Item #1
+							</button>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #2
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card col-12" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<button class="btn btn-link collapsed">
+							  Collapsible Group Item #3
+							</button>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+						  <div class="card-body">
+							Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+						  </div>
+						</div>
+					  </div>
+					</div>
+				</div><!--end accordion-->
+				
+				<div class="col-lg-4 col-md-12 section-img"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3845.7732147387223!2d28.342191414192005!3d-15.442786818517378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19408cf8c4dea087%3A0xdb9a7456c096968a!2sMosi-o-tunya+Rd%2C+Lusaka%2C+Zambia!5e0!3m2!1sen!2s!4v1460979285470" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen></iframe></div>
+				
+			</div><!--end row-->
+		
+		</section>
+			
+		<section>
+			<div id="footer">
+				<div class="row">
+					<div class="col-md-4">
+						<p>copyright Zambia National Building Society<br>
+						</p>
+					</div>
+					
+					<div class="col-md-4">
+						<p>Developed by : CODE-IT & Chesha<br>
+							<a href="http://www.code-it.online" target="_blank">www.code-it.online</a>
+						</p>
+					</div>
+					
+					<div class="col-md-4">
+						<p>email address : <a href="info@code-it.online">info@code-it.online</a> <br>
+						email address : <a href="info@code-it.online">info@chesha.com
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		</div><!--end content-->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script>
+		$("#testimonial-slider").owlCarousel({
+			items:3,
+			itemsDesktop:[1000,3],
+			itemsDesktopSmall:[979,2],
+			itemsTablet:[768,2],
+			itemsMobile:[650,1],
+			pagination:true,
+			autoPlay:true
+		});
+	</script>
+	<script src="js/lightbox-plus-jquery.min.js"></script>
+	<script src="js/scripts.js"></script>
+	<!-- Import jQuery -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+
+<!-- Import Trumbowyg -->
+<script src="trumbowyg/dist/trumbowyg.min.js"></script>
+
+<!-- Import all plugins you want AFTER importing jQuery and Trumbowyg -->
+<script src="trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js"></script>
+
+	</body>
+</html>
+	
+<!--Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com-->

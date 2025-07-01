@@ -1,0 +1,1484 @@
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com***************************/
+body {
+	height: 100%;
+	width: 100% !important;
+	overflow-x: hidden!important;
+
+}
+
+a{
+	text-decoration:none!important;
+	font-style: none;
+}
+
+img {
+	width: 100%;
+	height: auto;
+	background: url(../images/lightbox/loading.gif) center no-repeat, #fff;
+}
+
+hr{
+	border-bottom: 1px solid rgba(255,255,255,.12);
+	border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.content-panel p{
+	font-weight: 300;
+	font-size: 15px;
+}
+
+.content-panel .display-4{
+	text-transform: uppercase;
+}
+
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com***************************/
+/********************************************************loader*************************************************************/
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com***************************/
+
+#loadScreenWrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	z-index:1100;
+	padding-right: 100px;
+}
+
+.no-js #loadScreenWrapper {
+	display:none;
+}
+
+@keyframes loader-logo {
+	0% {
+		opacity:0;
+		transform: translateX(300%) scale(1.2);
+	}
+	20%{
+		opacity:1;
+		transform: translateX(300%) scale(1.4);
+	}
+	30%{
+		opacity:1;
+		transform: translateX(300%) scale(1.4);
+	}
+	50% {
+		transform:translateX(300%) scale(1);
+	}
+	
+	60%{
+		transform: translateX(300%);
+	}
+	
+	100%{
+		transform: translateX(0);
+	}
+}
+
+@keyframes sweep-across{
+	from{
+		opacity: .2;
+		transform: translateX(-90%) rotate(-45deg);
+	}
+	to{
+		opacity: .6;
+		transform: translateX(90%) rotate(-45deg);
+	}
+}
+
+#loadScreen {
+	opacity:1;
+	position:fixed;
+	z-index:1001;
+	top:0px;
+	left:0px;
+    width: 100%;
+    height: 100%;
+	background: #fff;
+	
+}
+
+.loaded #loader{
+	opacity: 0;
+	transition: all 0.4s 3s ease;
+}
+
+.loaded #loadScreen {
+	opacity:0;
+    transition: all 0.6s 3.6s ease-out;
+}
+
+.loaded #loadScreenWrapper {
+	visibility:hidden;
+	transform:translateY(-100%);
+    transition: 0.1s 4.2s ease-out;
+}
+
+#loader {
+	position:absolute;
+	left:0%;
+	right:0%;
+	top:0%;
+	bottom:0%;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+}
+
+#loader .logo-img {
+	position: relative;
+	z-index: 1;
+	width:15%;
+	height:20%;
+	animation: loader-logo 2s ease-in-out;
+}
+
+#loader .loder-logo {
+	position:relative;
+	font-size:64px;
+	width: 50%;
+}
+
+#loader .logo-text{
+	position: absolute;
+	top:5%;
+	left: 15%;
+	padding: 25px;
+}
+
+#loader .logo-name{
+	color: rgba(244,130,34,1)!important;
+	font-size: 2.4vw;
+	display: flex;
+}
+
+#loader .logo-moto{
+	color: rgba(244,130,34,1)!important;
+	font-size: 2vw;
+	margin-left: 0px;
+	position: relative;
+	z-index: 1;
+	display: flex;
+	left: 15%;
+	width: 100%;
+}
+
+#loader .logo-name .letter{
+	transform: translateX(30px);
+	transition: opacity .3s 1.6s ease-in-out, transform .3s 1.6s ease-in-out;
+	opacity: 0;
+}
+
+#loader .logo-moto .letter{
+	transform: translateY(30px);
+	transition: opacity .3s 3.4s ease-in, transform .3s 3.4s ease-in;
+	font-style: italic;
+	opacity: 0;
+}
+
+#loader .logo-name .letter-last,#loader .logo-moto .letter-last{
+	margin-right: 10px;
+}
+
+#loader .loading-gif {
+	position:relative;
+	display: block;
+	top:20%;
+	margin: auto;
+	width:20%;
+	transition: all .6s 5.7s ease-in;
+	opacity: 0;
+}
+
+#loader .shimmer{
+	background: rgba(255,255,255,1);
+	transform: translateY(150%);
+	width: 100%;
+	height: 60px;
+	position: absolute;
+	left: 10px;
+	animation: sweep-across 4s 6s cubic-bezier(0.645, 0.045, 0.355, 1.000) alternate infinite;
+	filter: blur(2px);
+}
+
+.loading-bar{
+	position: relative;
+	margin: auto;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 210px;
+	height: 30px;
+	background: #9cbab4;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.loading-bar__fill{
+	width: 0%;
+	height: 100%;
+	transition: all .3s ease;	
+}
+
+.loading-bar__text{
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	color: #fff;
+}
+
+
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com*************************/
+/******************************************************Navbar*************************************************************/
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com*************************/
+
+.navbar-brand{
+	display: flex;
+	padding-right: 60px;
+}
+.navbar-brand img {
+	width: 30px;
+	height: 40px;
+	transform: scale(1.1) translateX(10px);
+	transition: all .6s ease;
+	background: none;
+}
+
+.logo-caption-wapper{
+	perspective: 1000px;
+	margin-left: -10px;
+}
+
+.logo-caption{
+	position: relative;
+	
+}
+
+.logo-text img{
+	width: 220px;
+	height: auto;
+	margin-left: -30px;
+	margin-top: -7px;
+}
+
+.logo-text{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 35px;
+	margin-top: 4px;
+}
+
+.logo-caption-full{
+	text-align: center;
+	transform-style: preserve-3d;
+	transition: all .6s ease;
+}
+
+.logo-name{
+	font-family: 'Bauhaus 93'!important;
+	font-size: 13px;
+}
+
+.logo-moto{
+	font-weight: 100;
+	font-family: 'Calisto MT';
+	margin-left: 25px;
+}
+
+.logo-caption-short{
+	transform: rotateX(-90deg);
+	transform-style: preserve-3d;
+	transition: all .6s ease;
+	font-weight: 100;
+	font-size: 22px;
+}
+
+.flipped{
+	transform-style: preserve-3d;
+	transform-origin: center bottom 30px;
+	transform: translateZ(7.5vw);
+}
+
+.logo-caption-full.flipped{
+	transform: rotateX(90deg) translateX(-35px);
+}
+
+.logo-caption-short.flipped{
+	transform: rotateX(0deg) translateX(-35px);
+}
+
+.navbar-brand span{
+	margin-left: 15px;
+}
+
+.navbar .navbar-brand{
+    color : #FFF!important;
+    font-weight: bolder;
+    font-size: .8em;
+	transition: all .8s ease;
+}
+
+.nav-link{
+	padding: 14px;
+}
+
+.navbar .navbar-brand:hover img, .navbar .navbar-brand:hover span{
+    text-shadow: 1px 1px 5px rgba(255,255,255,.7);
+	color: #fff;
+	font-weight: 100;
+}
+
+nav {
+	z-index: 1000;
+}
+
+.navbar{
+    background-color:rgba(244,130,34,1)!important;
+	padding: 0px 15px;
+	transition: background .3s ease-in-out;
+	border-bottom: 1px solid rgba(255,255,255,.3);
+}
+
+.navbar:hover{
+	background-color:rgba(244,130,34,1)!important;
+}
+
+.navbar-color {
+    background-color: rgba(244,130,34,1) !important;
+	transition: all .6s ease;
+	box-shadow: 0 0 15px rgba(0,0,0,.3);
+}
+
+.navbar-color .navbar-brand img{
+	transform: scale(.8) translate(0px);
+} 
+
+.navbar-color:hover {
+    background-color: rgba(244,130,34,1) !important;
+}
+
+.navbar .navbar-nav{
+    margin : 0 auto;
+}
+
+.navbar .navbar-nav li {
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 100%;
+}
+
+.navbar .nav-item{
+	height: 100%;
+}
+
+.navbar .nav-item a{
+    color: #FFF !important;
+	text-shadow: -1px -1px rgba(0,0,0,.3);
+	font-size: 1em;
+}
+
+.navbar .nav-item a:hover{
+    color: rgba(255,255,255,1) !important;
+}
+
+.navbar .dropdown-menu{
+    background-color: rgba(0,0,0,0.3);
+}
+.dropdown-item:hover{
+    background-color: rgba(0,0,0,0.3);
+}
+.navbar form button{
+    background-color: rgba(0,95,95,0.50);
+    color:#FFF;
+    border:0;
+}
+.navbar form button:hover{
+    background-color: #000;
+}
+
+li.drop-down-mobile{
+	display: none;
+}
+
+.drop-down{
+	position: relative;
+	cursor: pointer;
+}
+
+.drop-down-menu{
+	position: absolute;
+	z-index: 2;
+	top: 53px;
+	left: 0px;
+	list-style: none;
+	padding: 1px;
+	width: 100%;
+}
+
+.drop-down .drop-down-menu{
+	visibility:hidden;
+	opacity: 0;
+	transform: translateY(30px);
+	transition: all .3s ease-in;
+}
+
+.drop-down:hover .drop-down-menu {
+	visibility: visible;
+	opacity: 1;
+	transform: translateY(0px);
+}
+ 
+.drop-down-menu li{
+	padding: 10px 0px;
+	cursor: pointer;
+	text-align: left;
+	transition: .3s ease-in all;
+	color:#fff;
+}
+
+.drop-down-menu li:hover{
+	background: rgba(244,130,34,1);
+	color: #fff;
+	text-shadow:0px 0px 15px rgba(0,0,0,.2); 
+}
+
+.middle-list{
+	border-top: 1px solid #fff;
+}
+
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com***************************/
+/*********************************************************Body**************************************************************/
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com***************************/
+#content{
+	margin-top:0px;
+	width: 100%;
+	overflow-x: hidden;
+}
+
+.modal-body h1,.modal-body h2,.modal-body h3,.modal-body h4,.modal-body h5{
+	color: #000;
+	text-shadow: none;
+}
+
+.modal-body iframe{
+	min-height: 50vh;
+	width: 100%;
+}
+
+#sliderWrapper{
+	position: relative;
+}
+
+.carousel-item{
+	height: 100vh;
+}
+
+.banner{
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 100vh;
+}
+
+.carousel-caption{
+	padding-bottom: 200px;
+}
+
+.carousel-caption h2 {
+	text-transform: uppercase;
+}
+
+.carousel-caption h2 span{
+	color: rgba(255,215,0,1);
+}
+
+.carousel-caption a{
+	background: rgba(255,215,0,1);
+	padding: 15px 35px;
+	display: inline-block;
+	font-size: 20px;
+	text-decoration: none;
+	color: #fff;
+	border-radius:25px;
+	margin-top: 15px
+}
+
+.carousel-caption .display-2{
+	font-weight: 700;
+}
+
+.overlay-black {
+	position: relative;
+}
+
+.overlay-black:after{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	content: "";
+	z-index: 2;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.3);
+}
+
+.carousel-btn-grid {
+	position: absolute;
+	right: -115px;
+	z-index: 100;
+	top: 27%;
+	background: rgba(244,130,34,1);
+	box-shadow: -1px 0px 5px rgba(0,0,0,.2);
+	transition: all .3s ease-in;
+	border: 1px solid rgba(255,255,255,.2);
+}
+
+.carousel-btn{
+	padding: 10px 15px;
+	width: 100%;
+	color: #fff;
+	cursor: pointer;
+	transition: all .3s ease-in;
+	font-size: 28px;
+	display: flex;
+}
+
+.carousel-btn span{
+	font-size: 18px;
+	margin-left: 20px;
+}
+
+.carousel-btn img {
+	width: 30px;
+	height: 30px;
+	margin-right: 17px;
+}
+
+.carousel-btn-grid:hover{
+	color: #fff;
+	right: 0px;
+}
+
+.carousel-btn:hover{
+	color: #fff;
+	background: rgba(255,215,0,1);
+}
+
+#accordion {
+	display: none;
+}
+
+.section-content #accordion{
+	display: block;
+	box-shadow: 0 0 15px rgba(0,0,0,.3);
+}
+
+.section-content #accordion li{
+	padding: 15px;
+	color: #fff;
+}
+
+.section-content #accordion li a{
+	color: #fff;
+}
+
+.section-content #accordion h5 button{
+	font-size: 16px;
+}
+
+.content-panel hr{
+	border-top: 1px solid rgba(0,0,0,.01);
+	border-bottom: 1px solid rgba(190,190,190,1);
+}
+
+#accordion .card-header{
+	background: rgba(244,130,34,1);
+	border-radius: 4px;
+	border: 1px solid rgba(255,255,255,.1);
+
+}
+
+#accordion .card-header:hover{
+	background: rgba(255,215,0,1);
+	cursor: pointer;
+}
+
+#about,#banking,#property,#contact-us{
+	background: #000;
+}
+
+#about .section-img{
+	background: url(../images/about.jpg) fixed no-repeat left;
+	background-size:contain;
+}
+
+#calculators .section-img{
+	background: url(../images/mortgage.jpg)fixed center;
+	background-size:contain;
+}
+
+#banking .section-img{
+	background: url(../images/banking.jpg) fixed no-repeat right;
+	background-size:contain;
+}
+
+#property .section-img{
+	background: url(../images/property.jpg) fixed no-repeat left;
+	background-size:contain;
+}
+
+#contact-us .section-img i{
+	font-size: 30px;
+	margin-right: 10px;
+}
+
+#contact-us .section-img .contact-us-socials i{
+	cursor: pointer;
+	font-size: 48px;
+}
+
+#contact-us .section-img{
+	background: url(../images/contact-us.jpg) fixed right no-repeat;
+	background-size: contain;
+	position: relative;
+	z-index: 0;
+}
+
+#contact-us .section-img:after{
+	content: "";
+	position: absolute;
+	z-index: 1;
+	background: rgba(0,0,0,.7);
+	top: 0;
+	left:0;
+	right: 0;
+	bottom: 0;
+}
+
+.section-img-caption{
+	position: relative;
+	z-index: 2;
+	padding: 90px 10px;
+}
+
+.section-content, .section-read-more,.section-content-left, .section-content-right{
+	padding-top: 90px;
+	padding-bottom: 90px;
+	min-height: 100vh;
+}
+
+.section-content-left, .section-content-right{
+	padding-top: 120px;
+	padding-bottom: 15px;
+}
+
+.section-content{
+	padding-left: 30px;
+	padding-right: 30px;
+	border: 1px solid rgba(255,255,255,.05);
+}
+
+.section-content p{
+	text-align: justify;
+}
+
+.section-content-btn{
+	transition: background .3s ease-in;
+	border-radius: 4px;
+	margin-top: 15px;
+	padding:15px 30px;
+}
+
+.section-content-btn:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.section-content-img, iframe{
+	border-radius: 10px;
+	border: 5px solid rgba(255,255,255,.1);
+	box-shadow: 0 0 15px rgba(0,0,0,.1);
+	margin-top: 30px;
+}
+
+#about .section-content, #banking .section-content, #property .section-content{
+	background-size:cover !important;
+}
+
+.card-img-top img{
+	overflow: hidden;
+	transition: .3s all ease-in;
+	opacity: .6;
+}
+
+.card:hover .card-img-top img{
+	opacity: 1;
+}
+
+.card-title{
+	margin: 15px 15px;
+}
+
+.card-text{
+	padding: 15px;
+}
+
+.card-icon-img{
+	font-size: 7rem;
+	text-shadow: -1px -1px rgba(0,0,0,.6);
+}
+
+#property .card-icon{
+
+}
+
+#property .card-icon-img{
+	font-size: 62px;
+}
+
+#property i{
+	color: rgba(244,130,34,1);
+	font-size: 26px;
+}
+
+.example-image-link{
+	margin-bottom: 15px;
+}
+
+.divider{
+	border: 1px solid rgba(0,0,0,.1);
+}
+
+.read-more-list{
+	margin-top: 30px;
+}
+
+.read-more-list li{
+	list-style: none;
+	padding: 20px 40px;
+	width: 100%;
+	margin: 2px 0px;
+	transition: all .3s ease-in;
+	text-transform: uppercase;
+	box-shadow: 1px 1px 5px rgba(0,0,0,.3);
+}
+
+#banking .read-more-list, #contact-us .read-more-list{
+	margin-right: 40px;
+}
+
+.read-more-list li:hover,.toggle-btn:hover,.read-more-list .drop-down ul li:hover{
+	cursor: pointer;
+}
+
+.read-more-list .drop-down ul li{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	text-transform: none;
+	margin: 0px;
+}
+
+#about .read-more-list li,#property .read-more-list li{
+	opacity: 0;
+	transform: translateX(100%);
+	transition:opacity .8s ease-in,transform .8s ease-in,background .3s ease-in;
+}
+
+#banking .read-more-list li.main-list-tab,#contact-us .read-more-list li.main-list-tab{
+	opacity: 0;
+	transform: translateX(-100%);
+	transition:opacity .8s ease-in,transform .8s ease-in,background .3s ease-in;
+}
+
+.fade-in-right{
+	opacity: 0;
+	transform:translateX(100%);
+	transition: all 1.2s ease-in;
+}
+
+.fade-in-left{
+	opacity: 0;
+	transform:translateX(-100%);
+	transition: all 1.2s ease-in;
+}
+
+#loader .logo-img.is-showing,#loader .logo-name .letter.is-showing,#loader .logo-moto .letter.is-showing,#loader .loading-gif.is-showing,#about .read-more-list li.is-showing,#property .read-more-list li.is-showing,#banking .read-more-list li.is-showing, #contact-us .read-more-list li.is-showing, .fade-in-left.showing, .fade-in-right.showing{
+	opacity: 1;
+	transform: translate(0);
+}
+
+.chairman-card{
+	left:26%;
+	right: auto;
+}
+
+#news{
+	position: relative;
+	padding-top: 60px;
+}
+
+.news-bg{
+	position: absolute;
+	z-index: -2;
+	background:url(../images/news.jpg) fixed;
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+}
+
+#news:before{
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	background: rgba(255,255,255,.5);
+}
+
+#news h1{
+	color: #000;
+}
+
+.testimonial-slider{
+	position: relative;
+	z-index: 1;
+}
+
+.testimonial{
+    background: #fff;
+    text-align: center;
+    padding: 30px 30px 50px;
+    margin: 0 15px 100px;
+    position: relative;
+    margin-top: 30px;
+}
+
+.testimonial h5{
+	padding: 15px;
+	margin-top: -15px;
+}
+
+.testimonial:before,
+.testimonial:after,.horizontal-card:before,.horizontal-card:after{
+    z-index: -1;
+  	position: absolute;
+	content: "";
+	bottom: 15px;
+	left: 10px;
+	width: 50%;
+	top: 80%;
+	max-width:300px;
+	-webkit-box-shadow: 0 15px 10px #777;
+	-moz-box-shadow: 0 15px 10px #777;
+	box-shadow: 0 15px 10px #777;
+	-webkit-transform: rotate(-3deg);
+	-moz-transform: rotate(-3deg);
+	-o-transform: rotate(-3deg);
+	-ms-transform: rotate(-3deg);
+	transform: rotate(-3deg);
+}
+.testimonial:after,.horizontal-card:after{
+	-webkit-transform: rotate(3deg);
+	-moz-transform: rotate(3deg);
+	-o-transform: rotate(3deg);
+	-ms-transform: rotate(3deg);
+	transform: rotate(3deg);
+	right: 10px;
+	left: auto;
+}
+.testimonial .icon{
+    display: inline-block;
+    font-size: 80px;
+    margin-bottom: 20px;
+	margin-top: -80px;
+}
+
+.testimonial .description{
+    font-size: 16px;
+    text-align: justify;
+	padding-top: 15px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    letter-spacing: -1px;
+}
+.testimonial .testimonial-content{
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+.testimonial .pic{
+    display: inline-block;
+    border-radius: 100%;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,.1);
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+	width: 100px;
+	height: 100px;
+	transform: scale(1);
+	transition:all .3s ease-in;
+}
+
+.testimonial .pic:hover{
+	transform: scale(1.1);
+	background: rgba(255,215,0,1);
+	cursor: pointer;
+}
+
+.testimonial .pic p{
+	margin-top: 36%;
+	color: #fff;
+}
+
+.testimonial .pic:before{
+	content: "";
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+}
+
+.testimonial .pic img{
+    width: 100%;
+    height: auto;
+}
+
+.testimonial img{
+    width: 100%;
+    height: 250px;
+}
+
+.testimonial .title{
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: capitalize;
+    margin: 0 0 5px 0;
+}
+.testimonial .post{
+    display: block;
+    font-size: 14px;
+}
+.owl-theme .owl-controls{
+    margin-top: 60px;
+}
+.owl-theme .owl-controls .owl-page span{
+    width: 32px;
+    height: 10px;
+	box-shadow: 1px 1px 5px rgba(255,255,255,.6);
+    margin: 5px;
+    opacity: 1;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+    background: rgba(255,215,0,1);
+    border-color: #fff;
+}
+
+.pic img{
+	width: 100px !important;
+	height: 50px;
+}
+
+/*******Banking Loans******/
+* {
+  box-sizing: border-box;
+}
+
+.columns {
+  float: left;
+  width: 50%;
+  padding: 8px;
+}
+
+.price {
+  list-style-type: none;
+  border: 1px solid #ffff;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.2)
+}
+
+.price:hover {
+
+}
+
+.price .header {
+  background-color: #111;
+  color: white;
+  font-size: 25px;
+}
+
+.price li {
+  background: rgba(255,255,255,0.8);
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.price .grey {
+  background-color: #ffff;
+  font-size: 20px;
+}
+/*******Banking Loans******/
+
+#calculators .section-content-right{
+	position: relative;
+	background: url(../images/cal-bg.jpg) no-repeat left;
+	background-size: cover;
+}
+
+#calculators .section-content-left{
+	background: url(../images/icon1.jpg) no-repeat center;
+	background-size:auto;
+}
+
+.overlay-white{
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(255,255,255,.7);
+}
+
+#calculators .section-content{
+	position: relative;
+	z-index: 1;
+	top: 0px;
+	left: 0px;
+	padding: 0px;
+}
+
+#calculators .input-box {
+	width: 80%;
+}
+
+input{
+	border-radius:4px;
+	border: 1px solid rgba(0,0,0,.2);	
+}
+
+#calculate-btn,#send-btn{
+	border: 1px solid rgba(255,255,255,.2);
+	transition: background .3s ease-in;
+}
+
+#calculate-btn {
+	padding: 20px 40px;
+}
+
+#contact-us .section-content p{
+	text-align: left;
+}
+
+#contact-us .input-box{
+	width: 47%;
+	margin: auto;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+#contact-us textarea {
+	padding: 15px;
+	margin-top: 20px;
+	margin: auto;
+	width: 100%;
+	height: 40vh;
+	border-radius:4px;
+	border: 1px solid rgba(0,0,0,.2);
+}
+
+#contact-us .content-panel{
+	position: relative;
+}
+
+#contact-us img{
+	background: none;
+}
+
+.rating, .rating-us{
+	position:relative;
+	left: -10px;
+	top: 30px;
+	transform: translate(-50%,-50%) rotateY(180deg);
+	display: flex;
+}
+
+.rating input, .rating-us input{
+	display: none;
+}
+
+.rating label, .rating-us label{
+	display: block;
+	cursor: pointer;
+	width: 50px;
+}
+
+.rating label:before, .rating-us label:before{
+	content: '\f005';
+	font-family: fontAwesome;
+	position: relative;
+	display: block;
+	font-size: 50px;
+	color: #ccc;
+}
+
+.rating label:after, .rating-us label:after{
+	content: '\f005';
+	font-family: fontAwesome;
+	position: absolute;
+	top: 0;
+	display: block;
+	font-size: 50px;
+	color: gold;
+	opacity: 0;
+	text-shadow: 0 2px 5px rgba(0,0,0,.2);
+	transition: .5s;
+}
+
+.rating label:hover:after, .rating label:hover ~ label:after, .rating-us label:hover:after, .rating-us label:hover ~ label:after{
+	opacity: .3;
+	text-shadow: -2 -2px rgba(0,0,0,.6);
+}
+
+.rating input:checked ~ label:after, .rating-us input:checked ~ label:after{
+	opacity: 1;
+}
+
+.modal-body iframe {
+	width: 100%;
+	height: 70%;
+}
+
+iframe {
+	width: 100%;
+}
+
+#affiliates{
+	padding:15px 30px;
+}
+
+.map iframe{
+	height: 150px;
+	width: 100%;
+}
+
+#footer{
+	padding: 20px;
+	color: #fff;
+	background: #595959;
+}
+
+#footer img {
+	height: 25px;
+	width: auto;
+	margin: 0 5px;
+	background: none;
+}
+
+#footer a{
+	color: rgba(83,195,203,1);
+}
+
+
+@media screen and (min-width : 0px) and (max-width :992px)  {
+	#loader h1 {
+		position:relative;
+		top:40%;
+		text-align:center;
+		font-size:64px;
+		width: 80%;
+		margin: auto;
+	}
+	
+	
+	.carousel-caption .display-2{
+		font-weight: 700;
+		font-size: 13vw;
+	}
+	
+	.display-2{
+		font-size: 13vw;
+	}
+	
+	.display-4{
+		font-size: 8vw;
+	}
+
+	
+	 .section-read-more,.section-content,.section-content-left,.section-content-left .section-content, .section-content-right .section-content,.section-content-right {
+		min-height: auto !important;
+	}
+	
+	.read-more-list li{
+	padding: 20px 20px;
+}
+	
+}
+
+@media screen and (min-width : 0px) and (max-width :767px)  {
+	
+	#loader .loading-gif {
+		width:25%;
+	}
+
+	#loader .loder-logo {
+		position:relative;
+		font-size:64px;
+		width: 80%;
+	}
+
+	#loader .logo-text{
+		width: 85%;
+		top: 2%;
+		left: 10%;
+	}
+
+	#loader .logo-name{
+		font-size: 4vw;
+	}
+
+	#loader .logo-moto{
+		font-size: 3.6vw;
+	}
+	
+	.mobile-hide{
+		display: none;
+	}
+	.navbar{
+		background: rgba(244,130,34,1)!important;
+	}
+
+	.navbar-brand img {
+		width: 30px;
+		height: 45px;
+		margin-left: -5px;
+		transform: scale(1) translateX(0px)!important;
+		transition: all .6s ease;
+	}
+	
+	.logo-text img{
+		width: 230px;
+		height: auto;
+		margin-left: -20px;
+		margin-top: -7px;
+	}
+	
+	.logo-text{
+		left: 15px;
+		margin-top: 5px;
+}
+
+.logo-caption-full.flipped{
+	transform: rotateX(90deg) translateX(0px);
+}
+
+.logo-caption-short.flipped{
+	transform: rotateX(0deg) translateX(0px);
+}
+	
+	.navbar-toggler{
+		background: linear-gradient(rgba(255,255,255,1),rgba(240,240,240,1) );
+	}
+	
+	#content{
+		width: 100%;
+	}
+	
+	#about,#banking,#property,#contact-us{
+		width: 100%;
+		margin: 0px;
+	}
+	
+	.carousel-caption{
+		padding-bottom: 150px;
+	}
+	
+	.carousel-btn-grid{
+		display: none;
+	}
+	
+	#banking .row{
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	
+	.row{
+		width: 100%;
+		margin: 0px;
+	}
+	
+	.section-content, .section-content-left, .section-content-right, #affiliates, .section-img{
+		width: 100%;
+	}
+	
+	.section-read-more{
+		position: relative;
+		left: 0px;
+		margin: 0px;
+		padding: 20px 0px;
+		width: 100%;
+	}
+	
+	.section-read-more ul{
+		width: 100%;
+		margin: auto;
+		padding: 0px;
+	}
+	
+	.section-read-more li{
+		padding-left: 25px;
+		transform: none!important;
+		opacity: 1!important;
+	}
+	
+	
+	.chairman-card{
+		left:auto;
+		right: auto;
+	}
+	
+	#calculators .fade-in-right{
+		opacity: 1;
+		transform:translateX(0px);
+		transition: all 1.2s 0.3s ease-in;
+	}
+
+	#calculators .fade-in-left{
+		opacity: 1;
+		transform:translateX(0px);
+		transition: all 1.2s 0.3s ease-in;
+	}
+	
+	#accordion{
+		width: 100%;
+	}
+	
+	#accordion .row{
+		width: 103.7%;
+	}
+	
+	#accordion .card{
+		width: 100%;
+		margin-left: 30px;
+	}
+	
+	#accordion .card-body{
+		width: 105vw;
+	}
+	
+	#accordion .card-body{
+		margin-left: 20px;
+	}
+	
+	#accordion .card-deck{
+		margin-left: 20px;
+	}
+	
+	#accordion h1,#accordion h2,#accordion h3,#accordion h4,#accordion h5,.modal-body h1,.modal-body h2,.modal-body h3,.modal-body h4,.modal-body h5{
+		color: #000;
+		text-shadow: none;
+	}
+	
+	.section-content-btn{
+		color: #000;
+		text-shadow: 0px;
+	}
+	
+	#accordion #accordion .card-header,.section-content-btn{
+		background: rgba(251,106,50,1);
+		text-decoration: none;
+		color: #fff;
+	}
+	
+	#accordion #accordion .card{
+		margin-left: 9px;
+	}
+	
+	#accordion .btn {
+		color: #fff;
+	}
+	
+	.rating, .rating-us{
+		position:relative;
+		left: 80px;
+		top: 30px;
+	}
+	
+	.input-box {
+		width: 100%;
+	}
+	
+	#contact-us .input-box{
+	width: 100%;
+}
+	#contact-us .section-read-more{
+		width: 100%;
+		overflow-x: hidden;
+		order: 2;
+	}
+	
+	#contact-us .section-img{
+		width: 100%;
+		overflow-x: hidden;
+		order: 3;
+	}
+	
+	.section-img-caption .row {
+		position: relative;
+		margin-bottom: 15px;
+	}
+	
+	.section-img-caption i{
+		position: absolute;
+		left: 0px;
+	}
+	
+	.section-img-caption p{
+		position: relative;
+		left: 40px;
+		top: 15px;
+	}
+	
+	#contact-us .contact-us-socials a{
+		width: 50px;
+		float: left;
+	}
+	
+	#contact-us .link-2 {
+		left: 80px;
+	}
+	
+	#contact-us .link-3 {
+		left: 160px;
+	}
+	
+	#contact-us .link-4 {
+		left: 240px;
+	}
+	
+	iframe{
+		height: auto;
+		width: 100%;
+	}
+	
+	#affiliates img {
+		padding:15px 60px;
+	}
+	
+	.columns {
+		width: 100%;
+	}
+}
+/**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com*************************/

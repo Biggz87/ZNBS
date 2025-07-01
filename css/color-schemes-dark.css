@@ -1,0 +1,196 @@
+.drop-down-menu{
+	color:#fff;
+	background:rgba(201,96,10,1);
+	box-shadow: 0px 0px 15px rgba(0,0,0,.2);
+}
+
+.section-content-btn{
+	background:rgba(201,96,10,1);
+	border: 1px solid rgba(255,255,255,.3);
+	color: #fff;
+}
+
+.section-content-btn:hover{
+	border: 1px solid rgba(255,255,255,.4);
+	background: gold;
+	color: #fff;
+}
+
+#about .section-content, #banking .section-content, #property .section-content{
+	background:url(../images/shelter-bg.png), rgba(201,96,10,1);
+	background-size:cover !important;
+	color: #fff;
+	border: 1px solid rgba(255,255,255,.05);
+	text-shadow: -1px -1px 10px rgba(255,255,255,.3);
+}
+
+.section-content h1,.section-content h1,.section-content h1, .section-content h4{
+	color:#fff;
+	text-shadow: -1px -1px rgba(0,0,0,.3);
+}
+
+#about .section-read-more, #banking .section-read-more, #property .section-read-more {
+	background:rgba(160,60,6,1);
+	color: #fff;
+	text-shadow: -1px -1px rgba(0,0,0,.3);
+}
+
+#about .section-img{
+	opacity: .8;
+}
+
+#banking .section-img{
+	opacity: .8;
+}
+
+#property .section-img{
+	opacity: .8;
+}
+
+.card,.card a,.horizontal-card,.horizontal-card h1,#contact-us .section-content h1{
+	color: #000;
+	text-shadow: none;
+}
+
+.card-icon{
+	background: none;
+	border: none;
+}
+
+.card-icon-img{
+	color:rgba(255,255,255,1);
+	text-shadow: -1px -1px rgba(0,0,0,.3);
+}
+
+.card-icon .card-title{
+	color:rgba(255,255,255,1);
+	text-shadow: -1px -1px rgba(0,0,0,.3);
+}
+
+.card-icon .card-text{
+	color: #fff;
+	text-shadow: -1px -1px rgba(0,0,0,.3);
+}
+
+.horizontal-card{
+	background: #fff;
+	border: 2px solid rgba(255,255,255,0);
+	box-shadow: 1px 1px 10px rgba(0,0,0,.2);
+}
+
+.horizontal-card:hover h1{
+	color:  rgba(255,215,0,1);
+}
+
+#contact-us .section-read-more{
+	background: #ECE6E6;
+}
+
+#contact-us .section-content{
+	background: #fff;
+}
+
+.read-more-list li{
+	background: rgba(244,130,34,1);
+	text-shadow: -1px -1px rgba(0,0,0,.1);
+	color: #fff;
+}
+
+.read-more-list li.active, .drop-down li.active, nav .drop-down-menu a.active {
+	background: rgba(255,215,0,1);
+}
+
+.read-more-list li:hover,.toggle-btn:hover,.read-more-list .drop-down ul li:hover{
+	background: rgba(255,215,0,1);
+	cursor: pointer;
+}
+
+.read-more-list .drop-down ul li{
+	background: rgba(0,0,0,.2);
+	border-top: 1px solid rgba(255,255,255,.1);
+	border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.testimonial h5{
+	color: #E1C10D;
+}
+
+.testimonial:before,
+.testimonial:after{
+	background: #777;
+}
+
+.testimonial .icon{
+    color: #FFBF00;
+}
+
+.testimonial .description{
+    color: #777;
+}
+
+.testimonial .pic{
+	background: rgba(244,130,34,1);
+}
+
+.testimonial .pic:hover{
+	background: rgba(255,215,0,1);
+}
+
+.testimonial .pic p{
+	color: #fff;
+}
+
+.testimonial .title{
+    color: #fff;
+}
+
+.testimonial .post{
+    color: #ffd9b8;
+}
+
+.owl-theme .owl-controls .owl-page span{
+    background: #fff;
+    border: 2px solid rgba(255,215,0,1);
+	box-shadow: 1px 1px 5px rgba(255,255,255,.6);
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+    background: rgba(255,215,0,1);
+    border-color: #fff;
+}
+
+#calculators .display-4{
+	color: rgba(201,96,10,1);
+}
+
+#calculators h1{
+	color: #4F4F4F;
+	text-shadow: none;
+}
+
+#calculate-btn,#send-btn{
+	background: rgba(244,130,34,1);
+	color: #fff;
+}
+
+#calculate-btn:hover,#send-btn:hover{
+	background: gold;
+	color: #fff;
+	border: 1px solid rgba(255,255,255,.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+<?php 
+include'../includes/Dbconnect.php';
+$FirstName=$_POST['Firstname'];
+$Question1=$_POST['Question1'];
+$Question2=$_POST['Question2'];
+$Question3=$_POST['Question3'];
+$survey_id=$_POST['survey_id'];
+$LastName=$_POST['Lastname'];
+$Email=$_POST['Email'];
+
+$datetoday=date('Y-m-d');
+
+include 'checkifemailexist.php';
+$exits=ifitexits($Email,$survey_id);
+
+if($exits==2){
+	
+	echo 'You have already submitted a survey. Thank you!';
+}else {
+	
+$query="INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`) 
+VALUES ('','$FirstName','$LastName','$Email','$Question1','$Question2','$Question3','$datetoday','$survey_id')";
+      
+$result=mysqli_query($conn,$query);
+if(mysqli_affected_rows($conn) == 1){
+   echo 'success';
+   
+}else{
+   echo 'The survey was not submitted due to an error please try again later';
+}
+}
+
+						?>

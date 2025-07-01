@@ -1,0 +1,26 @@
+
+<?php  
+     
+$sender=$_POST['sender'];
+$reciever=$_POST['reciever'];
+$message=$_POST['message'];
+$subject=$_POST['subject'];
+$Name=$_POST['Name'];
+$PhoneNumber=$_POST['PhoneNumber'];
+
+	
+	
+$subject =$sender;
+$From =$_POST['sender'];
+$message =$_POST['message'].'Br'.$Name.'<br>Phone No : '.$PhoneNumber; 
+$to = $reciever;
+$headers = "From: ".$From;
+if(mail($to,$subject,$message,$headers)){
+  echo "success";
+}else{
+echo "Your Equiry email has NOT been Sent, Please try again";
+
+}
+	
+						
+?>

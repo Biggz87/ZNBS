@@ -1,0 +1,18 @@
+<?php
+
+
+function ifitexits($email,$surveyid){
+	include'../includes/Dbconnect.php';
+$newsquery="SELECT * FROM `survey_response` WHERE `Email`='$email' AND  `survey_id`='$surveyid'";
+						$result=mysqli_query($conn,$newsquery);
+						if(mysqli_num_rows($result)>0){
+							return 2;
+						}else {
+							return 0;
+						}
+}			
+							?>
+
+
+
+

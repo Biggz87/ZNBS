@@ -1,15 +1,14 @@
 <?php 
 
-
-
 					
 																	$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
 																	`At_status` FROM `articles` WHERE `At_sub_cat`='17'";
-																	$stmt = $conn2->query($sql);
-			
-																   
-																	while ($row5= $stmt->fetch()) {
-																		
+																	$stmt = $conn2->prepare($sql);
+
+																		$stmt->execute();
+
+																		while ($row5 = $stmt->fetch()) {
+																																				
 																	$title=$row5['At_Title'];
 																	 $content=$row5['At_content'];
 																
@@ -25,8 +24,11 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<?php if($row5['At_image']){?><img class="section-content-img" src='Admin/images/<?php echo $row5['At_image']; ?>'><?php } ?>
-						<p class="text-justify"> <?php echo $content; ?> <br></p>
+						
+						<p>
+						<?php echo $content; ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+							</p>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -37,22 +39,56 @@
 																<?php } ?>
 																
 																
-																<div id="banking_model_data">
+																<?php 
+
+					
+																	$sql="SELECT * FROM `articles` WHERE `At_category`='9'";
+																	$stmt = $conn2->prepare($sql);
+
+																	$stmt->execute();
+
+																	while ($row5 = $stmt->fetch()) {
+																		
+																	$title=$row5['At_Title'];
+																	 $content=$row5['At_content'];
 																
-																</div>
-																
-													<div id="account_model">
-													</div>
+																?>	
+		<!--pop-up-window-->
+		<div class="modal fade" id="accounts<?php echo $row5['article_id'];?>" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1><?php echo $title; ?></h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+					<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
+						<p>
+						<?php echo $content; ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+																<?php } ?>
 																
 																<?php 
 
 					
 																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
 																`At_status` FROM `articles` WHERE `At_sub_cat`='24'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
-																while ($row5 = $stmt->fetch()) {
+																$stmt = $conn2->prepare($sql);
+
+																	$stmt->execute();
+
+																	while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['At_Title'];
 																 $content=$row5['At_content'];
@@ -73,7 +109,7 @@
 						<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 					</div>
 					<div class="modal-footer">
@@ -90,10 +126,11 @@
 					
 																$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
 																`At_status` FROM `articles` WHERE `At_sub_cat`='21'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
-																while ($row5 = $stmt->fetch()) {
+																$stmt = $conn2->prepare($sql);
+
+																	$stmt->execute();
+
+																	while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['At_Title'];
 																 $content=$row5['At_content'];
@@ -114,7 +151,7 @@
 					<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 					</div>
 					<div class="modal-footer">
@@ -127,12 +164,12 @@
 															
 															
 		<?php 
-					                                          
+					
 																$sql="SELECT * FROM `articles` WHERE `At_sub_cat`='27' OR `At_sub_cat`='26'";
-																$stmt = $conn2->query($sql);
+																$q1=mysqli_query($conn,$sql);
         
                                                                
-																while ($row5 = $stmt->fetch()) {
+																while ($row5 = mysqli_fetch_array($q1)) {
 																	
 																$title=$row5['At_Title'];
 																 $content=$row5['At_content'];
@@ -154,7 +191,7 @@
 						<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 					</div>
 					<div class="modal-footer">
@@ -171,10 +208,10 @@
 																<?php 
 					
 																$sql="SELECT * FROM `articles` WHERE `At_sub_cat`='22'";
-																$stmt = $conn2->query($sql);
+																$q1=mysqli_query($conn,$sql);
         
                                                                
-																while ($row5 = $stmt->fetch()) {
+																while ($row5 = mysqli_fetch_array($q1)) {
 																	
 																$title=$row5['At_Title'];
 																 $content=$row5['At_content'];
@@ -192,7 +229,7 @@
 					</div>
 					<div class="modal-body">
 						
-						<?php if($row5['At_image']){?><img class="section-content-img" src='Admin/images/<?php echo $row5['At_image']; ?>'><?php } ?>
+						
 						<?php echo $content; ?>
 						<br></p><?php if($row5['Document']){
 							?> <a   class="button" target="_blank" style="animation-delay: 3s" href="Uploads/Document/<?php echo $row5['Document'] ?>">Download</a> <?php }?> 
@@ -213,9 +250,10 @@
 						
 					
 																 $sql="SELECT * FROM `articles` WHERE `At_sub_cat`='29'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
+																$stmt = $conn2->prepare($sql);
+
+																$stmt->execute();
+
 																while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['At_Title'];
@@ -237,7 +275,7 @@
 						<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 					</div>
 					<div class="modal-footer">
@@ -254,9 +292,10 @@
 					
 					
 																$sql="SELECT `branch_id`, `branch_name`, `Address1`, `Address 2`, `Town`, `Contact_no1`, `Contact_no2`, `email`, `google_map` FROM `branch_tbl` WHERE `branch_name`!='Main Branch'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
+																$stmt = $conn2->prepare($sql);
+
+																$stmt->execute();
+
 																while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['branch_name'];
@@ -334,9 +373,10 @@
 						
 					
 																 $sql="SELECT * FROM `articles` WHERE `At_sub_cat`='27'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
+																$stmt = $conn2->prepare($sql);
+
+																$stmt->execute();
+
 																while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['At_Title'];
@@ -346,7 +386,7 @@
 															<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 																<?php } ?>
 					</div>
@@ -372,9 +412,10 @@
 						
 					
 																 $sql="SELECT * FROM `articles` WHERE `At_sub_cat`='26'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
+																$stmt = $conn2->prepare($sql);
+
+																$stmt->execute();
+
 																while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['At_Title'];
@@ -384,7 +425,7 @@
 															<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 																<?php } ?>
 					</div>
@@ -411,9 +452,13 @@
 						
 							<?php   
 							 		$downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
-									$stmt = $conn2->query($downloadSQL);
-											$stmt->execute();
-									while($row5 = $stmt->fetch()){
+									$stmt = $conn2->prepare($sql);
+
+									$stmt->execute();
+                                     $count=0;
+									while ($row = $stmt->fetch()) {
+									
+									
 									$count++; 
 								?>
 														
@@ -448,7 +493,41 @@
 		</div><!--end modal-->
 		
 													
+<div class="modal fade" id="youtube" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>Youtube Channel</h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<?php 
+						
+					
+																 $sql="SELECT `id`, `Title`, `code` FROM `youtube` ORDER BY `id` DESC ";
+																$stmt = $conn2->prepare($sql);
 
+																$stmt->execute();
+																
+																while ($row5 = $stmt->fetch()) {
+																	
+																
+																
+																?>
+							
+                                                         
+															  <div class="col-12 video-slot" > <?php echo $row5['code']; ?></div>
+					
+																<?php } ?>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
 															
 			<!--Procurement plan-->
 		<div class="modal fade" id="proc_plan" role="dialog">
@@ -465,9 +544,10 @@
 						
 					
 																 $sql="SELECT * FROM `articles` WHERE `At_sub_cat`='28'";
-																$stmt = $conn2->query($sql);
-        
-                                                               
+																$stmt = $conn2->prepare($sql);
+
+																$stmt->execute();
+																
 																while ($row5 = $stmt->fetch()) {
 																	
 																$title=$row5['At_Title'];
@@ -477,7 +557,7 @@
 															<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
 						<p>
 						<?php echo $content; ?>
-						<?php if($row5['Document']){ ?>	<a href="Uploads/Document/<?php echo $row5['Document']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
 							</p>
 																<?php } ?>
 					</div>
@@ -489,7 +569,72 @@
 		</div><!--end modal-->
 
 		<!--Gallery Modal-->
-		<div id="gallery">
+		<div class="modal fade" id="gallery-modal" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1>Gallery</h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+						<div class="row">
+							<a class="example-image-link thumbnail col-md-4" href="images/slide1.jpg" data-lightbox="property-1" data-title=""><img class="example-image" src="images/slide1.jpg" alt=""/></a>
+
+							<a class="example-image-link thumbnail col-md-4" href="images/slide2.jpg" data-lightbox="property-1" data-title=""><img class="example-image" src="images/slide2.jpg" alt=""/></a>
+
+							<a class="example-image-link thumbnail col-md-4" href="images/slide3.jpg" data-lightbox="property-1" data-title=""><img class="example-image" src="images/slide3.jpg" alt=""/></a>
+						</div><!--end row-->
+					
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
 		
 		
-		</div>
+		<?php 
+						
+					
+																 $sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
+							`At_status` FROM `articles` WHERE `At_sub_cat`='22'";
+																$stmt = $conn2->prepare($sql);
+
+																$stmt->execute();
+
+																while ($row5 = $stmt->fetch()) {
+																	
+																$title=$row5['At_Title'];
+																 $content=$row5['At_content'];
+																
+																?>												
+			<div class="modal fade" id="Digitalbanking<?php echo $row5['article_id'];?>" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1><?php echo $title; ?></h1>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						
+						
+						<?php if($row5['At_image']){ ?>	<img src="Admin/images/<?php echo $row5['At_image']; ?>"><?php } ?>
+						<p>
+						<?php echo $content; ?>
+						<?php if($row5['Document']){ ?>	<a href="Admin/Uploads/Document/<?php echo $row5['At_image']; ?>"><?php echo $row5['Document'] ?></a><?php } ?>
+							</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div><!--end modal-->
+																<?php } ?>
+																

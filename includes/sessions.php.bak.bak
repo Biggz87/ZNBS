@@ -1,10 +1,12 @@
 <?php
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
+
 session_start();
-error_reporting(0);
+//error_reporting(0);
 $_SESSION[]= array();
-define('jhshjgdhgdhgdhhj',true);
 include 'Dbconnect2.php';
-include 'Dbconnect.php';
 $dbuser=$_SESSION['username'];
 $dblevel=$_SESSION['level'];
 $lock_screen=$_SESSION['lockapp'];
@@ -16,12 +18,13 @@ $credit_limit="";
 $cif_id='';
 $todayDate=date('Y-m-d');
 $profilePic="";
+
 date_default_timezone_set("Africa/Harare");
  $todayDate=date('Y-m-d');
 
    $query="SELECT * FROM `user_tbl` INNER JOIN `employees_tbl` ON `employees_tbl`.`emp_id`=`user_tbl`.`Staff_no` WHERE `username`=:dbuser";
       
-    $stmt = $conn2->prepare($query);
+    $stmt = $conn->prepare($query);
 	 $stmt->bindParam(":dbuser",$dbuser);
 	
 	$stmt->execute();

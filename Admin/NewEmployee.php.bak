@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -230,7 +230,7 @@ $first_name=$_POST['first_name'];
  $country=$_POST['country'];
  $date_joined =$_POST['date_joined'];
  $jobRole=$_POST['jobRole'];
- $emp_id=$_POST['emp_id'];
+
   $Qualification_level=$_POST['Qualification_level'];
    $qualification_type=$_POST['qualification_type'];
    $profile=$_POST['profile'];
@@ -238,13 +238,32 @@ $first_name=$_POST['first_name'];
 $category=$_POST['Category'];
 $picture='';
 
+$employee_number=$_POST['emp_id'];;
 
-echo $SQL3 = "INSERT INTO `employees_tbl`(`emp_id`, `Title` ,`first_name`, `last_name`, `date_of_birth`, `email`, `mobile_number`, `whatsapp`, `address1`, `address2`, `city_town`, 
-`genda`, `country`, `date_joined`, `jobRole`, `Qualification_level`, `qualification_Area`, `Category`, `Picture`,`brief_profile`) VALUES
-('$emp_id','$Title','$first_name','$last_name','$date_of_birth','$email','$mobile_number','$whatsapp','$address1','$address2','$city_town','$genda','$country',' $date_joined','$jobRole','$Qualification_level','$qualification_type','$category','$nameofFile','$profile')";
+ $SQL3 = "INSERT INTO `employees_tbl`(`emp_id`, `Title`, `first_name`, `last_name`, `date_of_birth`, `email`, `mobile_number`, `whatsapp`, `address1`, `address2`, `city_town`, `genda`, `country`, `date_joined`, `jobRole`, `Qualification_level`, `Category`, `Picture`, `brief_profile`) VALUES
+(:employee_number,:Title,:first_name,:last_name,:date_of_birth,:email,:mobile_number,:whatsapp,:address1,:address2,:city_town,:genda,:country,date_joined,:jobRole,:Qualification_level,:category,:nameofFile,:profile)";
   
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
+$stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":employee_number",$employee_number);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":first_name",$first_name);
+$stmt->bindParam(":last_name",$last_name);
+$stmt->bindParam(":date_of_birth",$date_of_birth);
+$stmt->bindParam(":email",$email);
+$stmt->bindParam(":mobile_number",$mobile_number);
+$stmt->bindParam(":whatsapp",$whatsapp);
+$stmt->bindParam(":address1",$address1);
+$stmt->bindParam(":address2",$address2);
+$stmt->bindParam(":city_town",$city_town);
+$stmt->bindParam(":genda",$genda);
+$stmt->bindParam(":country",$country);
+$stmt->bindParam(":date_joined",$date_joined);
+$stmt->bindParam(":jobRole",$jobRole);
+$stmt->bindParam(":category",$category);
+$stmt->bindParam(":Qualification_level",$Qualification_level);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":profile",$profile);
+   if($stmt->execute()){
    
   echo '<div class="alert alert-success"> The Emplyeee has been added Successfully</div>';
     		
@@ -495,10 +514,10 @@ echo $SQL3 = "INSERT INTO `employees_tbl`(`emp_id`, `Title` ,`first_name`, `last
 																</option>
 																<?php 
 																$sql="SELECT * FROM `country`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row = mysqli_fetch_array($q1)) {
+																$stmt = $conn->prepare($sql);
+																
+											               $stmt->execute();
+											                  while($row= $stmt->fetch()){
 																$name=$row['nicename'];
 																?>
 																<option value="<?php echo $name; ?>"> <?php echo $name ; ?>
@@ -571,12 +590,12 @@ echo $SQL3 = "INSERT INTO `employees_tbl`(`emp_id`, `Title` ,`first_name`, `last
 
 													<div class="controls">
 
-														<textarea type="text" rows="10" class="span6 m-wrap"  name="profile"  >
+														<textarea type="text" rows="10" class="span6 m-wrap"  name="profile"></textarea>
 														
 														
 																
 
-											</textarea>
+											
 														
 
 													</div>

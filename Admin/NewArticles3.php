@@ -245,10 +245,11 @@ include 'includes/sidebar.php';
 										
 
  $Title=$_POST['title'];
- echo $content =$_POST['content'];
- $sub_cat=$_POST['sub_cat'];
+$content =$_POST['content'];
+$sub_cat=$_POST['sub_cat'];
  $category=$_POST['Category'];
  $status=$_POST['status'];
+ $documentname=$_POST['Documenttitle'];
 
  $path="../Uploads/Document/";
 if (!file_exists($path)) {
@@ -256,33 +257,32 @@ if (!file_exists($path)) {
 }
 $document_name='';
 if($_FILES['Ducument_upload']['name']){
-$document_name = round(microtime(true)).$_FILES['Ducument_upload']['name'];
+//$document_name = round(microtime(true)).$_FILES['Ducument_upload']['name'];
+$document_name = $documentname.'pdf';
+
 $document = $path.$document_name;
 $document_name = round(microtime(true)).$_FILES['Ducument_upload']['name'];
 }
 
 
   
+  $Art_id="";
+
+move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+
+$SQL4 ="INSERT INTO `articles`(`article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, `At_status`, `Document`)
+VALUES(:Art_id,:Title,:content,:nameofFile,:sub_cat,:category,:status,:document)";
   
-
-
-
-$SQL3 = "INSERT INTO `articles`(`article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, `At_status`, `Document`)
- VALUES (:Art_id,:Title,:content,:nameofFile,:sub_cat,:category,status,:document_name)";
-  $Art_id=0;
  
-  $stmt = $conn->prepare($SQL3);
+  $stmt = $conn->prepare($SQL4);
+  $stmt->bindParam(":Art_id",$Art_id);
 $stmt->bindParam(":Title",$Title);
 $stmt->bindParam(":content",$content);
 $stmt->bindParam(":nameofFile",$nameofFile);
 $stmt->bindParam(":sub_cat",$sub_cat);
 $stmt->bindParam(":category",$category);
 $stmt->bindParam(":status",$status);
-$stmt->bindParam(":documentname",$documentname);
 $stmt->bindParam(":document",$document);
-$stmt->bindParam(":Art_id",$Art_id);
-
-move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
 if ($stmt->execute()) {
    
   echo '<div class="alert alert-success"> The Article has been added Successfully</div>';
@@ -292,11 +292,11 @@ if ($stmt->execute()) {
 
 
 			
-			 echo "<script>window.location = 'ArticleList.php?status=No</script>";
+			echo "<script>window.location = 'ArticleList.php?status=No'</script>";
 			
 			
 		
-//}
+
 
 	
 	}
@@ -348,14 +348,14 @@ if ($stmt->execute()) {
 										<div class="controls">
 										<select  name="Category" onchange="subcatategory()" id="Category" >
                                                                      <Option value="">--Select Category--</option>
-																	<?php 
+																<?php 
 																$sql="SELECT `ID`, `Name` FROM `at_categories`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row5 = mysqli_fetch_array($q1)) {
-																$name=$row5['Name'];
-																$id=$row5['ID'];
+																	$stmt = $conn->prepare($sql);
+																	$stmt->execute();
+																	while($row = $stmt->fetch()){
+																	 
+																$name=$row['Name'];
+																$id=$row['ID'];
 																
 																?>
 																<option value="<?php echo $id; ?>"> <?php echo $name ; ?>
@@ -449,6 +449,8 @@ if ($stmt->execute()) {
            <label class="control-label">Document(pdf only)</label>
 		   <div class="controls">
     <input type="file" name="Ducument_upload" id="bluebook" accept=".pdf" >
+	<input type="text"  name="Documenttitle" placeholder='Document Name' class="span6 m-wrap"  />
+
 						</div>
 						</div>
 									

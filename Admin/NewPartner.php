@@ -206,78 +206,60 @@ include 'includes/sidebar.php';
 
 					<div class="span12">
 
-						<?php
+		<?php
 											
+	
 
-											if(isset($_POST['submitDownload'])){
+											if(isset($_POST['submitNewCourse'])){
 												
-												
-											// let's create some shortcuts
+													
+            
+require_once('async_empic.php');
 
-
-// store the file
-
-										
-
- $Title=$_POST['title'];
+	
+$Name=$_POST['Name'];			
+$web=$_POST['webaddress'];
 
  
- $category=$_POST['Category'];
- $status=$_POST['status'];
 
- $path="Uploads/Document/";
+ $jobRole=$_POST['Role'];
  
-if (!file_exists($path)) {
-    mkdir($path, 0777, true);
-}
-$document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
 
-  
-  $downlaodId=0;
+$partner_id=0;
+  $SQL3 = "INSERT INTO `partners`(`Partner_id`, `name`, `picture`, `web_address`) VALUES (:partner_id,:Name',:nameofFile,:web)";
+  $stmt = $conn->prepare($SQL3);
 
+$stmt->bindParam(":Name",$Name);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":web",$web);
+$stmt->bindParam(":partner_id",'');
 
-
- $SQL3 = "INSERT INTO `downloads`(`document_id`, `tittle`, `address`, `category`, `Status`) 
-VALUES (:downlaodId,:Title,:document,:category,:status)";
-
-  
-       $stmt = $conn->prepare($SQL3);
-$stmt->bindParam(":Title",$Title);
-$stmt->bindParam(":document",$document);
-$stmt->bindParam(":status",$status);
-$stmt->bindParam(":downlaodId",$downlaodId);
-$stmt->bindParam(":category",$category);
-
- move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
-
-if($stmt->execute()){
-   
-  echo '<div class="alert alert-success"> The Download has been added Successfully</div>';
- echo "<script>window.location ='Downloads.php?status=Yes'</script>";
+   if($stmt->execute()){{
+  echo '<div class="alert alert-success"> The Partner has been added Successfully</div>';
     		
 }else {
-		
-//echo "<script>window.location = 'Downloads.php?status=No'</script>";
+
+
 			
-			
+			echo '<div class="alert alert-danger"> The Partner has NOT  been added due to some error</div>';
 		
 //}
 
 	
-	}
 	
-
+	
+}
 }
 
 
-?> 
+?>  
 						<!-- BEGIN SAMPLE FORM PORTLET-->   
 																<div class="portlet box blue">
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-reorder"></i>New Download </div>
+								<div class="caption"><i class="icon-reorder"></i>New Partner </div>
 
 								
 
@@ -289,99 +271,83 @@ if($stmt->execute()){
 
 								<!-- BEGIN FORM-->
 
-								<form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal">
+							<form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal">
 								
-							
-								  <div class="control-group">
+								 <div class="control-group">
 
-										<label class="control-label">Title<span class="required">*</span></label>
+										<label class="control-label">Name<span class="required">*</span></label>
 
 										<div class="controls">
-									
-                                                               
-											<input type="text"  name="title" class="span6 m-wrap" required />
 
-										</div>
+											<input type="text"  name="Name" class="span6 m-wrap" required />
 
-									</div>
-								
-                                   
-								
-									 <div class="control-group">
-
-										<label class="control-label">Category<span class="required">*</span></label>
-
-										<div class="controls">
-										<select  name="Category"  id="Category" >
-                                                                     <Option value="">--Select Category--</option>
-																	   <?php   
-					 
-					 include'includes/functions.php';
- $downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
-											 $stmt = $conn->prepare($downloadSQL);
-											  $stmt->bindParam(":itemid",$itemid);
-											               $stmt->execute();
-											                  while($row5 = $stmt->fetch()){
-											 
-											 
-            ?>
-			<Option value="<?php echo $row5['Categoty_id']?>"><?php echo $row5['name']?></option>
-											<?php  } ?>
-																	
-																	
-																</select>
-											
-
-										</div>
-
-									</div>
-									
-										
-									
-										
-										
-									
-
-										<div class="control-group">
-									
-           <label class="control-label">Document(pdf only)</label>
-		   <div class="controls">
-    <input type="file" name="Ducument_upload" accept=".pdf" >
-						</div>
-						</div>
-									
-
-									 <div class="control-group">
-
-										<label class="control-label">Status<span class="required">*</span></label>
-
-										<div class="controls">
-									<select  name="status" >
-                                                                     <Option value="">--Select Status--</option>
-																	<option value="Published">Published</option>
-
-																	<option value="Unpublished">Unpublished</option>
-																	
-
-																</select>
 											
 
 										</div>
 
 									</div>
 								
+									
+									<div class="control-group ">
+									<div class="span4">
+
+										<label class="control-label">logo</label>
+
+										<div class="controls span6">
+                                      <div class="slim"
+										 data-label="Drop your image here"
+										 data-fetcher="fetch.php"
+										 data-instant-edit="true" 
+										 
+										>
+										<input type="file" name="slim[]"  />
+									</div>
+											
+
+										</div>
+										</div>
+										</div>
+								
+                                  
+
+									
+									<div class="control-group">
+
+										<label class="control-label">Web Address<span class="required">*</span></label>
+
+										<div class="controls">
+
+											<input type="text"  name="webaddress" class="span6 m-wrap" required />
+
+											
+
+										</div>
+
+									</div>
+									
+					
+						
+											
+											
+													
+													
+													
+													
+										
+
+													
 												
 												
 												<div class="form-actions">
 
-										<button type="submit" name="submitDownload" class="btn blue">Save</button>
+										<button type="submit" name="submitNewCourse" class="btn blue">Save</button>
 
 										<button type="button" class="btn">Cancel</button>                            
 
 									</div>
 
 								</form>
-												</div>
+												</div>				</div>
 									
 								
 

@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ZNBS Content Managment System<</title>
+        <title>Code-IT  Content Managment System<</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="">
@@ -40,7 +40,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>ZNBS Content Managment System</strong></h1>
+                            <h1><strong>Code-IT  Content Managment System</strong></h1>
 
                         </div>
                     </div>

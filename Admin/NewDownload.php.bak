@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -234,27 +234,32 @@ $document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
 
   
-  
+  $downlaodId=0;
 
 
 
  $SQL3 = "INSERT INTO `downloads`(`document_id`, `tittle`, `address`, `category`, `Status`) 
-VALUES ('','$Title','$document','$category','$status')";
+VALUES (:downlaodId,:Title,:document,:category,:status)";
 
-  move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+  
+       $stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":file",$file);
+$stmt->bindParam(":document",$document);
+$stmt->bindParam(":status",$status);
+$stmt->bindParam(":downlaodId",$downlaodId);
+$stmt->bindParam(":category",$category);
 
-    echo $result3= mysqli_query($conn,$SQL3);
-	
-   if($result3){
+ move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+
+if($stmt->execute()){
    
-  echo '<div class="alert alert-success"> The Article has been added Successfully</div>';
- echo "<script>window.location = 'Downloads.php?status=Yes'</script>";
+  echo '<div class="alert alert-success"> The Download has been added Successfully</div>';
+ echo "<script>window.location ='Downloads.php?status=Yes'</script>";
     		
 }else {
-
-
-			
-			 echo "<script>window.location = 'Downloads.php?status=No</script>";
+		
+//echo "<script>window.location = 'Downloads.php?status=No'</script>";
 			
 			
 		
@@ -314,9 +319,11 @@ VALUES ('','$Title','$document','$category','$status')";
 					 
 					 include'includes/functions.php';
  $downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
-											$results=mysqli_query($conn,$downloadSQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											 $stmt = $conn->prepare($downloadSQL);
+											  $stmt->bindParam(":itemid",$itemid);
+											               $stmt->execute();
+											                  while($row5 = $stmt->fetch()){
+											 
 											 
             ?>
 			<Option value="<?php echo $row5['Categoty_id']?>"><?php echo $row5['name']?></option>

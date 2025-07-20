@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+<?php include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -12,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Form Stuff - Form Validation</title>
+	<title>Code IT CMS</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -288,28 +289,31 @@ $Owner_id=$_POST['Owner_id'];
 					<span class="label">Thumbnail</span>
 					<p class="info">=200,=200</p>
 				</div>
-				<div class="crop-element" data-name="Image1" data-crop="=1053,=592"  data-crop-required="true">
+				<div class="crop-element" data-name="Image1"data-size="1920,1299" data-ratio="640:550  data-crop-required="true">
 					<img>
 					<input type="file">
 					<br>
 					<span class="label">min width,<br> min height</span>
 					
 				</div>
-				<div class="crop-element" data-name="Image1" data-crop="=1053,=592"  data-crop-open="true" data-crop-required="true">
+				<div class="crop-element" data-name="Image1"data-size="1920,1299"
+										 data-ratio="640:433  data-crop-open="true" data-crop-required="true">
 					<img>
 					<input type="file">
 					<br>
 					<span class="label">min width,<br> min height</span>
 					
 				</div>
-				<div class="crop-element" data-name="Image1" data-crop="=1053,=592"  data-crop-open="true" data-crop-required="true">
+				<div class="crop-element" data-name="Image1" data-size="1920,1299"
+										 data-ratio="640:433  data-crop-open="true" data-crop-required="true">
 					<img>
 					<input type="file">
 					<br>
 					<span class="label">min width,<br> min height</span>
 					
 				</div>
-				<div class="crop-element" data-name="Image1" data-crop="=1053,=592"  data-crop-open="true" data-crop-required="true">
+				<div class="crop-element" data-name="Image1" data-size="1920,1299"
+										 data-ratio="640:433  data-crop-open="true" data-crop-required="true">
 					<img>
 					<input type="file">
 					<br>

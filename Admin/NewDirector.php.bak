@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -222,16 +222,24 @@ $first_name=$_POST['first_name'];
  $last_name =$_POST['last_name'];
  
 
- $jobRole=$_POST['jobRole'];
+ $jobRole=$_POST['Role'];
  
 $picture='';
+$direct_id="";
 
 
-  $SQL3 = "INSERT INTO `Directors`(`Identity`, `Title`, `Firstname`, `LastName`, `picture`, `Role`) VALUES ('','$Title','$first_name','$last_name','$nameofFile','$jobRole')";
-  
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
+  $SQL3 = "INSERT INTO `Directors`(`Identity`, `Title`, `Firstname`, `LastName`, `picture`, `Role`) VALUES (:direct_id,:Title,:first_name,:last_name,:nameofFile,:jobRole)";
    
+     $stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":first_name",$first_name);
+$stmt->bindParam(":last_name",$last_name);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":jobRole",$jobRole);
+$stmt->bindParam(":direct_id",$direct_id);
+
+
+if($stmt->execute()){
   echo '<div class="alert alert-success"> The Director has been added Successfully</div>';
     		
 }else {
@@ -350,7 +358,7 @@ $picture='';
 
 														<select  name="Role" >
                                                                     <option value="">--Select Role--</option>
-																	<option value="Mr.">Chairman</option>
+																	<option value="Chairman">Chairman</option>
 																	<option value="Member">Member</option>
 																	
 																	

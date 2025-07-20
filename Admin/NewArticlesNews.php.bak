@@ -280,7 +280,7 @@ $stmt->bindParam(":category",$category);
 $stmt->bindParam(":status",$status);
 $stmt->bindParam(":documentname",$documentname);
 $stmt->bindParam(":document",$document);
-$stmt->bindParam(":Art_id",$Art_id);
+$stmt->bindParam(":Art_id",'');
 
 move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
 if ($stmt->execute()) {

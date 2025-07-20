@@ -1,5 +1,5 @@
 <?php
-include '../includes/sessions.php';
+include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);
 
 
 ?>
@@ -9,7 +9,6 @@ include '../includes/sessions.php';
   
   if ($dbuser){
     session_destroy();
-    
    echo "<script> location.href='login.php'; </script>";
   }else {
   

@@ -21,7 +21,7 @@
 	<meta content="" name="author" />
 
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-
+	
 	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
@@ -37,16 +37,40 @@
 	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 
 	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-	 <link rel="stylesheet" href="css/slim.min.css">
 
 	<!-- END GLOBAL MANDATORY STYLES -->
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
 
-	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-fileupload.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.gritter.css" />
 
 	<link rel="stylesheet" type="text/css" href="media/css/chosen.css" />
 
+	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.tagsinput.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/clockface.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-wysihtml5.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/timepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/colorpicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-toggle-buttons.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/daterangepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datetimepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/multi-select-metro.css" />
+
+	<link href="media/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 	<!-- END PAGE LEVEL STYLES -->
 
 	<link rel="shortcut icon" href="media/image/favicon.ico" />
@@ -209,61 +233,28 @@ include 'includes/sidebar.php';
 						<?php
 											
 
-											if(isset($_POST['submitDownload'])){
+											if(isset($_POST['submitQuestion'])){
 												
-												
-											// let's create some shortcuts
+ $Question=$_POST['Question'];
 
+ $Answer=$_POST['Answer'];
+ $quest_no="";
 
-// store the file
-
-										
-
- $Title=$_POST['title'];
-
+$SQL3 = "INSERT INTO `q_and_a`(`quest_no`, `question`, `answer`) VALUES (:quest_no,:Question,:Answer)";
  
- $category=$_POST['Category'];
- $status=$_POST['status'];
+$stmt = $conn->prepare($SQL3);
 
- $path="Uploads/Document/";
- 
-if (!file_exists($path)) {
-    mkdir($path, 0777, true);
-}
-$document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
+$stmt->bindParam(":quest_no",$quest_no);
+$stmt->bindParam(":Question",$Question);
+$stmt->bindParam(":Answer",$Answer);
 
-
-  
-  $downlaodId=0;
-
-
-
- $SQL3 = "INSERT INTO `downloads`(`document_id`, `tittle`, `address`, `category`, `Status`) 
-VALUES (:downlaodId,:Title,:document,:category,:status)";
-
-  
-       $stmt = $conn->prepare($SQL3);
-$stmt->bindParam(":Title",$Title);
-$stmt->bindParam(":document",$document);
-$stmt->bindParam(":status",$status);
-$stmt->bindParam(":downlaodId",$downlaodId);
-$stmt->bindParam(":category",$category);
-
- move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
-
-if($stmt->execute()){
+   if($stmt->execute()){
    
-  echo '<div class="alert alert-success"> The Download has been added Successfully</div>';
- echo "<script>window.location ='Downloads.php?status=Yes'</script>";
+  echo '<div class="alert alert-success"> The Article has been added Successfully</div>';
+ echo "<script>window.location = 'QandA.php?status=Yes'</script>";
     		
-}else {
-		
-//echo "<script>window.location = 'Downloads.php?status=No'</script>";
-			
-			
-		
-//}
-
+}else {	
+			 echo "<script>window.location = 'QandA.php.php?status=No</script>";
 	
 	}
 	
@@ -277,7 +268,7 @@ if($stmt->execute()){
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-reorder"></i>New Download </div>
+								<div class="caption"><i class="icon-reorder"></i>New Question </div>
 
 								
 
@@ -294,12 +285,12 @@ if($stmt->execute()){
 							
 								  <div class="control-group">
 
-										<label class="control-label">Title<span class="required">*</span></label>
+										<label class="control-label">Question<span class="required">*</span></label>
 
 										<div class="controls">
 									
                                                                
-											<input type="text"  name="title" class="span6 m-wrap" required />
+											<textarea name="Question"  class="span6 wysihtml5 m-wrap"   id="Category" rows="5" ></textarea>
 
 										</div>
 
@@ -309,27 +300,10 @@ if($stmt->execute()){
 								
 									 <div class="control-group">
 
-										<label class="control-label">Category<span class="required">*</span></label>
+										<label class="control-label">Answer<span class="required">*</span></label>
 
 										<div class="controls">
-										<select  name="Category"  id="Category" >
-                                                                     <Option value="">--Select Category--</option>
-																	   <?php   
-					 
-					 include'includes/functions.php';
- $downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
-											 $stmt = $conn->prepare($downloadSQL);
-											  $stmt->bindParam(":itemid",$itemid);
-											               $stmt->execute();
-											                  while($row5 = $stmt->fetch()){
-											 
-											 
-            ?>
-			<Option value="<?php echo $row5['Categoty_id']?>"><?php echo $row5['name']?></option>
-											<?php  } ?>
-																	
-																	
-																</select>
+										<textarea name="Answer"  class="span6 wysihtml5 m-wrap"   id="Category" rows="5" ></textarea>
 											
 
 										</div>
@@ -342,39 +316,15 @@ if($stmt->execute()){
 										
 									
 
-										<div class="control-group">
-									
-           <label class="control-label">Document(pdf only)</label>
-		   <div class="controls">
-    <input type="file" name="Ducument_upload" accept=".pdf" >
-						</div>
-						</div>
-									
+				
 
-									 <div class="control-group">
-
-										<label class="control-label">Status<span class="required">*</span></label>
-
-										<div class="controls">
-									<select  name="status" >
-                                                                     <Option value="">--Select Status--</option>
-																	<option value="Published">Published</option>
-
-																	<option value="Unpublished">Unpublished</option>
-																	
-
-																</select>
-											
-
-										</div>
-
-									</div>
+								
 								
 												
 												
 												<div class="form-actions">
 
-										<button type="submit" name="submitDownload" class="btn blue">Save</button>
+										<button type="submit" name="submitQuestion" class="btn blue">Save</button>
 
 										<button type="button" class="btn">Cancel</button>                            
 
@@ -468,35 +418,65 @@ if($stmt->execute()){
 
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 
-	<script type="text/javascript" src="media/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="media/js/ckeditor.js"></script>  
 
-	<script type="text/javascript" src="media/js/additional-methods.min.js"></script>
-
-	<script type="text/javascript" src="media/js/select2.min.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap-fileupload.js"></script>
 
 	<script type="text/javascript" src="media/js/chosen.jquery.min.js"></script>
 
+	<script type="text/javascript" src="media/js/select2.min.js"></script>
+
+	<script type="text/javascript" src="media/js/wysihtml5-0.3.0.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-wysihtml5.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.tagsinput.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.toggle.buttons.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datetimepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/clockface.js"></script>
+
+	<script type="text/javascript" src="media/js/date.js"></script>
+
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-colorpicker.js"></script>  
+
+	<script type="text/javascript" src="media/js/bootstrap-timepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.inputmask.bundle.min.js"></script>   
+
+	<script type="text/javascript" src="media/js/jquery.input-ip-address-control-1.0.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.multi-select.js"></script>   
+
+	<script src="media/js/bootstrap-modal.js" type="text/javascript" ></script>
+
+	<script src="media/js/bootstrap-modalmanager.js" type="text/javascript" ></script> 
+
 	<!-- END PAGE LEVEL PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL STYLES -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 	<script src="media/js/app.js"></script>
 
-	<script src="media/js/form-validation.js"></script> 
-	<script src="media/js/lists.js"></script>
-    <script src="js/slim.kickstart.min.js"></script>	
+	<script src="media/js/form-components.js"></script>     
 
-	<!-- END PAGE LEVEL STYLES -->    
+	<!-- END PAGE LEVEL SCRIPTS -->
 
 	<script>
 
-		jQuery(document).ready(function() {   
+		jQuery(document).ready(function() {       
 
 		   // initiate layout and plugins
 
 		   App.init();
 
-		   FormValidation.init();
+		   FormComponents.init();
 
 		});
 

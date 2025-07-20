@@ -2,17 +2,19 @@
 					<div class="col-lg-4 col-md-12 section-content-left">
 						<div class="overlay-white"></div>
 						<div class="section-content">
-							<h1 class="text-center fade-in-left">Banking Loan Calculator</h1>
+							<h1 class="display-4 text-center fade-in-left">Banking Loan Calculator</h1>
 							<h2 class="text-center fade-in-left">Calculate Your Repayments</h2>
 							<form action="" Onsubmit='Return false' id="loan_calculator_form" method="submit" class="p-4">
 								<select class="input-box p-3 m-2 fade-in-left"  name="input"  id="product_loan" required >
 								<option value=''>--Select Product--</option>
 									<?php 
 					$prod_sql="SELECT `loan_id`, `loan_name`, `interest`, `maximum_tanure`, `minum_tanure` FROM `loan_types`  WHERE `loan_name`!='Mortgage'";
-					$product = mysqli_query($conn,$prod_sql);
-						while ($row = mysqli_fetch_array($product)) {
+					$stmt = $conn2->query($prod_sql);
+
+                     $i=0;
+						while ($row5 = $stmt->fetch()) {
 							?>
-								<option value='<?php echo $row['interest']; ?>'><?php echo $row['loan_name']; ?></option>
+								<option value='<?php echo $row5['interest']; ?>'><?php echo $row5['loan_name']; ?></option>
 						<?php } ?>
 								</select>
 								<br>
@@ -37,10 +39,12 @@
 								<option value=''>--Select Product--</option>
 									<?php 
 					$prod_sql="SELECT `loan_id`, `loan_name`, `interest`, `maximum_tanure`, `minum_tanure` FROM `loan_types` WHERE `loan_name`='Mortgage'";
-					$product = mysqli_query($conn,$prod_sql);
-						while ($row = mysqli_fetch_array($product)) {
+					$stmt = $conn2->query($prod_sql);
+
+                     $i=0;
+						while ($row5 = $stmt->fetch()) {
 							?>
-								<option value='<?php echo $row['interest']; ?>'><?php echo $row['loan_name']; ?></option>
+								<option value='<?php echo $row5['interest']; ?>'><?php echo $row5['loan_name']; ?></option>
 						<?php } ?>
 								</select>
 								<br>

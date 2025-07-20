@@ -11,11 +11,15 @@
 		
 		                    <?php 
 								$sql="SELECT `itemrid`, `header1`, `header2`, `header_3`, `Image`, `Published?` FROM `carausel` WHERE `Published?`='Yes'";
-								$q1=mysqli_query($conn,$sql)or die(mysqli_error());
+							
 
 
 								 $count=0;
-								while ($row5 = mysqli_fetch_array($q1)) {
+								 $stmt = $conn2->prepare($sql);
+
+									$stmt->execute();
+
+									while ($row5 = $stmt->fetch()) {
                                 $count++;
 								
 								?>
@@ -41,11 +45,11 @@
 				
 				<div class="carousel-btn-grid">
 					<a href="#contact-us"><div class="carousel-btn"><div class="fa fa-comments-o"></div><span>Contact Us</span></div></span></a>
-					<a href="#contact-us"><div class="carousel-btn"><div class="fa fa-money"></div><span>Tariff Guide</span></div></a>
+					<a href="Uploads/Document/ZNBS TARIFF GUIDE 6 october 2021.pdf" target="_self"><div class="carousel-btn"><div class="fa fa-money"></div><span>Tariff Guide</span></div></a>
 					<a href="#contact-us"><div class="carousel-btn"><div class="fa fa-comment"></div><span>Feedback</span></div></a>
 					<a href="https://www.facebook.com/Zambia-National-Building-Society-155197338006117" target="_blank"><div class="carousel-btn"><div class="fa fa-facebook-square"></div><span>Facebook</span></div></a>
 					<a href="https://www.twitter.com/societyzambia" target="_blank"><div class="carousel-btn"><div class="fa fa-twitter-square"></div><span>Twitter</span></div></a>
 					<a href="https://www.linkedin.com/company/zambia-national-building-society" target="_blank"><div class="carousel-btn"><div class="fa fa-linkedin-square"></div><span>Linkedin</span></div></a>
-					<a data-toggle="modal" href="" data-target="#youtube"><div class="carousel-btn"><div class="fa fa-youtube-play"></div><span>YouTube</span></div></a>
+					<a href="https://www.youtube.com/channel/UC-pl8UlfZ7CIl_QZ5fpr8PQ/videos?app=desktop" target="_blank"><div class="carousel-btn"><div class="fa fa-youtube-play"></div><span>YouTube</span></div></a>
 				</div><!--end carousel-btns-->
 			</div><!--end sliderWrapper-->

@@ -2,29 +2,18 @@
 				<div class="col-lg-3 col-md-4 section-read-more">
 
 					<ul class="read-more-list p-0">
-						<a href="#contact-us-section"><li class="main-list-tab active" data-list="tab-30-main">Contact Us</li>
-						<a href="#contact-us-section"><li class="main-list-tab" data-list="tab-30-feedback">Feedback</li></a>
-						<a href="#contact-us-section"><li class="main-list-tab" data-list="tab-30-complaint">Complaints</li></a>
-						<a href="#contact-us-section"><li class="main-list-tab" data-list="tab-30-jobs">Career Oppotunities</li></a>
-						<a href="#contact-us-section"><li class="main-list-tab" data-list="tab-30-atm">ATM Locater</li></a>
-						<a href="#contact-us-section"><li class="main-list-tab" data-list="tab-301">Main Branch</li></a>
-						<li class="main-list-tab dropdown-toggle" data-list="tab-301"  data-toggle="collapse" data-target="#collapseBranches">Other Branches</li>
+						<a href="#contact-us"><li class="main-list-tab active" data-list="tab-30-main">Contact Us</li>
+						<a href="#contact-us"><li class="main-list-tab" data-list="tab-30-feedback">Feedback</li></a>
+						<a href="#contact-us"><li class="main-list-tab" data-list="tab-30-complaint">Complaints</li></a>
+						<a href="#contact-us"><li class="main-list-tab" data-list="tab-30-jobs">Career Oppotunities</li></a>
+						<a href="#contact-us"><li class="main-list-tab" data-list="tab-301">Head Office</li></a>
+						<li class="main-list-tab dropdown-toggle" data-list="tab-branch_net"  data-toggle="collapse" data-target="#collapseBranches">Branch/ATM locator</li>
 						<div class="drop-down">
 							<ul class="p-0 collapse" id="collapseBranches" data-list="tab-20" data-parent="#contact-us">
 							 
-							<?php 
-								$sql="SELECT * FROM `branch_tbl` WHERE `branch_name`!='Main Branch'";
-								$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-
-
-								while ($row5 = mysqli_fetch_array($q1)) {
-
-							 ?>
-						
-								<a href="#contact-us-section"><li data-list="tab-30<?php echo $row5['branch_id']; ?>" onclick="LoadMap(<?php echo $row5['branch_id']; ?>)"><?php echo $row5['branch_name']; ?></li></a>
-								
-							<?php } ?>
-
+							  <a href="#contact-us"><li class="main-list-tab" data-list="tab-30-branches">Branches</li></a>
+							  <a href="#contact-us"><li class="main-list-tab" data-list="tab-30-atm">Remote ATMs Locater</li></a>
+							
 							</ul>
 						</div>
 					
@@ -54,26 +43,27 @@
 									<input class="p-3 m-2" type="submit" value="Send" onclick="sendEnquiry()" id="send-btn" />
 							</form>
 							<div id="ResponseMesage"></div>
-							</div>
-							<div class="content-panel tab-30-complaint animated fadeIn">
-					<h1 class="display-4 text-center">Send your Complaint Here</h1>
-						<form action="" onsubmit="return false" method="">
-							<div class="row m-2">
-								<input class="input-box p-3" type="text" name="input" placeholder="Name" id="Name1" >
+						</div>
 
-								<input class="input-box p-3" type="text" name="input" placeholder="Email" id="email1" ><br>
-							</div>
-							<div class="row m-2">
-								<input class="input-box p-3" type="text" name="input" placeholder="Mobile Number" id="Number1" >
+						<div class="content-panel tab-30-complaint animated fadeIn">
+							<h1 class="display-4 text-center">Send your Complaint Here</h1>
+							<form action="" onsubmit="return false" method="">
+								<div class="row m-2">
+									<input class="input-box p-3" type="text" name="input" placeholder="Name" id="Name1" >
 
-								<input class="input-box p-3" type="text" name="input" placeholder="Subject" id="Subject1" ><br>
-							</div>
-								<textarea class="message m-2" type="text" name="input" placeholder="Complaint Details" id="message1" ></textarea><br>
+									<input class="input-box p-3" type="text" name="input" placeholder="Email" id="email1" ><br>
+								</div>
+								<div class="row m-2">
+									<input class="input-box p-3" type="text" name="input" placeholder="Mobile Number" id="Number1" >
 
-								<input class="p-3 m-2" type="submit" value="Send" onclick="sendComplaint()" id="send-btn" />
+									<input class="input-box p-3" type="text" name="input" placeholder="Subject" id="Subject1" ><br>
+								</div>
+									<textarea class="message m-2" type="text" name="input" placeholder="Complaint Details" id="message1" ></textarea><br>
 
-						</form>
-						<div id="ResponseComplaints"></div>
+									<input class="p-3 m-2" type="submit" value="Send" onclick="sendComplaint()" id="send-btn" />
+
+							</form>
+							<div id="ResponseComplaints"></div>
 						</div>
 
 						<div class="content-panel tab-30-feedback animated fadeIn">
@@ -88,10 +78,10 @@
 								   <?php 
 
 														$sql="SELECT `survey_id`, `Survey_title`, `startdate`, `enddate`, `status`, `category_id` FROM `surveys` WHERE `category_id`='2' AND `status`='Published'";
-														$q1=mysqli_query($conn,$sql);
-
-
-														while ($row5 = mysqli_fetch_array($q1)) {
+														$stmt = $conn2->query($sql);
+											$stmt->execute();
+											$i=0;
+											while( $row5 = $stmt->fetch()){
 
 
 												  ?>
@@ -115,10 +105,10 @@
 
 						<?php 	
 							$sql="SELECT `branch_id`, `branch_name`, `Address1`, `Address 2`, `Town`, `Contact_no1`, `Contact_no2`, `email`, `google_map` FROM `branch_tbl`";
-							$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-
-
-							while ($row5 = mysqli_fetch_array($q1)) {
+								$stmt = $conn2->query($sql);
+											$stmt->execute();
+											$i=0;
+											while( $row5 = $stmt->fetch()){
 
 							$title=$row5['branch_name'];
 						?>
@@ -181,10 +171,10 @@
 
 							$sql="SELECT `article_id`, `At_Title`, `At_content`, `At_image`, `At_sub_cat`, `At_category`, 
 							`At_status` FROM `articles` WHERE `At_sub_cat`='29'";
-							$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-
-
-							while ($row5 = mysqli_fetch_array($q1)) {
+								$stmt = $conn2->query($sql);
+											$stmt->execute();
+											$i=0;
+											while( $row5 = $stmt->fetch()){
 
 
 					  ?>
@@ -195,20 +185,22 @@
 						<?php  
 
 																	} ?>
-
+																	
+																	<p> There Are currently no vacancies Available,<br>Thank you!</p>
+ 
 					   </div>	
 	<div class="content-panel tab-30-atm animated fadeIn">	
-	<h1 class="display-4 text-center">Find ATM Machine</h1>
+	<h1 class="display-4 text-center">Find Remote ATM Machines</h1>
 					<div class="align-items-center">	
 				<select  onChange='LoadATM()' id="city" class="form-control align-items-center" searchable="Search here..">
 	  <option value="" disabled selected>--Choose the City/Area--</option>
 	   <?php 
 
 							$sql="SELECT `Id`, `city`, `Loacation_coodinates`, `place_location` FROM `atms`";
-							$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-
-
-							while ($row5 = mysqli_fetch_array($q1)) {
+								$stmt = $conn2->query($sql);
+											$stmt->execute();
+											$i=0;
+											while( $row5 = $stmt->fetch()){
 
 
 					  ?>
@@ -222,20 +214,48 @@
 
 
 	</select>
+ 
+	</div>
+	<br><br>
+	<div id="mapATM" ></div>
+
+					   </div>	
+        	<div class="content-panel tab-30-branches animated fadeIn">	
+	<h1 class="display-4 text-center">Branches</h1>
+					<div class="align-items-center">	
+				<select  onChange='load_branchData()' id="branches_select" class="form-control align-items-center" searchable="Search here..">
+	  <option value="" disabled selected>--Choose Branches--</option>
+	   <?php 
+
+							$sql="SELECT `branch_id`, `branch_name`, `Address1`, `Address 2`, `Town`, `Contact_no1`, `Contact_no2`, `email`, `google_map` FROM `branch_tbl`";
+								$stmt = $conn2->query($sql);
+											$stmt->execute();
+											$i=0;
+											while( $row5 = $stmt->fetch()){
+
+
+					  ?>
+	  <option   value="<?php echo $row5['branch_id'] ?>"><?php echo $row5['branch_name'] ?></option>
+
+
+						<?php  
+
+																	} ?>
+
+
+
+	</select>
 
 	</div>
 	<br><br>
-	<div id="map" ></div>
+	<div id="branchData" ></div>
 
-
-
-
-
-
-
-					   </div>					   
-
-					</div>	
+					   </div>
+					   <div class="content-panel tab-branch_net animated fadeIn">	
+					   
+					   <img class="section-content-img" src="Admin/images/62e664b299453_5eca44d4bb75a_zambianmap.jpg">
+                         </div>
+					</div><!--end contact-us-section-->
 				</div><!--end section-content-->
 				
 				

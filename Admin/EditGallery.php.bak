@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -237,11 +237,18 @@ if (!file_exists($path)) {
 
 
 
- $SQL3 = "UPDATE `gallery` SET `Name`='$Title',`Address`=if(LENGTH('$nameofFile')=0,`address`,'$nameofFile'),`Category`='$category',`Status`='$status' WHERE `Image_id`='$img_id'";
+ $SQL3 = "UPDATE `gallery` SET `Name`=:Title,`Address`=if(LENGTH(:nameofFile)=0,`address`,:nameofFile),`Category`=:category,`Status`=:status WHERE `Image_id`=:img_id";
  
  
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
+   $stmt = $conn->prepare($SQL3);
+
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":category",$category);
+$stmt->bindParam(":status",$status);
+$stmt->bindParam(":status",$status);
+
+   if($stmt->execute()){{
    
   echo '<div class="alert alert-success"> The Image has been edited Successfully</div>';
  echo "<script>window.location = 'GaleryList.php?statusedit=Yes'</script>";
@@ -280,11 +287,11 @@ if (!file_exists($path)) {
 							<div class="portlet-body form">
 
 								<!-- BEGIN FORM-->
-									<?php	$sql="SELECT `Image_id`, `Name`, `Address`, `Category`, `Status` FROM `gallery` WHERE `Image_id`='$img_id'";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row2 = mysqli_fetch_array($q1)) {
+									<?php	$sql="SELECT `Image_id`, `Name`, `Address`, `Category`, `Status` FROM `gallery` WHERE `Image_id`=:img_id";
+															$stmt = $conn->prepare($sql);
+											  $stmt->bindParam(":img_id",$img_id);
+											               $stmt->execute();
+											                  while($row3= $stmt->fetch()){
 																
 																
 																?>

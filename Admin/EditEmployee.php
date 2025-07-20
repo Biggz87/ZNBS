@@ -1,4 +1,8 @@
-<?php include '../includes/sessions.php';?>
+<?php define('jhshjgdhgdhgdhhj',TRUE); 
+
+ include '../includes/sessions.php';
+
+?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -211,11 +215,11 @@ include 'includes/sidebar.php';
 
 						<!-- BEGIN SAMPLE FORM PORTLET-->   
 											<?php 
-require_once('async_empic.php');
+include('async_empic.php');
 
 											if(isset($_POST['submitNewCourse'])){
             
-{
+
 $Title=$_POST['Title'];	
 $first_name=$_POST['first_name'];
  $last_name =$_POST['last_name'];
@@ -228,20 +232,36 @@ $first_name=$_POST['first_name'];
  $city_town =$_POST['city_town'];
  $genda =$_POST['genda'];
  $country=$_POST['country'];
- $date_joined =$_POST['date_joined'];
  $jobRole=$_POST['jobRole'];
 $profile=$_POST['profile'];
 $category=$_POST['Category'];
 $employee_number=$_POST['employee_number'];
+$fileLength=strlen(trim($nameofFile));
 
-$SQL3 = "UPDATE `employees_tbl` SET `emp_id`='$employee_number', `Title`='$Title',`first_name`='$first_name',`last_name`='$last_name',`date_of_birth`='$date_of_birth',
-`email`='$email',`mobile_number`='$mobile_number',`whatsapp`='$whatsapp',`address1`='$address1',`address2`='$address2',`city_town`='$city_town',
-`genda`='$genda',`country`='$country',`jobRole`='$jobRole' ,`Category`='$category',`Picture`='$nameofFile',`brief_profile`='$profile' WHERE `emp_id`='$emp_id'";
-  
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
+$SQL3 = "UPDATE `employees_tbl` SET `emp_id`=:employee_number,`Title`=:Title,`first_name`=:first_name,`last_name`=:last_name,`date_of_birth`=:date_of_birth,`email`=:email,`mobile_number`=:mobile_number,`whatsapp`=:whatsapp,`address1`=:address1,`address2`=:address2,`city_town`=:city_town,`genda`=:genda,`country`=:country,`jobRole`=:jobRole,`Category`=:category,`Picture`=IF($fileLength=0,`Picture`,:nameofFile),`brief_profile`=:profile WHERE `emp_id`=:emp_id";
+
+$stmt = $conn2->prepare($SQL3);
+$stmt->bindParam(":employee_number",$employee_number);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":first_name",$first_name);
+$stmt->bindParam(":last_name",$last_name);
+$stmt->bindParam(":date_of_birth",$date_of_birth);
+$stmt->bindParam(":email",$email);
+$stmt->bindParam(":mobile_number",$mobile_number);
+$stmt->bindParam(":whatsapp",$whatsapp);
+$stmt->bindParam(":address1",$address1);
+$stmt->bindParam(":address2",$address2);
+$stmt->bindParam(":city_town",$city_town);
+$stmt->bindParam(":genda",$genda);
+$stmt->bindParam(":country",$country);
+$stmt->bindParam(":jobRole",$jobRole);
+$stmt->bindParam(":category",$category);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":profile",$profile);
+$stmt->bindParam(":emp_id",$emp_id);
+   if($stmt->execute()){
    
-  echo '<div class="alert alert-success"> The Emplyeee has been added Successfully</div>';
+  echo '<div class="alert alert-success"> The Emplyeee has been edited Successfully</div>';
     		
 }else {
 
@@ -249,13 +269,17 @@ $SQL3 = "UPDATE `employees_tbl` SET `emp_id`='$employee_number', `Title`='$Title
 			
 			echo '<div class="alert alert-danger"> The Employee has NOT  been added due to some error</div>';
 		
-//}
+		
+		
+}
+
+
 
 	
-	}
+	
 	
 }
-}
+
 
 
 ?> 
@@ -280,10 +304,11 @@ $SQL3 = "UPDATE `employees_tbl` SET `emp_id`='$employee_number', `Title`='$Title
 								
 								 <?php
 
-								 $userqry="SELECT * FROM `employees_tbl` WHERE `emp_id`='$emp_id'";
-											$results=mysqli_query($conn,$userqry);
-											
-											while($row6=mysqli_fetch_array($results)){
+								 $userqry="SELECT * FROM `employees_tbl` WHERE `emp_id`=:emp_id";
+											$stmt = $conn2->prepare($userqry);
+											  $stmt->bindParam(":emp_id",$emp_id);
+											               $stmt->execute();
+											                  while($row6= $stmt->fetch()){
 											
 											?>
 								  <div class="control-group">
@@ -498,10 +523,10 @@ $SQL3 = "UPDATE `employees_tbl` SET `emp_id`='$employee_number', `Title`='$Title
 																</option>
 																<?php 
 																$sql="SELECT * FROM `country`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row = mysqli_fetch_array($q1)) {
+																$stmt = $conn->prepare($sql);
+																
+											               $stmt->execute();
+											                  while($row= $stmt->fetch()){
 																$name=$row['nicename'];
 																?>
 																<option value="<?php echo $name; ?>"> <?php echo $name ; ?>
@@ -554,12 +579,12 @@ $SQL3 = "UPDATE `employees_tbl` SET `emp_id`='$employee_number', `Title`='$Title
 
 													<div class="controls">
 
-														<textarea type="text" rows="10" class="span6 m-wrap"  name="profile"  ><?php echo $row6['brief_profile']; ?>
+														<textarea type="text" rows="10" class="span6 m-wrap"  name="profile"  ><?php echo $row6['brief_profile']; ?></textarea>
 														
 														
 																
 
-											</textarea>
+											
 														
 
 													</div>

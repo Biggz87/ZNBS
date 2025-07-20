@@ -1,4 +1,5 @@
-<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';
+$Art_id=$_GET['articleid']; ?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -21,7 +22,7 @@
 	<meta content="" name="author" />
 
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-
+	
 	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
@@ -37,16 +38,41 @@
 	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 
 	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-	 <link rel="stylesheet" href="css/slim.min.css">
 
 	<!-- END GLOBAL MANDATORY STYLES -->
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
 
-	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-fileupload.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.gritter.css" />
 
 	<link rel="stylesheet" type="text/css" href="media/css/chosen.css" />
 
+	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.tagsinput.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/clockface.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-wysihtml5.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/timepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/colorpicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-toggle-buttons.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/daterangepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datetimepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/multi-select-metro.css" />
+
+	<link href="media/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+	 <link rel="stylesheet" href="css/slim.min.css">
 	<!-- END PAGE LEVEL STYLES -->
 
 	<link rel="shortcut icon" href="media/image/favicon.ico" />
@@ -207,13 +233,12 @@ include 'includes/sidebar.php';
 					<div class="span12">
 
 						<?php
-						$img_id=$_GET['img_id'];
 											
-
+$page=$_GET['page'];
 											if(isset($_POST['submitNewArticles'])){
 												
 												
-	require_once('async_gallery.php');											// let's create some shortcuts
+												// let's create some shortcuts
 
 
 // store the file
@@ -221,43 +246,49 @@ include 'includes/sidebar.php';
 										
 
  $Title=$_POST['title'];
+ $content =$_POST['content'];
  $sub_cat=$_POST['sub_cat'];
  $category=$_POST['Category'];
  $status=$_POST['status'];
 
- 
+ $path="../Uploads/Document/";
 if (!file_exists($path)) {
     mkdir($path, 0777, true);
 }
+$document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
-
-
+$documentname=$_FILES['Ducument_upload']['name'];
+  include('async_addpic.php');
   
-  
+$lengthImage=strlen(trim($document));
+$lengthFile=strlen(trim($nameofFile));
 
 
+ $SQL3 = "UPDATE `articles` SET `At_Title`=:Title,`At_content`=:content,`At_image`=if('$lengthFile'=0,`At_image`,:nameofFile),`At_sub_cat`=:sub_cat,
+`At_category`=:category,`At_status`=:status,`Document`=if('$lengthImage'=0,`Document`,:document) WHERE `article_id`=:Art_id";
 
- $SQL3 = "UPDATE `gallery` SET `Name`=:Title,`Address`=if(LENGTH(:nameofFile)=0,`address`,:nameofFile),`Category`=:category,`Status`=:status WHERE `Image_id`=:img_id";
- 
- 
-   $stmt = $conn->prepare($SQL3);
-
+$stmt = $conn->prepare($SQL3);
 $stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":content",$content);
 $stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":sub_cat",$sub_cat);
 $stmt->bindParam(":category",$category);
 $stmt->bindParam(":status",$status);
-$stmt->bindParam(":status",$status);
+$stmt->bindParam(":document",$document);
+$stmt->bindParam(":Art_id",$Art_id);
 
-   if($stmt->execute()){{
-   
-  echo '<div class="alert alert-success"> The Image has been edited Successfully</div>';
- echo "<script>window.location = 'GaleryList.php?statusedit=Yes'</script>";
+
+move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+
+if ($stmt->execute()) {
+ 
+ echo "<script>window.location = 'ArticleListSavings. php?statusedit=Yes'</script>";
     		
 }else {
-
+$stmt->errorInfo();
 
 			
-			 echo "<script>window.location = 'GaleryList.php?statusedit=No</script>";
+			 echo "<script>window.location = 'ArticleListSavings.php?statusedit=No'</script>";
 			
 			
 		
@@ -271,12 +302,13 @@ $stmt->bindParam(":status",$status);
 
 
 ?> 
+	
 						<!-- BEGIN SAMPLE FORM PORTLET-->   
 																<div class="portlet box blue">
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-reorder"></i>Edit  Gallery Image</div>
+								<div class="caption"><i class="icon-reorder"></i>Edit Account </div>
 
 								
 
@@ -287,15 +319,19 @@ $stmt->bindParam(":status",$status);
 							<div class="portlet-body form">
 
 								<!-- BEGIN FORM-->
-									<?php	$sql="SELECT `Image_id`, `Name`, `Address`, `Category`, `Status` FROM `gallery` WHERE `Image_id`=:img_id";
-															$stmt = $conn->prepare($sql);
-											  $stmt->bindParam(":img_id",$img_id);
-											               $stmt->execute();
-											                  while($row3= $stmt->fetch()){
-																
-																
-																?>
 
+						<!-- BEGIN FORM-->
+						<?php   
+ $propertySQL="SELECT * FROM `articles` INNER JOIN `at_categories` ON `articles`.`At_category`=`at_categories`.`ID` INNER JOIN `sub_category` ON `sub_category`.`Sub_id`=`articles`.`At_sub_cat` WHERE `article_id`=:Art_id";
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->bindParam(":Art_id",$Art_id);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
+											 
+            ?>
+
+								
 								<form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal">
 								
 							
@@ -306,7 +342,7 @@ $stmt->bindParam(":status",$status);
 										<div class="controls">
 									
                                                                
-											<input type="text"  name="title" value="<?php echo $row2['Name']; ?>" class="span6 m-wrap" required />
+											<input type="text" value="<?php echo $row5['At_Title'] ?>" name="title" class="span6 m-wrap" required />
 
 										</div>
 
@@ -320,12 +356,19 @@ $stmt->bindParam(":status",$status);
 
 										<div class="controls">
 										<select  name="Category" onchange="subcatategory()" id="Category" >
-                                                                     <Option value="<?php echo $row2['Category']; ?>"><?php echo $row2['Category']; ?></option>
-																	  <Option value="Administration">Administration</option>
-																	   <Option value="Malata">Malata Campus</option>
-																	    <Option value="Burma">Burma Campus</option>
-																		<Option value="Events">Events</option>
+                                                                     <Option value="<?php echo $row5['ID'] ?>"><?php echo $row5['Name'] ?></option>
+																	<?php 
+																$sql="SELECT `ID`, `Name` FROM `at_categories`";
+																  $stmt = $conn->prepare($sql);
+											                      $stmt->execute();
+											                  while($row = $stmt->fetch()){
+																$name=$row['Name'];
+																$id=$row['ID'];
 																
+																?>
+																<option value="<?php echo $id; ?>"> <?php echo $name ; ?>
+																</option>
+																<?php } ?>
 
 																	
 																</select>
@@ -334,21 +377,55 @@ $stmt->bindParam(":status",$status);
 										</div>
 
 									</div>
-									
+									 <div class="control-group">
+
+										<label class="control-label">Sub Category<span class="required">*</span></label>
+
+										<div class="controls">
+										<select id="subcat" name="sub_cat" >
+										<Option value="<?php echo $row5['Sub_id'] ?>"><?php echo $row5['Sub_name'] ?></option>
+                                                                     <Option value="">--Select SubCategory--</option>
+																	 
+																	
+																	
+																</select>
+											
+
+										</div>
+
+									</div>
+										<div class="control-group">
+
+										<label class="control-label">Content<span class="required">*</span></label>
+
+										<div class="controls">
+                                      <div id="editor">
+   
+										  <textarea id='edit' rows="15" class="span6 wysihtml5 m-wrap" style="margin-top: 5px;" name='content' placeholder="Type some text">
+											<?php echo $row5['At_content'] ?>
+										  </textarea>
+
 										
+									   
+									  </div>
+											
+
+										</div>
+
+									</div>
 									<div class="control-group">
 
-										<label class="control-label">Picture<span class="required">*</span></label>
+										<label class="control-label">Picture</label>
 
 										<div class="controls span6">
                                       <div class="slim"
 										 data-label="Drop your image here"
 										 data-fetcher="fetch.php"
 										 data-instant-edit="true" 
-										 data-size="1200,795"
-										 data-ratio="80:53">
+										 data-size="1920,1299"
+										 data-ratio="640 : 433">
 										<input type="file" name="slim[]"  />
-										<img src="../images/gallery/<?php echo $row2['Address']; ?>">
+										<img src="images/<?php echo $row5['At_image'] ?>">
 									</div>
 											
 
@@ -366,7 +443,7 @@ $stmt->bindParam(":status",$status);
 
 										<div class="controls">
 									<select  name="status" >
-                                                                    <Option value="<?php echo $row2['Status']; ?>"><?php echo $row2['Status']; ?></option>
+                                                                   <Option value="<?php echo $row5['At_status'] ?>"><?php echo $row5['At_status'] ?></option>
 																	<option value="Published">Published</option>
 
 																	<option value="Unpublished">Unpublished</option>
@@ -378,19 +455,28 @@ $stmt->bindParam(":status",$status);
 										</div>
 
 									</div>
-								
+									<div class="control-group">
+									
+           <label class="control-label">Document(pdf only)</label>
+		   <div class="controls">
+   <?php if($row5['Document']){ ?><a href="<?php  echo $row5['Document']; ?>" target="_new"> View Existing File </a> <?php } ?><input type="file" name="Ducument_upload" id="bluebook" accept=".pdf" >
+						</div>
+						</div>
+									
 												
 												
 												<div class="form-actions">
 
 										<button type="submit" name="submitNewArticles" class="btn blue">Save</button>
 
-										<button type="button" class="btn">Cancel</button>                            
+										<a href="ArticleList.php" ><button type="button" class="btn">Cancel</button></a>
 
 									</div>
 
 								</form>
-																<?php } ?>
+											<?php } ?>
+												</div>
+											
 												</div>
 									
 								
@@ -426,7 +512,7 @@ $stmt->bindParam(":status",$status);
 
 		<div class="footer-inner">
 
-			2020 &copy; Code-It.
+			2020 &copy; Code-It..
 
 		</div>
 
@@ -478,35 +564,66 @@ $stmt->bindParam(":status",$status);
 
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 
-	<script type="text/javascript" src="media/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="media/js/ckeditor.js"></script>  
 
-	<script type="text/javascript" src="media/js/additional-methods.min.js"></script>
-
-	<script type="text/javascript" src="media/js/select2.min.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap-fileupload.js"></script>
 
 	<script type="text/javascript" src="media/js/chosen.jquery.min.js"></script>
 
+	<script type="text/javascript" src="media/js/select2.min.js"></script>
+
+	<script type="text/javascript" src="media/js/wysihtml5-0.3.0.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-wysihtml5.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.tagsinput.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.toggle.buttons.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datetimepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/clockface.js"></script>
+
+	<script type="text/javascript" src="media/js/date.js"></script>
+
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-colorpicker.js"></script>  
+
+	<script type="text/javascript" src="media/js/bootstrap-timepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.inputmask.bundle.min.js"></script>   
+
+	<script type="text/javascript" src="media/js/jquery.input-ip-address-control-1.0.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.multi-select.js"></script>   
+
+	<script src="media/js/bootstrap-modal.js" type="text/javascript" ></script>
+
+	<script src="media/js/bootstrap-modalmanager.js" type="text/javascript" ></script> 
+
 	<!-- END PAGE LEVEL PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL STYLES -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 	<script src="media/js/app.js"></script>
 
-	<script src="media/js/form-validation.js"></script> 
-	<script src="media/js/lists.js"></script>
-    <script src="js/slim.kickstart.min.js"></script>	
+	<script src="media/js/form-components.js"></script> 
+ <script src="js/slim.kickstart.min.js"></script>    
 
-	<!-- END PAGE LEVEL STYLES -->    
+	<!-- END PAGE LEVEL SCRIPTS -->
 
 	<script>
 
-		jQuery(document).ready(function() {   
+		jQuery(document).ready(function() {       
 
 		   // initiate layout and plugins
 
 		   App.init();
 
-		   FormValidation.init();
+		   FormComponents.init();
 
 		});
 

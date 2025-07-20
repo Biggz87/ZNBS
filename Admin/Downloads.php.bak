@@ -1,4 +1,6 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php include '../includes/sessions.php';
+define('jhshjgdhgdhgdhhj',TRUE); 
+?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -12,7 +14,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Data Tables - Editable Tables</title>
+	<title>CODE IT CMS</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -328,9 +330,9 @@ $del=$_GET['del'];
 
                                 <?php   
  $propertySQL="SELECT `document_id`, `tittle`, `address`, `category`, `Status` FROM `downloads`";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
 											 
             ?>
 										<tr class="">

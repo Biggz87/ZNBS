@@ -1,6 +1,5 @@
-<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php'; 
-
-?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';
+$quest_id=$_GET['quest_id'];?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -14,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>CODE IT CMS</title>
+	<title>Code it Content Manager</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -23,7 +22,7 @@
 	<meta content="" name="author" />
 
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-
+	
 	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
@@ -44,10 +43,35 @@
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
 
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-fileupload.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.gritter.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/chosen.css" />
+
 	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
 
-	<link rel="stylesheet" href="media/css/DT_bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.tagsinput.css" />
 
+	<link rel="stylesheet" type="text/css" href="media/css/clockface.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-wysihtml5.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/timepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/colorpicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-toggle-buttons.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/daterangepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datetimepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/multi-select-metro.css" />
+
+	<link href="media/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
 	<!-- END PAGE LEVEL STYLES -->
 
 	<link rel="shortcut icon" href="media/image/favicon.ico" />
@@ -65,7 +89,7 @@ include 'includes/sidebar.php';
 
 		<!-- END SIDEBAR -->
 
-		<!-- BEGIN PAGE -->
+		<!-- BEGIN PAGE -->  
 
 		<div class="page-content">
 
@@ -91,11 +115,11 @@ include 'includes/sidebar.php';
 
 			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
-			<!-- BEGIN PAGE CONTAINER-->        
+			<!-- BEGIN PAGE CONTAINER-->
 
 			<div class="container-fluid">
 
-				<!-- BEGIN PAGE HEADER-->
+				<!-- BEGIN PAGE HEADER-->   
 
 				<div class="row-fluid">
 
@@ -189,212 +213,155 @@ include 'includes/sidebar.php';
 
 						</div>
 
-						<!-- END BEGIN STYLE CUSTOMIZER -->  
+						<!-- END BEGIN STYLE CUSTOMIZER -->     
 
-						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
+						
 
-						<h3 class="page-title">
-
-							Downloads List
-
-						</h3>
-
-						<ul class="breadcrumb">
-
-							<li>
-
-								<i class="icon-home"></i>
-
-								<a href="index.html">Home</a> 
-
-								<i class="icon-angle-right"></i>
-
-							</li>
-
-							
-							<li><a href="#">List Items</a></li>
-
-						</ul>
-
-						<!-- END PAGE TITLE & BREADCRUMB-->
+					
 
 					</div>
 
 				</div>
 
 				<!-- END PAGE HEADER-->
-
+            
 				<!-- BEGIN PAGE CONTENT-->
-				
-			<?php
-$status=$_GET['status'];
-			if($status=='Yes'){
-	echo '<div class="alert alert-success"> Document  has been added successfully</div>';
-}elseif($status=='No'){
-	echo '<div class="alert alert-danger"> Document has not  been added </div>';
-} 
-
-$del=$_GET['del'];
-			if($del=='y'){
-	echo '<div class="alert alert-success">Download has been Deleted</div>';
-}elseif($del=='N'){
-	echo '<div class="alert alert-danger">Download has NOT been Deleted due to some error</div>';
-} 
-
-?>
 
 				<div class="row-fluid">
 
 					<div class="span12">
 
-						<!-- BEGIN EXAMPLE TABLE PORTLET-->
+						<?php
+											
 
-						<div class="portlet box blue">
+											if(isset($_POST['submitQuestion'])){
+												
+ $Question=$_POST['Question'];
+
+ $Answer=$_POST['Answer'];
+
+$SQL3 = "UPDATE `q_and_a` SET `question`=:Question,`answer`=:Answer WHERE `quest_no`=:quest_id";
+$stmt = $conn->prepare($SQL3);
+
+$stmt->bindParam(":quest_id",$quest_id);
+$stmt->bindParam(":Question",$Question);
+$stmt->bindParam(":Answer",$Answer);
+
+   if($stmt->execute()){
+   
+echo "<script>window.location = 'QandA.php?edit=Yes'</script>";
+    		
+}else {	
+			 echo "<script>window.location = 'QandA.php.php?edit=No</script>";
+	
+	}
+	
+
+}
+
+
+?> 
+						<!-- BEGIN SAMPLE FORM PORTLET-->   
+																<div class="portlet box blue">
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-edit"></i>Downloads List</div>
+								<div class="caption"><i class="icon-reorder"></i>New Question </div>
 
-								<div class="tools">
-
-									<a href="javascript:;" class="collapse"></a>
-
-									<a href="#portlet-config" data-toggle="modal" class="config"></a>
-
-									<a href="javascript:;" class="reload"></a>
-
-									<a href="javascript:;" class="remove"></a>
-
-								</div>
+								
 
 							</div>
+		
+						
 
-							<div class="portlet-body">
+							<div class="portlet-body form">
 
-								<div class="clearfix">
+								<!-- BEGIN FORM-->
 
-									<div class="btn-group">
-
-										<a href="NewDownload.php"><button " class="btn green">
-
-										Add New <i class="icon-plus"></i>
-
-										</button></a>
-
-									</div>
-
-									<div class="btn-group pull-right">
-
-										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
-
-										</button>
-
-										<ul class="dropdown-menu pull-right">
-
-											<li><a href="#">Print</a></li>
-
-											<li><a href="#">Save as PDF</a></li>
-
-											<li><a href="#">Export to Excel</a></li>
-
-										</ul>
-
-									</div>
-
-								</div>
-
-								<table class="table table-striped table-hover table-bordered" id="sample_editable_1">
-
-									<thead>
-
-										<tr>
-
-											
-
-											<th>Document  ID</th>
-											<th>Title</th>
-											
-
-											<th>Category</th>
-
-											<th>Preview</th>
-
-											<th>Status</th>
-
-										</tr>
-
-									</thead>
-
-									<tbody>
-                                
-
-                                <?php   
- $propertySQL="SELECT `document_id`, `tittle`, `address`, `category`, `Status` FROM `downloads`";
-											$stmt = $conn->prepare($propertySQL);
+							<?php		 $SQL="SELECT `quest_no`, `question`, `answer` FROM `q_and_a` WHERE `quest_no`=:quest_id";
+											$stmt = $conn->prepare($SQL);
+											$stmt->bindParam(":quest_id",$quest_id);
 											$stmt->execute();
-											while($row5 = $stmt->fetch()){
+											while($row5 = $stmt->fetch()){ ?>
 											 
-            ?>
-										<tr class="">
-                                             <td><?php  echo $row5['document_id']; ?></td>
-											<td><?php  echo $row5['tittle']; ?></td>
 
+								<form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal">
+								
+							
+								  <div class="control-group">
+
+										<label class="control-label">Question<span class="required">*</span></label>
+
+										<div class="controls">
+									
+                                                               
+											<textarea name="Question"  class="span6 wysihtml5 m-wrap"   id="Category" rows="5" ><?php echo $row5['question']; ?></textarea>
+
+										</div>
+
+									</div>
+								
+                                   
+								
+									 <div class="control-group">
+
+										<label class="control-label">Answer<span class="required">*</span></label>
+
+										<div class="controls">
+										<textarea name="Answer"  class="span6 wysihtml5 m-wrap"   id="Category" rows="5" ><?php echo $row5['answer']; ?></textarea>
 											
 
-											
-											<td><?php  echo $row5['category']; ?></td>
-											<td><a href="<?php  echo $row5['address']; ?>">View</a></td>
+										</div>
 
-
-											<td><div class="btn-group pull-right">
-
-										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
-
-										</button>
-
-										<ul class="dropdown-menu pull-right">
-
-											
-
-											<li><a href="EditDownload.php?downloadID=<?php  echo $row5['document_id']; ?>">Edit Download</a></li>
-											<li><a href="DeeleteDownload.php?DownloadID=<?php  echo $row5['document_id']; ?>" onclick="return confirm('Are You sure you want to delete this item')" >Delete</a></li>
-											
-
-											
-
-										</ul>
-
-									</div></td>
-
-										</tr>
-
-									<?php } 		 ?>
-
+									</div>
+									
 										
+									
+										
+										
+									
 
-									</tbody>
+				
 
-								</table>
+								
+								
+												
+												
+												<div class="form-actions">
 
-							</div>
+										<button type="submit" name="submitQuestion" class="btn blue">Save</button>
 
-						</div>
+										<a href="QandA.php"><button type="button" class="btn">Cancel</button></a>                            
 
-						<!-- END EXAMPLE TABLE PORTLET-->
+									</div>
 
-					</div>
+								</form>
+											<?php } ?>
+											
+												</div>
+									
+								
 
-				</div>
+								
 
-				<!-- END PAGE CONTENT -->
+								
+                                 
+								<!-- END FORM-->       
 
-			</div>
+							
+							
+
+						
+
+				<!-- END PAGE CONTENT-->         
+</div>
+			
 
 			<!-- END PAGE CONTAINER-->
 
 		</div>
 
-		<!-- END PAGE -->
+		<!-- END PAGE -->  
 
 	</div>
 
@@ -406,7 +373,7 @@ $del=$_GET['del'];
 
 		<div class="footer-inner">
 
-			2013 &copy; Metronic by keenthemes.
+			2020 &copy; Code-It..
 
 		</div>
 
@@ -458,11 +425,45 @@ $del=$_GET['del'];
 
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 
+	<script type="text/javascript" src="media/js/ckeditor.js"></script>  
+
+	<script type="text/javascript" src="media/js/bootstrap-fileupload.js"></script>
+
+	<script type="text/javascript" src="media/js/chosen.jquery.min.js"></script>
+
 	<script type="text/javascript" src="media/js/select2.min.js"></script>
 
-	<script type="text/javascript" src="media/js/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="media/js/wysihtml5-0.3.0.js"></script> 
 
-	<script type="text/javascript" src="media/js/DT_bootstrap.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap-wysihtml5.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.tagsinput.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.toggle.buttons.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datetimepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/clockface.js"></script>
+
+	<script type="text/javascript" src="media/js/date.js"></script>
+
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-colorpicker.js"></script>  
+
+	<script type="text/javascript" src="media/js/bootstrap-timepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.inputmask.bundle.min.js"></script>   
+
+	<script type="text/javascript" src="media/js/jquery.input-ip-address-control-1.0.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.multi-select.js"></script>   
+
+	<script src="media/js/bootstrap-modal.js" type="text/javascript" ></script>
+
+	<script src="media/js/bootstrap-modalmanager.js" type="text/javascript" ></script> 
 
 	<!-- END PAGE LEVEL PLUGINS -->
 
@@ -470,19 +471,25 @@ $del=$_GET['del'];
 
 	<script src="media/js/app.js"></script>
 
-	<script src="media/js/table-editable.js"></script>    
+	<script src="media/js/form-components.js"></script>     
+
+	<!-- END PAGE LEVEL SCRIPTS -->
 
 	<script>
 
 		jQuery(document).ready(function() {       
 
+		   // initiate layout and plugins
+
 		   App.init();
 
-		   TableEditable.init();
+		   FormComponents.init();
 
 		});
 
 	</script>
+
+	<!-- END JAVASCRIPTS -->   
 
 <script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
 

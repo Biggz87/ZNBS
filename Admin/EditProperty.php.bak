@@ -1,3 +1,8 @@
+<?php 
+define('jhshjgdhgdhgdhhj',TRUE);
+include '../includes/sessions.php';
+
+?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -12,7 +17,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Form Stuff - Form Validation</title>
+	<title>Code IT</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -231,14 +236,33 @@ $Owner_id=$_POST['Owner_id'];
 
 
 
- $SQL3 = "UPDATE `property` SET `prop_category_id`='$Type',`property_condition`='$Condition',`location_province`='$Location_province',
- `location_Area`='$Location_area',`type`='$Type',`plot_size_length`='$Plot_length',`plot_size_width`='$Plot_width',`price_range`='$price_range',`no_bathrooms`='$No_Bathrooms',
- `no_bedrooms`='$No_rooms',`description`='$Description',`status`='$Status',`featured`='$Featured',`Rent_Sale`='Rent_sale' WHERE `prop_id`='$propert_id'";
-  
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
-   
-  echo '<div class="alert alert-success"> The Property has been added Successfully</div>';
+ $SQL3 = "UPDATE `property` SET `prop_category_id`=:Type,`property_condition`=:Condition,`location_province`=:Location_province,
+ `location_Area`=:Location_area,`type`=:Type,`plot_size_length`=:Plot_length,`plot_size_width`=:Plot_width,`price_range`=:price_range,`no_bathrooms`=:No_Bathrooms,
+ `no_bedrooms`=:No_rooms,`description`=:Description,`status`=:Status,`featured`=:Featured,`Rent_Sale`='Rent_sale' WHERE `prop_id`=:propert_id";
+ $stmt = $conn->prepare($SQL3);
+
+$stmt->bindParam(":Type",$Type);
+$stmt->bindParam(":Condition",$Condition);
+$stmt->bindParam(":Location_province",$Location_province);
+$stmt->bindParam(":Location_area",$Location_area);
+$stmt->bindParam(":Plot_length ",$Plot_length );
+$stmt->bindParam(":Plot_width ",$Plot_width );
+$stmt->bindParam(":price_range ",$price_range );
+
+$stmt->bindParam(":No_Bathrooms",$No_Bathrooms );
+$stmt->bindParam(":No_rooms ",$No_rooms );
+
+$stmt->bindParam(":Description ",$Description );
+
+$stmt->bindParam(":Status ",$Status );
+
+$stmt->bindParam(":Featured ",$Featured );
+
+$stmt->bindParam(":propert_id ",$propert_id );
+
+
+   if($stmt->execute()){
+  echo '<div class="alert alert-success"> The Property has been edited Successfully</div>';
    echo "<script>window.location = 'Property_list.php?edit=yes'</script>";
     		
 }else {
@@ -247,7 +271,7 @@ $Owner_id=$_POST['Owner_id'];
 			
 			echo '<div class="alert alert-danger"> The Property has NOT  been Edited due to some error</div>';
 			
-			 echo "<script>window.location = 'Property_list.php?edit=yes'</script>";
+			 
 		
 //}
 
@@ -278,11 +302,11 @@ $Owner_id=$_POST['Owner_id'];
 
 								<form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal">
 								
-							<?php	$sql="SELECT * FROM `property` WHERE `prop_id`='$propert_id'";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row2 = mysqli_fetch_array($q1)) {
+							<?php	$sql="SELECT * FROM `property` WHERE `prop_id`=:propert_id";
+																$stmt = $conn->prepare($sql);
+											  $stmt->bindParam(":propert_id",$propert_id);
+											               $stmt->execute();
+											                  while($row2= $stmt->fetch()){
 																
 																
 																?>
@@ -371,16 +395,12 @@ $Owner_id=$_POST['Owner_id'];
 <select  name="Type" >
 <Option  value="<?php echo $row2['type']; ?>"><?php echo $row2['type']; ?></option>
                                                                 <?php	$sql="SELECT * FROM `asset_categories`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row = mysqli_fetch_array($q1)) {
-																$name=$row['Name'];
-												
-																$cif_id=$row['category_id'];
-																
+																$stmt = $conn->prepare($sql);
+											           											               $stmt->execute();
+											                  while($row= $stmt->fetch()){
+																  
 																?>
-																<option value="<?php echo $cif_id; ?>"> <?php echo $name; ?>  
+																<option value="<?php echo $row2['category_id']; ?>"> <?php echo $row2['Name']; ?> 
 																</option>
 																<?php } ?>
 
@@ -470,7 +490,7 @@ $Owner_id=$_POST['Owner_id'];
 
 													<div class="controls">
 
-														<textarea class="span6 m-wrap" rows="5" value="<?php echo $row2['description']; ?>" name="Description" required></textarea>
+														<textarea class="span6 m-wrap" rows="5" value="" name="Description" required><?php echo $row2['description']; ?></textarea>
 
 														
 

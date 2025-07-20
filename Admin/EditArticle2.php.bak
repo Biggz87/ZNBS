@@ -1,4 +1,5 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';
+$Art_id=$_GET['articleid']; ?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -12,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Code it Content Management System</title>
+	<title>Code it Content Manager</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -21,7 +22,7 @@
 	<meta content="" name="author" />
 
 	<!-- BEGIN GLOBAL MANDATORY STYLES -->
-
+	
 	<link href="media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 
 	<link href="media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
@@ -37,43 +38,44 @@
 	<link href="media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 
 	<link href="media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
-	 <link rel="stylesheet" href="css/slim.min.css">
 
 	<!-- END GLOBAL MANDATORY STYLES -->
 
 	<!-- BEGIN PAGE LEVEL STYLES -->
 
-	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-fileupload.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.gritter.css" />
 
 	<link rel="stylesheet" type="text/css" href="media/css/chosen.css" />
 
+	<link rel="stylesheet" type="text/css" href="media/css/select2_metro.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/jquery.tagsinput.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/clockface.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-wysihtml5.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/timepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/colorpicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/bootstrap-toggle-buttons.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/daterangepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/datetimepicker.css" />
+
+	<link rel="stylesheet" type="text/css" href="media/css/multi-select-metro.css" />
+
+	<link href="media/css/bootstrap-modal.css" rel="stylesheet" type="text/css"/>
+	 <link rel="stylesheet" href="css/slim.min.css">
 	<!-- END PAGE LEVEL STYLES -->
 
 	<link rel="shortcut icon" href="media/image/favicon.ico" />
-	<!-- wysiayge -->
-	
-	<!-- wysisyg css-->
-	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="wys/css/froala_editor.css">
-  <link rel="stylesheet" href="wys/css/froala_style.css">
-  <link rel="stylesheet" href="wys/css/plugins/code_view.css">
-  <link rel="stylesheet" href="wys/css/plugins/draggable.css">
-  <link rel="stylesheet" href="wys/css/plugins/colors.css">
-  <link rel="stylesheet" href="wys/css/plugins/emoticons.css">
-  <link rel="stylesheet" href="wys/css/plugins/image_manager.css">
-  <link rel="stylesheet" href="wys/css/plugins/image.css">
-  <link rel="stylesheet" href="wys/css/plugins/line_breaker.css">
-  <link rel="stylesheet" href="wys/css/plugins/table.css">
-  <link rel="stylesheet" href="wys/css/plugins/char_counter.css">
-  <link rel="stylesheet" href="wys/css/plugins/video.css">
-  <link rel="stylesheet" href="wys/css/plugins/fullscreen.css">
-  <link rel="stylesheet" href="wys/css/plugins/file.css">
-  <link rel="stylesheet" href="wys/css/plugins/quick_insert.css">
-  <link rel="stylesheet" href="wys/css/plugins/help.css">
-  <link rel="stylesheet" href="wys/css/third_party/spell_checker.css">
-  <link rel="stylesheet" href="wys/css/plugins/special_characters.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
-	
 
 </head>
 
@@ -82,7 +84,6 @@
 <!-- BEGIN BODY -->
 
 <?php
-$Art_id=$_GET['articleid'];
 include 'includes/header.php';
 include 'includes/sidebar.php';
 ?>
@@ -233,11 +234,11 @@ include 'includes/sidebar.php';
 
 						<?php
 											
-
+$page=$_GET['page'];
 											if(isset($_POST['submitNewArticles'])){
 												
 												
-	require_once('async_addpic.php');											// let's create some shortcuts
+												// let's create some shortcuts
 
 
 // store the file
@@ -257,26 +258,37 @@ if (!file_exists($path)) {
 $document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
 $documentname=$_FILES['Ducument_upload']['name'];
+  include('async_addpic.php');
   
-  
+$lengthImage=strlen(trim($document));
+$lengthFile=strlen(trim($nameofFile));
 
 
+ $SQL3 = "UPDATE `articles` SET `At_Title`=:Title,`At_content`=:content,`At_image`=if('$lengthFile'=0,`At_image`,:nameofFile),`At_sub_cat`=:sub_cat,
+`At_category`=:category,`At_status`=:status,`Document`=if('$lengthImage'=0,`Document`,:document') WHERE `article_id`=:Art_id";
 
- $SQL3 = "UPDATE `articles` SET `At_Title`='$Title',`At_content`='$content',`At_image`=if(LENGTH('$nameofFile')=0,`At_image`,'$nameofFile'),`At_sub_cat`='$sub_cat',
-`At_category`='$category',`At_status`='$status',`Document`=if(LENGTH('$documentname')=0,`Document`,'$document') WHERE `article_id`='$Art_id'";
-  move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
- 
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
-   
-  
- echo "<script>window.location = 'ArticleList.php?statusedit=Yes'</script>";
+$stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":content",$content);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":sub_cat",$sub_cat);
+$stmt->bindParam(":category",$category);
+$stmt->bindParam(":status",$status);
+$stmt->bindParam(":document",$document);
+$stmt->bindParam(":Art_id",$Art_id);
+
+
+move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+
+if ($stmt->execute()) {
+  echo 'am here';
+ echo "<script>window.location = 'ArticleList".$page.".php?statusedit=Yes'</script>";
     		
 }else {
-
+$stmt->errorInfo();
 
 			
-			 echo "<script>window.location = 'ArticleList.php?statusedit=No</script>";
+			 echo "<script>window.location = 'ArticleList".$page.".php?statusedit=No</script>";
 			
 			
 		
@@ -290,12 +302,13 @@ $documentname=$_FILES['Ducument_upload']['name'];
 
 
 ?> 
+	
 						<!-- BEGIN SAMPLE FORM PORTLET-->   
 																<div class="portlet box blue">
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-reorder"></i>New Article</div>
+								<div class="caption"><i class="icon-reorder"></i>Edit Articles </div>
 
 								
 
@@ -306,11 +319,14 @@ $documentname=$_FILES['Ducument_upload']['name'];
 							<div class="portlet-body form">
 
 								<!-- BEGIN FORM-->
+
+						<!-- BEGIN FORM-->
    <?php   
- $propertySQL="SELECT * FROM `articles` INNER JOIN `at_categories` ON `articles`.`At_category`=`at_categories`.`ID` INNER JOIN `sub_category` ON `sub_category`.`Sub_id`=`articles`.`At_sub_cat` WHERE `article_id`='$Art_id' ";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+ $propertySQL="SELECT * FROM `articles` INNER JOIN `at_categories` ON `articles`.`At_category`=`at_categories`.`ID` INNER JOIN `sub_category` ON `sub_category`.`Sub_id`=`articles`.`At_sub_cat` WHERE `article_id`=:Art_id ";
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->bindParam(":Art_id",$Art_id);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
 											 
             ?>
 								
@@ -341,10 +357,9 @@ $documentname=$_FILES['Ducument_upload']['name'];
                                                                      <Option value="<?php echo $row5['ID'] ?>"><?php echo $row5['Name'] ?></option>
 																	<?php 
 																$sql="SELECT `ID`, `Name` FROM `at_categories`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row = mysqli_fetch_array($q1)) {
+																  $stmt = $conn->prepare($sql);
+											                      $stmt->execute();
+											                  while($row = $stmt->fetch()){
 																$name=$row['Name'];
 																$id=$row['ID'];
 																
@@ -384,8 +399,8 @@ $documentname=$_FILES['Ducument_upload']['name'];
 										<div class="controls">
                                       <div id="editor">
    
-										  <textarea id='edit' style="margin-top: 30px;" name='content' placeholder="Type some text">
-											
+										  <textarea id='edit' rows="15" class="span6 wysihtml5 m-wrap" style="margin-top: 5px;" name='content' placeholder="Type some text">
+											<?php echo $row5['At_content'] ?>
 										  </textarea>
 
 										
@@ -405,8 +420,8 @@ $documentname=$_FILES['Ducument_upload']['name'];
 										 data-label="Drop your image here"
 										 data-fetcher="fetch.php"
 										 data-instant-edit="true" 
-										 data-size="240,240"
-										 data-ratio="1:1">
+										 data-size="1920,1299"
+										 data-ratio="640 : 433">
 										<input type="file" name="slim[]"  />
 										<img src="images/<?php echo $row5['At_image'] ?>">
 									</div>
@@ -452,12 +467,14 @@ $documentname=$_FILES['Ducument_upload']['name'];
 
 										<button type="submit" name="submitNewArticles" class="btn blue">Save</button>
 
-										<button type="button" class="btn">Cancel</button>                            
+										<a href="ArticleList.php" ><button type="button" class="btn">Cancel</button></a>
 
 									</div>
 
 								</form>
 											<?php } ?>
+												</div>
+											
 												</div>
 									
 								
@@ -493,7 +510,7 @@ $documentname=$_FILES['Ducument_upload']['name'];
 
 		<div class="footer-inner">
 
-			2020 &copy; Code-It.
+			2020 &copy; Code-It..
 
 		</div>
 
@@ -545,134 +562,75 @@ $documentname=$_FILES['Ducument_upload']['name'];
 
 	<!-- BEGIN PAGE LEVEL PLUGINS -->
 
-	<script type="text/javascript" src="media/js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="media/js/ckeditor.js"></script>  
 
-	<script type="text/javascript" src="media/js/additional-methods.min.js"></script>
-
-	<script type="text/javascript" src="media/js/select2.min.js"></script>
+	<script type="text/javascript" src="media/js/bootstrap-fileupload.js"></script>
 
 	<script type="text/javascript" src="media/js/chosen.jquery.min.js"></script>
 
+	<script type="text/javascript" src="media/js/select2.min.js"></script>
+
+	<script type="text/javascript" src="media/js/wysihtml5-0.3.0.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-wysihtml5.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.tagsinput.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.toggle.buttons.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/bootstrap-datetimepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/clockface.js"></script>
+
+	<script type="text/javascript" src="media/js/date.js"></script>
+
+	<script type="text/javascript" src="media/js/daterangepicker.js"></script> 
+
+	<script type="text/javascript" src="media/js/bootstrap-colorpicker.js"></script>  
+
+	<script type="text/javascript" src="media/js/bootstrap-timepicker.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.inputmask.bundle.min.js"></script>   
+
+	<script type="text/javascript" src="media/js/jquery.input-ip-address-control-1.0.min.js"></script>
+
+	<script type="text/javascript" src="media/js/jquery.multi-select.js"></script>   
+
+	<script src="media/js/bootstrap-modal.js" type="text/javascript" ></script>
+
+	<script src="media/js/bootstrap-modalmanager.js" type="text/javascript" ></script> 
+
 	<!-- END PAGE LEVEL PLUGINS -->
 
-	<!-- BEGIN PAGE LEVEL STYLES -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
 	<script src="media/js/app.js"></script>
 
-	<script src="media/js/form-validation.js"></script> 
-	<script src="media/js/lists.js"></script>
-    <script src="js/slim.kickstart.min.js"></script>	
+	<script src="media/js/form-components.js"></script> 
+ <script src="js/slim.kickstart.min.js"></script>    
 
-	<!-- END PAGE LEVEL STYLES -->    
+	<!-- END PAGE LEVEL SCRIPTS -->
 
 	<script>
 
-		jQuery(document).ready(function() {   
+		jQuery(document).ready(function() {       
 
 		   // initiate layout and plugins
 
 		   App.init();
 
-		   FormValidation.init();
+		   FormComponents.init();
 
 		});
 
 	</script>
-	
 
 	<!-- END JAVASCRIPTS -->   
 
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
 
-  <script type="text/javascript" src="wys/js/froala_editor.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/align.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/char_counter.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/code_beautifier.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/code_view.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/colors.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/draggable.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/emoticons.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/entities.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/file.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/font_size.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/font_family.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/fullscreen.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/image.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/image_manager.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/line_breaker.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/inline_style.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/link.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/lists.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/paragraph_format.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/paragraph_style.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/quick_insert.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/quote.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/table.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/save.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/url.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/video.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/help.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/print.min.js"></script>
-  <script type="text/javascript" src="wys/js/third_party/spell_checker.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/special_characters.min.js"></script>
-  <script type="text/javascript" src="wys/js/plugins/word_paste.min.js"></script>
-   <script>
-
-   (function () {
-	   
-	
-      const editorInstance = new FroalaEditor('#edit', {
-		   // Set the file upload URL.
-        imageUploadURL: '/znbs/Admin/upload_image.php',
-
-        imageUploadParams: {
-          id: 'my_editor'
-        },
-		 // Set request type.
-    imageUploadMethod: 'POST',
-
-    // Set max image size to 5MB.
-    imageMaxSize: 5 * 1024 * 1024,
-
-    // Allow to upload PNG and JPG.
-    imageAllowedTypes: ['jpeg', 'jpg', 'png'],
-        enter: FroalaEditor.ENTER_P,
-        placeholderText: null,
-        events: {
-          initialized: function () {
-            const editor = this
-            this.el.closest('form').addEventListener('submit', function (e) {
-          //   e.preventDefault()
-			console.log(editor.$oel.val())
-			var content=editor.$oel.val();
-		
-			
-			
-		
-			
-             
-            })
-          }
-        }
-		
-		
-      })
-    })
-	();
-	
-  
-
-
-  
-
-	
-	
-}
- 
-</script>
 <!-- END BODY -->
 
 </html>

@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -225,13 +225,21 @@ $first_name=$_POST['first_name'];
  
 
  $jobRole=$_POST['Role'];
- 
+ $lengthImage=strlen(trim($nameofFile));
 
 
- $SQL3 = "UPDATE `directors` SET `Title`='$Title',`Firstname`='$first_name',`LastName`='$last_name',`picture`=if(LENGTH('$nameofFile')=0,`picture`,'$nameofFile'),`Role`='$jobRole' WHERE `Identity`='$direct_id'";
+ $SQL3 = "UPDATE `directors` SET `Title`=:Title,`Firstname`=:first_name,`LastName`=:last_name,`picture`=if('$lengthImage'=0,`picture`,:nameofFile),`Role`=:jobRole WHERE `Identity`=:direct_id";
   
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
+     $stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":first_name",$first_name);
+$stmt->bindParam(":last_name",$last_name);
+$stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":jobRole",$jobRole);
+$stmt->bindParam(":direct_id",$direct_id);
+
+
+if($stmt->execute()){
    
   echo '<div class="alert alert-success"> The Director has been edited Successfully</div>';
     		
@@ -268,10 +276,11 @@ $first_name=$_POST['first_name'];
 
 								<!-- BEGIN FORM-->
 								
-							<?php	 $userqry="SELECT * FROM `directors` WHERE `Identity`='$direct_id'";
-											$results=mysqli_query($conn,$userqry);
-											
-											while($row6=mysqli_fetch_array($results)){
+							<?php	 $userqry="SELECT * FROM `directors` WHERE `Identity`=:direct_id";
+										$stmt = $conn->prepare($userqry);
+											  $stmt->bindParam(":direct_id",$direct_id);
+											               $stmt->execute();
+											                  while($row6 = $stmt->fetch()){
 											
 											?>
 

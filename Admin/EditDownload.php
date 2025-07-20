@@ -1,4 +1,7 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php  include '../includes/sessions.php';
+define('jhshjgdhgdhgdhhj',TRUE);
+
+?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -235,19 +238,23 @@ $document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
 
   $file=$_FILES['Ducument_upload']['name'];
-  
+  $fileLength=strlen(trim($file));
 
 
 
- $SQL3 = "UPDATE `downloads` SET `tittle`='$Title',`address`=if(LENGTH('$file')=0),`address`,'$document'),`category`='$category',`Status`='$status' WHERE 1 `document_id`='$downlaodId'";
+ $SQL3 = "UPDATE `downloads` SET `tittle`=:Title,`address`=if($fileLength=0,`address`,:document),`category`=:category,`Status`=:status WHERE `document_id`=:downlaodId";
 
-  move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+       $stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":document",$document);
+$stmt->bindParam(":status",$status);
+$stmt->bindParam(":downlaodId",$downlaodId);
+$stmt->bindParam(":category",$category);
+ move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
 
-    $result3= mysqli_query($conn,$SQL3);
-	
-   if($result3){
+if($stmt->execute()){
    
-  echo '<div class="alert alert-success"> The Article has been Edited Successfully</div>';
+  echo '<div class="alert alert-success"> The Download has been Edited Successfully</div>';
  echo "<script>window.location = 'Downloads.php?status=Yes'</script>";
     		
 }else {
@@ -284,10 +291,12 @@ $document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 							<div class="portlet-body form">
 
 								<!-- BEGIN FORM-->
-						<?php 		 $propertySQL="SELECT `document_id`, `tittle`, `address`, `category`, `Status` FROM `downloads` WHERE `document_id`='$downlaodId'";
-											$results=mysqli_query($conn,$propertySQL);
+						<?php 		 $propertySQL="SELECT * FROM `downloads` INNER JOIN `downlaod_categories`  ON `downloads`.`category`=`downlaod_categories`.`Categoty_id` WHERE `document_id`=:downlaodId";
+											$stmt = $conn->prepare($propertySQL);
+											  $stmt->bindParam(":downlaodId",$downlaodId);
+											               $stmt->execute();
+											                  while($row5= $stmt->fetch()){
 											
-											while($row5=mysqli_fetch_array($results)){
 											 
             ?>
 
@@ -315,19 +324,20 @@ $document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
 										<div class="controls">
 										<select  name="Category"  id="Category" >
-										                            <Option value="<?php  echo $row5['category']; ?>"><?php  echo $row5['category']; ?></option>
+										                            <Option value="<?php  echo $row5['category']; ?>"><?php  echo $row5['name']; ?></option>
 										
-                                                                     <Option value="">--Select Category--</option>
+                                                                   
 																  <?php   
 					 
 					 include'includes/functions.php';
  $downloadSQL="SELECT `Categoty_id`, `name` FROM `downlaod_categories`";
-											$results=mysqli_query($conn,$downloadSQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($downloadSQL);
+											 
+											               $stmt->execute();
+											                  while($row= $stmt->fetch()){
 											 
             ?>
-			<Option value="<?php echo $row5['Categoty_id']?>"><?php echo $row5['name']?></option>
+			<Option value="<?php echo $row['Categoty_id']?>"><?php echo $row['name']?></option>
 											<?php  } ?>
 																	
 																	

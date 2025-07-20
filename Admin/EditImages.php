@@ -1,3 +1,4 @@
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php'; ?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -12,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Form Stuff - Form Validation</title>
+	<title>Code IT CMS</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -312,11 +313,11 @@ function addTime(data, ready) {
 <div class="row">
     <?php   
 								 
- $propertySQL="SELECT * FROM `properties_imagess` WHERE `prop_id`='$propert_id' AND `thumb`='1'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while( $row5=mysqli_fetch_array($results)){
-											 
+ $propertySQL="SELECT * FROM `properties_imagess` WHERE `prop_id`=:propert_id AND `thumb`='1'";
+												$stmt = $conn->prepare($propertySQL);
+											  $stmt->bindParam(":propert_id",$propert_id);
+											               $stmt->execute();
+											                  while($row5= $stmt->fetch()){
             ?>
 								
 	<div class="span4 control-group">
@@ -327,7 +328,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
 	 data-service="async.php"
 	data-fetcher="fetch.php"
-    data-ratio="16:11"
+    data-ratio="16:13"
 	data-meta-imageid="<?php echo $row5['images_id']; ?>"
 	>
 	<img src="images/<?php echo $row5['name']; ?>" alt=""/>
@@ -346,11 +347,12 @@ function addTime(data, ready) {
 
 <?php   
 				
-$count=0;				
+$count=1;				
  $propertySQL="SELECT * FROM `properties_imagess` WHERE `prop_id`='$propert_id' AND `thumb`='0'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while( $row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											  $stmt->bindParam(":propert_id",$propert_id);
+											               $stmt->execute();
+											                  while($row5= $stmt->fetch()){
 											 
             ?>
 								
@@ -378,8 +380,9 @@ $count=0;
 
 <?php
 
-$count=+1;
-if($count==2 OR $count==5 OR $count==8 Or $count==11){
+$count+=1;
+if($count==3 OR $count==6 OR $count==9 OR $count==12){
+	
 	echo '</div>
 	<div class="row">';
 }

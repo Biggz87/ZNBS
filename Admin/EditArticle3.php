@@ -12,7 +12,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Code it Content Manager</title>
+	<title>Code it Content Management System</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -50,6 +50,30 @@
 	<!-- END PAGE LEVEL STYLES -->
 
 	<link rel="shortcut icon" href="media/image/favicon.ico" />
+	<!-- wysiayge -->
+	
+	<!-- wysisyg css-->
+	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="wys/css/froala_editor.css">
+  <link rel="stylesheet" href="wys/css/froala_style.css">
+  <link rel="stylesheet" href="wys/css/plugins/code_view.css">
+  <link rel="stylesheet" href="wys/css/plugins/draggable.css">
+  <link rel="stylesheet" href="wys/css/plugins/colors.css">
+  <link rel="stylesheet" href="wys/css/plugins/emoticons.css">
+  <link rel="stylesheet" href="wys/css/plugins/image_manager.css">
+  <link rel="stylesheet" href="wys/css/plugins/image.css">
+  <link rel="stylesheet" href="wys/css/plugins/line_breaker.css">
+  <link rel="stylesheet" href="wys/css/plugins/table.css">
+  <link rel="stylesheet" href="wys/css/plugins/char_counter.css">
+  <link rel="stylesheet" href="wys/css/plugins/video.css">
+  <link rel="stylesheet" href="wys/css/plugins/fullscreen.css">
+  <link rel="stylesheet" href="wys/css/plugins/file.css">
+  <link rel="stylesheet" href="wys/css/plugins/quick_insert.css">
+  <link rel="stylesheet" href="wys/css/plugins/help.css">
+  <link rel="stylesheet" href="wys/css/third_party/spell_checker.css">
+  <link rel="stylesheet" href="wys/css/plugins/special_characters.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.css">
+	
 
 </head>
 
@@ -58,6 +82,7 @@
 <!-- BEGIN BODY -->
 
 <?php
+$Art_id=$_GET['articleid'];
 include 'includes/header.php';
 include 'includes/sidebar.php';
 ?>
@@ -207,13 +232,12 @@ include 'includes/sidebar.php';
 					<div class="span12">
 
 						<?php
-						$img_id=$_GET['img_id'];
 											
-
+$page=$_GET['page'];
 											if(isset($_POST['submitNewArticles'])){
 												
 												
-	require_once('async_gallery.php');											// let's create some shortcuts
+	require_once('async_addpic.php');											// let's create some shortcuts
 
 
 // store the file
@@ -221,43 +245,47 @@ include 'includes/sidebar.php';
 										
 
  $Title=$_POST['title'];
+ $content =$_POST['content'];
  $sub_cat=$_POST['sub_cat'];
  $category=$_POST['Category'];
  $status=$_POST['status'];
 
- 
+ $path="../Uploads/Document/";
 if (!file_exists($path)) {
     mkdir($path, 0777, true);
 }
+$document = $path.round(microtime(true)).$_FILES['Ducument_upload']['name'];
 
-
-
+$documentname=$_FILES['Ducument_upload']['name'];
   
   
 
 
 
- $SQL3 = "UPDATE `gallery` SET `Name`=:Title,`Address`=if(LENGTH(:nameofFile)=0,`address`,:nameofFile),`Category`=:category,`Status`=:status WHERE `Image_id`=:img_id";
- 
- 
-   $stmt = $conn->prepare($SQL3);
+ $SQL3 = "UPDATE `articles` SET `At_Title`=:Title,`At_content`=:content,`At_image`=if(LENGTH(:nameofFile)=0,`At_image`,:nameofFile),`At_sub_cat`=:sub_cat,
+`At_category`=:category,`At_status`=:status,`Document`=if(LENGTH(:documentname)=0,`Document`,:document') WHERE `article_id`=:Art_id";
 
+$stmt = $conn->prepare($SQL3);
 $stmt->bindParam(":Title",$Title);
+$stmt->bindParam(":content",$content);
 $stmt->bindParam(":nameofFile",$nameofFile);
+$stmt->bindParam(":sub_cat",$sub_cat);
 $stmt->bindParam(":category",$category);
 $stmt->bindParam(":status",$status);
-$stmt->bindParam(":status",$status);
+$stmt->bindParam(":documentname",$documentname);
+$stmt->bindParam(":document",$document);
+$stmt->bindParam(":Art_id",$Art_id);
 
-   if($stmt->execute()){{
-   
-  echo '<div class="alert alert-success"> The Image has been edited Successfully</div>';
- echo "<script>window.location = 'GaleryList.php?statusedit=Yes'</script>";
+move_uploaded_file($_FILES['Ducument_upload']['tmp_name'],$document);
+if ($stmt->execute()) {
+  
+ echo "<script>window.location = 'ArticleList".$page.".php?statusedit=Yes'</script>";
     		
 }else {
 
 
 			
-			 echo "<script>window.location = 'GaleryList.php?statusedit=No</script>";
+			 echo "<script>window.location = 'ArticleList".$page.".php?statusedit=No</script>";
 			
 			
 		
@@ -276,7 +304,7 @@ $stmt->bindParam(":status",$status);
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-reorder"></i>Edit  Gallery Image</div>
+								<div class="caption"><i class="icon-reorder"></i>Edit Article</div>
 
 								
 
@@ -287,15 +315,15 @@ $stmt->bindParam(":status",$status);
 							<div class="portlet-body form">
 
 								<!-- BEGIN FORM-->
-									<?php	$sql="SELECT `Image_id`, `Name`, `Address`, `Category`, `Status` FROM `gallery` WHERE `Image_id`=:img_id";
-															$stmt = $conn->prepare($sql);
-											  $stmt->bindParam(":img_id",$img_id);
-											               $stmt->execute();
-											                  while($row3= $stmt->fetch()){
-																
-																
-																?>
-
+   <?php   
+ $propertySQL="SELECT * FROM `articles` INNER JOIN `at_categories` ON `articles`.`At_category`=`at_categories`.`ID` INNER JOIN `sub_category` ON `sub_category`.`Sub_id`=`articles`.`At_sub_cat` WHERE `article_id`=:Art_id ";
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->bindParam(":Art_id",$Art_id);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
+            ?>
+								
 								<form action="#" method="POST" enctype="multipart/form-data" class="form-horizontal">
 								
 							
@@ -306,7 +334,7 @@ $stmt->bindParam(":status",$status);
 										<div class="controls">
 									
                                                                
-											<input type="text"  name="title" value="<?php echo $row2['Name']; ?>" class="span6 m-wrap" required />
+											<input type="text" value="<?php echo $row5['At_Title'] ?>" name="title" class="span6 m-wrap" required />
 
 										</div>
 
@@ -320,12 +348,19 @@ $stmt->bindParam(":status",$status);
 
 										<div class="controls">
 										<select  name="Category" onchange="subcatategory()" id="Category" >
-                                                                     <Option value="<?php echo $row2['Category']; ?>"><?php echo $row2['Category']; ?></option>
-																	  <Option value="Administration">Administration</option>
-																	   <Option value="Malata">Malata Campus</option>
-																	    <Option value="Burma">Burma Campus</option>
-																		<Option value="Events">Events</option>
+                                                                     <Option value="<?php echo $row5['ID'] ?>"><?php echo $row5['Name'] ?></option>
+																	<?php 
+																$sql="SELECT `ID`, `Name` FROM `at_categories`";
+																  $stmt = $conn->prepare($sql);
+											                      $stmt->execute();
+											                  while($row = $stmt->fetch()){
+																$name=$row['Name'];
+																$id=$row['ID'];
 																
+																?>
+																<option value="<?php echo $id; ?>"> <?php echo $name ; ?>
+																</option>
+																<?php } ?>
 
 																	
 																</select>
@@ -334,21 +369,55 @@ $stmt->bindParam(":status",$status);
 										</div>
 
 									</div>
-									
+									 <div class="control-group">
+
+										<label class="control-label">Sub Category<span class="required">*</span></label>
+
+										<div class="controls">
+										<select id="subcat" name="sub_cat" >
+										<Option value="<?php echo $row5['Sub_id'] ?>"><?php echo $row5['Sub_name'] ?></option>
+                                                                     <Option value="">--Select SubCategory--</option>
+																	 
+																	
+																	
+																</select>
+											
+
+										</div>
+
+									</div>
+										<div class="control-group">
+
+										<label class="control-label">Content<span class="required">*</span></label>
+
+										<div class="controls">
+                                      <div id="editor">
+   
+										  <textarea id='edit' rows="30px" class="span6 wysihtml5 m-wrap" style="margin-top: 5px;" name='content' placeholder="Type some text">
+											<?php echo $row5['At_content'] ?>
+										  </textarea>
+
 										
+									   
+									  </div>
+											
+
+										</div>
+
+									</div>
 									<div class="control-group">
 
-										<label class="control-label">Picture<span class="required">*</span></label>
+										<label class="control-label">Picture</label>
 
 										<div class="controls span6">
                                       <div class="slim"
 										 data-label="Drop your image here"
 										 data-fetcher="fetch.php"
 										 data-instant-edit="true" 
-										 data-size="1200,795"
-										 data-ratio="80:53">
+										 data-size="1920,1299"
+										 data-ratio="640 : 433">
 										<input type="file" name="slim[]"  />
-										<img src="../images/gallery/<?php echo $row2['Address']; ?>">
+										<img src="images/<?php echo $row5['At_image'] ?>">
 									</div>
 											
 
@@ -366,7 +435,7 @@ $stmt->bindParam(":status",$status);
 
 										<div class="controls">
 									<select  name="status" >
-                                                                    <Option value="<?php echo $row2['Status']; ?>"><?php echo $row2['Status']; ?></option>
+                                                                   <Option value="<?php echo $row5['At_status'] ?>"><?php echo $row5['At_status'] ?></option>
 																	<option value="Published">Published</option>
 
 																	<option value="Unpublished">Unpublished</option>
@@ -378,19 +447,26 @@ $stmt->bindParam(":status",$status);
 										</div>
 
 									</div>
-								
+									<div class="control-group">
+									
+           <label class="control-label">Document(pdf only)</label>
+		   <div class="controls">
+   <?php if($row5['Document']){ ?><a href="<?php  echo $row5['Document']; ?>" target="_new"> View Existing File </a> <?php } ?><input type="file" name="Ducument_upload" id="bluebook" accept=".pdf" >
+						</div>
+						</div>
+									
 												
 												
 												<div class="form-actions">
 
 										<button type="submit" name="submitNewArticles" class="btn blue">Save</button>
 
-										<button type="button" class="btn">Cancel</button>                            
+										<a href="ArticleList.php" ><button type="button" class="btn">Cancel</button></a>
 
 									</div>
 
 								</form>
-																<?php } ?>
+											<?php } ?>
 												</div>
 									
 								
@@ -496,6 +572,7 @@ $stmt->bindParam(":status",$status);
 	<script src="media/js/lists.js"></script>
     <script src="js/slim.kickstart.min.js"></script>	
 
+
 	<!-- END PAGE LEVEL STYLES -->    
 
 	<script>
@@ -511,11 +588,70 @@ $stmt->bindParam(":status",$status);
 		});
 
 	</script>
+	
 
 	<!-- END JAVASCRIPTS -->   
 
-<script type="text/javascript">  var _gaq = _gaq || [];  _gaq.push(['_setAccount', 'UA-37564768-1']);  _gaq.push(['_setDomainName', 'keenthemes.com']);  _gaq.push(['_setAllowLinker', true]);  _gaq.push(['_trackPageview']);  (function() {    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);  })();</script></body>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/codemirror.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.3.0/mode/xml/xml.min.js"></script>
 
+ 
+   <script>
+
+   (function () {
+	   
+	
+      const editorInstance = new FroalaEditor('#edit', {
+		   // Set the file upload URL.
+        imageUploadURL: '/znbs/Admin/upload_image.php',
+
+        imageUploadParams: {
+          id: 'my_editor'
+        },
+		 // Set request type.
+    imageUploadMethod: 'POST',
+
+    // Set max image size to 5MB.
+    imageMaxSize: 5 * 1024 * 1024,
+
+    // Allow to upload PNG and JPG.
+    imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+        enter: FroalaEditor.ENTER_P,
+        placeholderText: null,
+        events: {
+          initialized: function () {
+            const editor = this
+            this.el.closest('form').addEventListener('submit', function (e) {
+          //   e.preventDefault()
+			console.log(editor.$oel.val())
+			var content=editor.$oel.val();
+		
+			
+			
+		
+			
+             
+            })
+          }
+        }
+		
+		
+      })
+    })
+	();
+	
+  
+
+
+  
+
+	
+	
+
+ 
+</script>
 <!-- END BODY -->
 
 </html>

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'includes/Dbconnect.php';
+ include 'includes/Dbconnect2.php';
 include'includes/functions.php';
 Include 'includes/SurveyFunctions.php';	
  ?>
@@ -50,7 +51,7 @@ Include 'includes/SurveyFunctions.php';
 	</head>
 	
 	<body class="remove-anchor-tag">
-	
+		
 		<div id="loadScreenWrapper">
 			<div id="loadScreen">
 				<div id="loader">
@@ -129,7 +130,7 @@ Include 'includes/SurveyFunctions.php';
 						<a href="#about" data-list="tab-1"><li class="middle-list">Mission & Vision</li></a>
 						<!--<a href="#about" data-list="tab-2"><li class="middle-list">Board of Directors</li></a>-->
 						<a href="#about" data-list="tab-3"><li class="middle-list">Senior Managment</li></a>
-						<a href="#about" data-list="tab-4"><li class="middle-list">Background</li></a>
+						<a href="#about" data-list="tab-4"><li class="middle-list">History</li></a>
 						<!--<a href="#about" data-list="tab-5"><li class="middle-list">Publications & Downloads</li></a>-->
 						<a href="#about" data-list="tab-21-main"><li class="middle-list">Procurement</li></a>
 					</ul>
@@ -148,7 +149,7 @@ Include 'includes/SurveyFunctions.php';
 						<a href="#banking" data-list="tab-6-digital204"><li class="middle-list">Digital Banking</li></a>
 						<a href="#banking" data-list="tab-18"><li class="middle-list">Banking Loans</li></a>
 						<a href="#banking" data-list="tab-6-Mortgage205"><li class="middle-list">Mortgages</li></a>
-						<a href="#banking" data-list="tab-6_survey"><li class="middle-list">Quick Servey</li></a>
+						<!--<a href="#banking" data-list="tab-6_survey"><li class="middle-list">Quick Servey</li></a>-->
 					</ul>
 				  </li>
 				  <li class="nav-item">
@@ -157,10 +158,10 @@ Include 'includes/SurveyFunctions.php';
 				  <li class="drop-down nav-item nav-property">
 					<a class="nav-link drop-down-toggle dropdown-toggle" href="#property" data-list="tab-6">Properties & Estates</a>
 					<ul class="drop-down-menu">
-						<a href="#property" data-list="tab-6"><li>ZNBS Properties</li></a>
-						<a href="#property" data-list="tab-7"><li class="middle-list">Vacant Spaces For Rent</li></a>
-						<a href="#property" data-list="tab-8-account-201"><li class="middle-list">Properties Customer Care</li></a>
-						<a href="#property" data-list="tab-6-digital204"><li class="middle-list">Office Space Application</li></a>
+						<a href="#property" data-list="tab-21-prop-64"><li>ZNBS Properties</li></a>
+						<a href="#property" data-list="tab-21-prop-67"><li class="middle-list">Vacant Spaces For Rent</li></a>
+						<!--<a href="#property" data-list="tab-21-prop-66"><li class="middle-list">Properties Customer Care</li></a>-->
+						<a href="#property" data-list="tab-21-prop-67"><li class="middle-list">Office Space Application</li></a>
 					</ul>
 				  </li>
 				  <li class="drop-down nav-item nav-contact-us">
@@ -171,11 +172,11 @@ Include 'includes/SurveyFunctions.php';
 						<a href="#contact-us" data-list="tab-30-complaint"><li class="middle-list">Complaints</li></a>
 						<a href="#contact-us" data-list="tab-30-jobs"><li class="middle-list">Career Oppotunities</li></a>
 						<a href="#contact-us" data-list="tab-30-atm"><li class="middle-list">ATM Locator</li></a>
-						<a href="#contact-us" data-list="tab-301"><li class="middle-list">Branchs</li></a>
+						<a href="#contact-us" data-list="tab-301"><li class="middle-list">Branches</li></a>
 					</ul>
 				  </li>
 				 <li class="nav-item">
-					<a class="nav-link" href="https://onlinebanking.znbs.co.zm/iProfits2/Login.aspx" target="_blank">Login/Register</a>
+					<a class="nav-link" href="https://codeitonline.com/sites/znbs/Admin/login.php" target="_blank">Login</a>
 				  </li>
 				</ul>
 			  </div>
@@ -246,40 +247,34 @@ Include 'includes/SurveyFunctions.php';
 
 				</div>
 
-				<div class="col-12 m-0 p-0 map">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3846.2572022379486!2d28.28026641485012!3d-15.4166633892869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1940f358d0d526b9%3A0x4bd43665f8e204cd!2sZambia%20National%20Building%20Society%20Lusaka!5e0!3m2!1sen!2szm!4v1592914482178!5m2!1sen!2szm" width="600" height="900" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-				</div>
-			</section>
-
-			<section>
-				<div id="footer">
-					<div class="row">
-						<div class="col-md-4">
-							<p>copyright Zambia National Building Society<br>
-							</p>
-						</div>
-
-						<div class="col-md-4">
-							<p>Developed by : <a href="https://www.fabianshamano.com" target="_blank">Fabian Shamano</a><br>
-								<a href="https://www.fabianshamano.com" target="_blank">www.fabianshamano.com</a>
-							</p>
-						</div>
-
-						<div class="col-md-4">
-							<p>email address : <a href="fabianshamano@yahoo.com">fabianshamano@yahoo.com</a> <br>
-							Phone : +260950419796
-							</p>
-						</div>
+				<div id="Main_map" class="col-12 m-0 p-0 map">
 					</div>
-				</div>
 			</section>
+
+		<section>
+			<div id="footer">
+				<div class="row">
+					<div class="col-md-4">
+						<p>copyright Zambia National Building Society<br>
+						</p>
+					</div>
+					
+					<div class="col-md-4">
+						<p>Developed by : Fabian Shamano <br>
+							<a href="#" target="_blank"></a>
+						</p>
+					</div>
+					
+				</div>
+			</div>
+		</section>
 		
 		</div><!--end content-->
 
 
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/owl.carousel.min.js"></script>
-	<script>		
+	<script>
 		
 	function LoadMap(branchId){
 		 var Mobile="mobile"+branchId
@@ -306,6 +301,14 @@ Include 'includes/SurveyFunctions.php';
        
    });
 		
+	}
+	
+	function loadtypes(){
+	    
+	    load_savings_accounts();
+	    load_investment_accounts();
+	    load_business_accounts();
+	    
 	}
 	
 		$("#testimonial-slider").owlCarousel({
@@ -336,6 +339,7 @@ Include 'includes/SurveyFunctions.php';
 	<script src="scripts/claculator.js"></script>
 	<script src="scripts/message.js"></script>
 	<script src="scripts/atmmap.js"></script>
+	<script src="scripts/load_data.js"></script>
 	
 	<!-- Import Trumbowyg -->
 

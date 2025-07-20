@@ -1,8 +1,4 @@
-  <?php 
-
-    
-   echo "<script> location.href='http://www.znbs.co.zm'; </script>";
+<?php
+echo "<script>window.location = 'https:www.znbs.co.zm'</script>";
   
-  
-  ?>;
- 
+?>  

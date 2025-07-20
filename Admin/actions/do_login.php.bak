@@ -1,27 +1,28 @@
 <?php
-include '../../includes/Dbconnect.php';
 session_start();
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
+include '../../includes/Dbconnect2.php';
+include '../../includes/passwordLib.php';
 $user=$_POST['username'];
 $pass=$_POST['password'];
-//$user="mweemba";
-//$pass="gifted";
-// $ewncryptedpass=crypt($pass);
- 
+
  if($user){
     
     if($pass){
        
-	 $qr="SELECT * FROM `user_tbl` WHERE `username`='$user'";
-		
-        $query=mysqli_query($conn,$qr);
-        $numrows=mysqli_num_rows($query);
-        if ($numrows==1){
+		$stmt = $conn->prepare("SELECT username,password,level,active  FROM `user_tbl` WHERE `username`=:username");
+		$stmt->bindParam(":username",$user);
+      
+
+      if ($stmt->execute()){
             
-            $row=mysqli_fetch_assoc($query);
-            $dbuser=$row['username'];
-            $dbpass = $row['password'];
-            $dblevel=$row['level'];
-			$dbactive=$row['active'];
+ 
+           $dbuser=$username;
+            $dbpass = $password;
+            $dblevel=$level;
+			$dbactive=$active;
             
             if(password_verify($pass ,$dbpass )){
 			  

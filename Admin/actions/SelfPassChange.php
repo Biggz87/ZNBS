@@ -1,23 +1,31 @@
 <?php 
+define('jhshjgdhgdhgdhhj',true);
 include '../../includes/sessions.php';
  $NewPass=$_POST['NewPass'];
 
- $qr="SELECT * FROM `user_tbl` WHERE `username`='$dbuser'";
-		
-        $query=mysqli_query($conn,$qr);
-        $numrows=mysqli_num_rows($query);
-        if ($numrows==1){
+ $qr="SELECT * FROM `user_tbl` WHERE `username`=:dbuser";
+		    $stmt = $conn2->prepare($qr);
+
+$stmt->bindParam(":dbuser",$dbuser);
+$stmt->execute();
+echo $count =$stmt->fetchColumn();
+
+   if($count==1){
             $options = [
     'cost' => 11,
     'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
 ];
 $encrypt = password_hash($NewPass, PASSWORD_BCRYPT, $options);
         
-            $qr2="UPDATE `user_tbl` SET `password`='$encrypt',`last_pass_change`='$todayDate' WHERE `username`='$dbuser'";
+            $qr2="UPDATE `user_tbl` SET `password`='$encrypt',`last_pass_change`=:todayDate WHERE `username`=:dbuser";
 		
-        $query=mysqli_query($conn,$qr2);
-        
-            if($query){
+           $stmt = $conn->prepare($sqlupdate);
+
+$stmt->bindParam(":todayDate",$todayDate);
+$stmt->bindParam(":dbuser",$dbuser);
+
+
+   if($stmt->execute()){
 				echo 'success';
 				
 			}else{

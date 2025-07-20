@@ -1,4 +1,7 @@
 <?php 
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
 include '../../includes/sessions.php';
 
 if($dbuser){
@@ -14,18 +17,33 @@ $email=$_POST['email'];
 $branch=$_POST['branch'];
 $country=$_POST['country'];
 
- $sqlupdate="UPDATE `user_tbl` SET `email`='$email',`contact_no`='$mobile',`branch`='$branch' WHERE `username`='$dbuser'
-; UPDATE `customer_tbl` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',
-`mobile_number`='$mobile',`whatsapp`='$whatsapp',`address1`='$address1',`address2`='$address2',`city_town`='$city',`country`='$country' WHERE `cif_id`='$cif_id' ";
+ $sqlupdate="UPDATE `user_tbl` SET `email`=:email,`contact_no`=:mobile,`branch`=:branch WHERE `username`=:dbuser
+; UPDATE `customer_tbl` SET `first_name`=:firstname,`last_name`=:lastname,`email`=:email,
+`mobile_number`=:mobile,`whatsapp`=:whatsapp,`address1`=:address1,`address2`=:address2,`city_town`=:city,`country`=:country WHERE `cif_id`=:cif_id ";
+    $stmt = $conn->prepare($sqlupdate);
 
-	 if(!$conn->multi_query($sqlupdate)){
+$stmt->bindParam(":dbuser",$dbuser);
+$stmt->bindParam(":encrypt",$encrypt);
+$stmt->bindParam(":email",$email);
+$stmt->bindParam(":mobile",$mobile);
+$stmt->bindParam(":branch",$branch);
+$stmt->bindParam(":firstname",$firstname);
+$stmt->bindParam(":lastname",$lastname);
+$stmt->bindParam(":whatsapp",$whatsapp);
+$stmt->bindParam(":address1",$address1);
+$stmt->bindParam(":address2",$address2);
+$stmt->bindParam(":city",$city);
+$stmt->bindParam(":country",$country);
+$stmt->bindParam(":cif_id",$cif_id);
+
+   if($stmt->execute()){
 		 
-      
-			echo  "An error Occured";
+      echo  "success";
+			
 		 
 	 }else{
-		 echo  "success";
-		
+		 
+		echo  "An error Occured";
      
 	 }
 

@@ -1,4 +1,7 @@
 <?php 
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "https://www.znbs.co.zm";</script>';
+}
 include '../../includes/sessions.php';
 
 if($dbuser){
@@ -10,7 +13,12 @@ $newpass  =$_POST['lastname'];
 ; UPDATE `customer_tbl` SET `first_name`='$firstname',`last_name`='$lastname',`email`='$email',
 `mobile_number`='$mobile',`whatsapp`='$whatsapp',`address1`='$address1',`address2`='$address2',`city_town`='$city',`country`='$country' WHERE `cif_id`='$cif_id' ";
 
-	 if(!$conn->multi_query($sqlupdate)){
+	     $stmt = $conn->prepare( $sqlupdate);
+
+$stmt->bindParam(":dbuser",$dbuser);
+
+
+   if($stmt->execute()){
 		 
       
 			echo  "An error Occured";

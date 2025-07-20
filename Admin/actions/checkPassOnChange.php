@@ -1,15 +1,20 @@
 <?php 
+
+define('jhshjgdhgdhgdhhj',true);
 include '../../includes/sessions.php';
  $oldpass=$_POST['oldpass'];
 
- $qr="SELECT * FROM `user_tbl` WHERE `username`='$dbuser'";
+ $qr="SELECT * FROM `user_tbl` WHERE `username`=:dbuser";
 		
-        $query=mysqli_query($conn,$qr);
-        $numrows=mysqli_num_rows($query);
-        if ($numrows==1){
+        $stmt = $conn->prepare($qr);
+
+$stmt->bindParam(":dbuser",$dbuser);
+
+
+   if($stmt->execute()){
             
-            $row=mysqli_fetch_assoc($query);
-            $dbpass = $row['password'];
+            $row1 = $stmt->fetch();
+            $dbpass = $row1['password'];
             
             
             if(password_verify($oldpass ,$dbpass )){

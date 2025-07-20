@@ -1,5 +1,5 @@
-<?php include '../includes/sessions.php';?>
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);?>
+<?php include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 

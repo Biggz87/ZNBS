@@ -1,21 +1,22 @@
 <?php 
-include'../includes/Dbconnect.php';
+
+define('jhshjgdhgdhgdhhj',true);
+include'../includes/Dbconnect2.php';
 $DetailID=$_POST['detailID'];
 
 $Question=$_POST['Question'];
                         
- $propertySQL="UPDATE `survey_questions` SET `question`='$Question' WHERE `questionid`='$DetailID'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											 
-   if($results){
+ $propertySQL="UPDATE `survey_questions` SET `question`=:Question WHERE `questionid`=:DetailID";
+$stmt = $conn->prepare($propertySQL);
+$stmt->bindParam(":Question",$Question);
+$stmt->bindParam(":DetailID",$DetailID);
+
+if ($stmt->execute()){
    echo 'success';
- ;
+ 
     		
 }else {
 
-
-			
 			echo 'not successful';
 		
 //}

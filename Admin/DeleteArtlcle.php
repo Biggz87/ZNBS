@@ -1,11 +1,16 @@
 <?php
+
 include'../includes/sessions.php';
 $AticleID=$_GET['decriptid'];
 
+
+	 $deleteQuery="DELETE FROM `articles` WHERE `article_id`=:AticleID";
+	  $stmt = $conn2->prepare($deleteQuery);
+	$stmt->bindParam("AticleID",$AticleID);
 	
-	 $deleteQuery="DELETE FROM `articles` WHERE `article_id`='$AticleID'";
-	 $result3= mysqli_query($conn,$deleteQuery);
-   if($result3){
+	 $stmt->execute();
+	 $count = $stmt->rowCount();
+   if($count > 0){
    
   echo "<script>window.location = 'ArticleList.php?del=Y'</script>";
  

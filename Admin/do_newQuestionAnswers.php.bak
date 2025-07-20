@@ -1,15 +1,20 @@
 <?php 
-include'../includes/Dbconnect.php';
-$quest_id=$_POST['quest_id'];
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
 
+include'../includes/Dbconnect2.php';
+$quest_id=$_POST['quest_id'];
+$id="";
 $Answer=$_POST['QuestionAnswers'];            
- $propertySQL="INSERT INTO `survey_quest_answer`(`answer_id`, `answer`, `question_id`) VALUES ('','$Answer','$quest_id')";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											 
-   if($results){
-   echo 'success';
- ;
+$propertySQL="INSERT INTO `survey_quest_answer`(`answer_id`, `answer`, `question_id`) VALUES (:id,:Answer,:quest_id)";
+$stmt = $conn->prepare($propertySQL);
+$stmt->bindParam(":id",$id);
+$stmt->bindParam(":Question",$Question);
+$stmt->bindParam(":questnumber",$questnumber);
+
+if ($stmt->execute()) {
+echo 'success';
     		
 }else {
 

@@ -1,0 +1,26 @@
+<?php
+include'../includes/sessions.php';
+$partnerID=$_GET['partner_id'];
+
+	
+	 $deleteQuery="DELETE FROM `partners` WHERE `Partner_id`=''";
+	 $result3= mysqli_query($conn,$deleteQuery);
+   if($result3){
+   
+  echo "<script>window.location = 'Downloads.php?del=y'</script>";
+  !unlink($file_pointer);
+    		
+}else {
+
+
+			
+		echo "<script>window.location = 'Downloads.php?del=N'</script>";
+		
+//}
+
+	
+	}
+	
+
+  
+?>  

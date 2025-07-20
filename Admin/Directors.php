@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -329,10 +329,10 @@ $status=$_GET['del'];
                                 
 
                                 <?php   
-  $propertySQL="SELECT * FROM `directors`";
-											$results=mysqli_query($conn,$propertySQL);
-											$count=0;
-											while($row5=mysqli_fetch_array($results)){ ?>
+                                          $propertySQL="SELECT * FROM `directors`";
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){ ?>
 											 
            
 										<tr class="">
@@ -352,7 +352,7 @@ $status=$_GET['del'];
 																
 																
 																 <a href="EditDirector.php?direct_id=<?php echo  $row5['Identity'] ?>"><i class="icon-pencil"></i>Edit</a>
-																 <a  href="DeleteDirector.php?direct_id=<?php echo  $row5['Identity'] ?>" onclick="return confirm('Are You sure you want to delete this item')" href=""class="btn mini red"><i class="icon-trash"></i> Delete</a>
+																 <a  href="DeleteDirector.php?direct_id=<?php echo  $row5['Identity'] ?>" onclick="return confirm('Are You sure you want to delete this item')" class="btn mini red"><i class="icon-trash"></i> Delete</a>
 </td> 
 
 										</tr>

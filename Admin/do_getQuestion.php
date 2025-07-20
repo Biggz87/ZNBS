@@ -2,18 +2,25 @@
 
 
 function newQuestion(){
-include'../includes/Dbconnect.php';
+	define('jhshjgdhgdhgdhhj',true);
+include'../includes/Dbconnect2.php';
 $DetailID=$_POST['detailID'];
 
 
-                        
- $propertySQL="SELECT `questionid`, `question`, `sureveyid` FROM `survey_questions` WHERE `questionid`='$DetailID'";
-											$results=mysqli_query($conn,$propertySQL);
+                        $question="";
+ $propertySQL="SELECT `questionid`, `question`, `sureveyid` FROM `survey_questions` WHERE `questionid`=:DetailID";
+ $stmt = $conn->prepare($propertySQL);
+											 $stmt->bindParam(":DetailID",$DetailID);
 											
-											while($row5=mysqli_fetch_array($results)){
-												echo $row5['question'];
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
 												
+												$question= $row5['question'];
 											}
+											
+									return $question;		
+}
+echo newQuestion();
 											 
             ?>
 

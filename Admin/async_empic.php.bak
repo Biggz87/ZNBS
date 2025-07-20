@@ -85,14 +85,14 @@ if (isset($image['output']['data'])) {
     $data = $image['output']['data'];
 
     // If you want to store the file in another directory pass the directory name as the third parameter.
-    $output = Slim::saveFile($data, $name, 'images/');
+    $output = Slim::saveFile($data, $name, '../images/staff/');
 
     // If you want to prevent Slim from adding a unique id to the file name add false as the fourth parameter.
     // $output = Slim::saveFile($data, $name, 'tmp/', false);
 
     // Default call for saving the output data
-    $output = Slim::saveFile($data, $name,'images/');
-	$nameofFile=$output['name'];
+    $output = Slim::saveFile($data, $name,'../images/staff/');
+	$nameofFile=$name;
 	
 }
 
@@ -108,14 +108,14 @@ if (isset($image['input']['data'])) {
   $data = $image['input']['data'];
 
     // If you want to store the file in another directory pass the directory name as the third parameter.
-     $input = Slim::saveFile($data, $name, 'images/');
+     $input = Slim::saveFile($data, $name, '../images/staff/');
 
     // If you want to prevent Slim from adding a unique id to the file name add false as the fourth parameter.
     // $input = Slim::saveFile($data, $name, 'tmp/', false);
 
     // Default call for saving the input data
-    $input = Slim::saveFile($data, $name,'images/');
-	$nameofFile=$input['name'];
+    $input = Slim::saveFile($data, $name,'../images/staff/');
+	$nameofFile=$name;
 	
 }
 

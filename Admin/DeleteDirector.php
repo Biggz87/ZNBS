@@ -1,11 +1,17 @@
 <?php
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
 include'../includes/sessions.php';
 $direct_id=$_GET['$direct_id'];
 
 	
-	 $deleteQuery="DELETE FROM `directors` WHERE `Identity`='$direct_id'";
-	 $result3= mysqli_query($conn,$deleteQuery);
-   if($result3){
+	 $deleteQuery="DELETE FROM `directors` WHERE `Identity`=:direct_id";
+	$stmt->bindParam(":direct_id",$direct_id);
+	 $stmt = $conn->prepare($deleteQuery);
+	 $stmt->execute();
+	 $count = $stmt->rowCount();
+   if($count > 0){
    
   echo "<script>window.location = 'Directors.php?del=Y'</script>";
  

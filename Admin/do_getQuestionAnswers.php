@@ -1,11 +1,16 @@
 <?php 
-include'../includes/Dbconnect.php';
+
+
+define('jhshjgdhgdhgdhhj',true);
+include'../includes/Dbconnect2.php';
 $DetailID=$_POST['detailID'];
                         
- $propertySQL="SELECT `answer_id`, `answer`, `question_id` FROM `survey_quest_answer` WHERE `answer_id`='$DetailID'";
-											$results=mysqli_query($conn,$propertySQL);
+$propertySQL="SELECT `answer_id`, `answer`, `question_id` FROM `survey_quest_answer` WHERE `answer_id`=:DetailID";
+ $stmt = $conn->prepare($propertySQL);
+											 $stmt->bindParam(":DetailID",$DetailID);
 											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
 												echo $row5['answer'];
 												
 											}

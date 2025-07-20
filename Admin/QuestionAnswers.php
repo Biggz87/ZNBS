@@ -1,3 +1,4 @@
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -198,9 +199,10 @@ $question_id=$_GET['quest_id'];
 								<small>For "<?php 
 $survey_id=""; 								
  $propertySQL="SELECT `questionid`, `question`, `sureveyid` FROM `survey_questions` WHERE `questionid`='$question_id'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
 												echo $row5['question'];
 												$survey_id=$row5['sureveyid'];
 											}
@@ -233,9 +235,12 @@ $status=$_GET['status'];
 } 
 
 if($del=='Y' AND $answer_id){
- $deleteQuery="DELETE FROM `survey_quest_answer` WHERE `answer_id`='$answer_id'";
-	 $result3= mysqli_query($conn,$deleteQuery);
-   if($result3){
+ $deleteQuery="DELETE FROM `survey_quest_answer` WHERE `answer_id`=:answer_id";
+	$stmt = $conn->prepare($deleteQuery);
+$stmt->bindParam(":answer_id",$answer_id);
+
+
+if ($stmt->execute()){
    echo '<div class="alert alert-success"> The Answer has been Deleted</div>';
     		
 }else {
@@ -349,9 +354,10 @@ echo '<div class="alert alert-danger"> The Answer has NOT been Deleted </div>';
 
                                 <?php   
  $propertySQL="SELECT `answer_id`, `answer`, `question_id` FROM `survey_quest_answer` WHERE `question_id`='$quest_id'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
 											 
             ?>
 										<tr class="">

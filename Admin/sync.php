@@ -77,10 +77,10 @@ else {
         }
         if (isset($image['actions'])) {
         if($updateStatus=="success"){
-			 echo "<script>window.location = 'Property_list.php?status=Yes'</script>";
+			echo "<script>window.location = 'Property_list.php?status=Yes'</script>";
 		}else{
 			
-			 echo "<script>window.location = 'Property_list.php.php?status=No'</script>";
+		// echo "<script>window.location = 'Property_list.php?status=No'</script>";
 		}
         }
         

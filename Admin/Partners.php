@@ -1,5 +1,4 @@
-<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php'; ?>
-<!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -13,7 +12,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Code-it CMS</title>
+	<title>Code-IT CMS</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -194,7 +193,7 @@ include 'includes/sidebar.php';
 
 						<h3 class="page-title">
 
-							Property List
+							Partners List
 
 						</h3>
 
@@ -227,20 +226,30 @@ include 'includes/sidebar.php';
 				
 			<?php
 $status=$_GET['status'];
-$dit=$_GET['edit'];
 			if($status=='Yes'){
-	echo '<div class="alert alert-success"> The images for the property have been added</div>';
+	echo '<div class="alert alert-success"> Document  has been added successfully</div>';
 }elseif($status=='No'){
-	echo '<div class="alert alert-danger"> The Images have not been added, Please try again </div>';
-}
-if($dit=='Yes'){
-	echo '<div class="alert alert-success"> The Property has been updated</div>';
-}elseif($dit=='No'){
-	echo '<div class="alert alert-danger"> The property has not been edited, Please try again </div>';
-}
+	echo '<div class="alert alert-danger"> Document has not  been added </div>';
+} 
+
+$editstatus=$_GET['statusedit'];
+			if($editstatus=='Yes'){
+	echo '<div class="alert alert-success"> Partner  has been edited successfully</div>';
+}elseif($editstatus=='No'){
+	echo '<div class="alert alert-danger"> Partner  has been NOT edited due to an error</div>';
+} 
 
 
- ?>
+$status=$_GET['del'];
+			if($status=='y'){
+	echo '<div class="alert alert-success"> The Partner has been Deleted</div>';
+}elseif($status=='N'){
+	echo '<div class="alert alert-danger"> an error coccured. The Partner has NOT been Deleted </div>';
+} ?>
+
+
+
+
 
 				<div class="row-fluid">
 
@@ -252,7 +261,7 @@ if($dit=='Yes'){
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-edit"></i>Editable Table</div>
+								
 
 								<div class="tools">
 
@@ -274,7 +283,7 @@ if($dit=='Yes'){
 
 									<div class="btn-group">
 
-										<a href="NewProperty2.php"><button " class="btn green">
+										<a href="NewPartner.php"><button " class="btn green">
 
 										Add New <i class="icon-plus"></i>
 
@@ -308,17 +317,18 @@ if($dit=='Yes'){
 
 										<tr>
 
-											<th>ID</th>
+											
 
-											<th>Location-province</th>
+												<th>Id</th>
 
-											<th>Location_Area</th>
+											<th class="hidden-480">Name</th>
 
-											<th>Status</th>
+											
+                                             <th class="hidden-480">Web address</th> 
+											<th class="hidden-480">Picture</th>
+											
 
-											<th>Category</th>
-
-											<th>Action</th>
+											<th >Action</th>
 
 										</tr>
 
@@ -328,49 +338,36 @@ if($dit=='Yes'){
                                 
 
                                 <?php   
- $propertySQL="SELECT * FROM `property` ";
+  $propertySQL="SELECT `Partner_id`, `name`, `picture`, `web_address` FROM `partners`";
 											$stmt = $conn->prepare($propertySQL);
 											$stmt->execute();
 											while($row5 = $stmt->fetch()){
+											  ?>
 											 
-											 
-            ?>
+           
 										<tr class="">
-
-											<td><?php  echo $row5['prop_id']; ?></td>
-
-											<td><?php  echo $row5['location_province']; ?></td>
-
-											<td><?php  echo $row5['location_Area']; ?></td>
-											<td><?php  echo $row5['status']; ?></td>
-
-											<td class="center"><?php  echo $row5['prop_category_id']; ?></td>
+                                            
+										
+											<td><?php echo $row5['Partner_id'] ?></td>
+                                           <td class="hidden-480" ><?php echo  $row5['name']    ?></td>
+											<td class="hidden-480"><?php echo  $row5['web_address'] ?> </td>
 
 											
 
-											<td><div class="btn-group pull-right">
-
-										<button class="btn dropdown-toggle" data-toggle="dropdown">Tools <i class="icon-angle-down"></i>
-
-										</button>
-
-										<ul class="dropdown-menu pull-right">
-
-											<li><a href="EditProperty.php?propert_id=<?php  echo $row5['prop_id']; ?>">View Details</a></li>
-
-											<li><a href="EditProperty.php?propert_id=<?php  echo $row5['prop_id']; ?>">Edit Property Details</a></li>
-											<li><a href="EditImages.php?propert_id=<?php  echo $row5['prop_id']; ?>">Edit Property Images</a></li>
-											
+											<td class="center hidden-480"><?php echo  $row5['picture']   ?></td>
 
 											
+											<td>
 
-										</ul>
-
-									</div></td>
+																
+																
+																 <a href="EditPartner.php?partner_id=<?php echo  $row5['Partner_id'] ?>"><i class="icon-pencil"></i>Edit</a>
+																 <a  href="DeletePartner.php?partner_id=<?php echo  $row5['Partner_id'] ?>" onclick="return confirm('Are You sure you want to delete this item')" class="btn mini red"><i class="icon-trash"></i> Delete</a>
+</td> 
 
 										</tr>
 
-									<?php }  ?>
+									<?php } 		 ?>
 
 										
 
@@ -408,7 +405,7 @@ if($dit=='Yes'){
 
 		<div class="footer-inner">
 
-			2020 &copy; CMS By CODE IT.
+			2020 &copy; Code-IT.
 
 		</div>
 

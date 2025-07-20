@@ -1,3 +1,4 @@
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -12,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Form Stuff - Form Validation</title>
+	<title>Code IT CMS</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -293,10 +294,9 @@ function addTime(data, ready) {
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-reorder"></i>Upload Property Photos</div>
+								<div class="caption"><i class="icon-reorder"></i>Upload Property Images</div>
 
-								
-
+								<p>(Enter atleast Four first Photos)</p>
 							</div>
 		
 						
@@ -310,12 +310,14 @@ function addTime(data, ready) {
 								
 	<div class="span4 control-group">
 	
-    <h3>Thumnail</h3>
+    <h3>Thumnail<span style="color: red" > *</span></h3>
 
     <div class="slim"
 	data-instant-edit="true" 
 	data-fetcher="fetch.php"
-    data-ratio="16:11"
+    data-ratio="16:9"
+	data-size="1920,1299"
+										 
 	data-meta-thumb="1"
 	>
  	
@@ -332,7 +334,7 @@ function addTime(data, ready) {
 
 
 <div class="control-group span4" >
-    <h3>Upload new image</h3>
+    <h3>Upload new image<span style="color: red" > *</span></h3>
 
    
 
@@ -345,7 +347,7 @@ function addTime(data, ready) {
     </div>
 
 <div class="control-group span4">
-    <h3>Upload new image</h3>
+    <h3>Upload new image<span style="color: red" > *</span></h3>
 
    
 
@@ -360,7 +362,7 @@ function addTime(data, ready) {
 <div class="row">
 
 <div class="control-group span4">
-    <h3>Upload new image</h3>
+    <h3>Upload new image<span style="color: red" > *</span></h3>
 
    
 
@@ -373,7 +375,7 @@ function addTime(data, ready) {
 	 </div>
 
 <div class="control-group span4">
-    <h3>Upload new image</h3>
+    <h3>Upload new image </h3>
 
    
 
@@ -381,7 +383,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"   />
     </div>
 	 </div>
 
@@ -395,7 +397,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"  />
     </div>
 	 </div>
 </div>
@@ -412,7 +414,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]" />
     </div>
 	 </div>
 
@@ -425,7 +427,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"  />
     </div>
 	 </div>
 
@@ -439,7 +441,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"  />
     </div>
 	 </div>
 </div>
@@ -455,7 +457,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"  />
     </div>
 	 </div>
 
@@ -468,7 +470,7 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"  />
     </div>
 	 </div>
 
@@ -482,7 +484,49 @@ function addTime(data, ready) {
 	data-instant-edit="true" 
     data-ratio="16:9"	
 	data-fetcher="fetch.php">
-         <input type="file" name="slim[]" required />
+         <input type="file" name="slim[]"  />
+    </div>
+	 </div>
+</div>
+<div class="row">
+
+<div class="control-group span4">
+    <h3>Upload new image</h3>
+
+   
+
+    <div class="controls slim"
+	data-instant-edit="true" 
+    data-ratio="16:9"	
+	data-fetcher="fetch.php">
+         <input type="file" name="slim[]"  />
+    </div>
+	 </div>
+
+<div class="control-group span4">
+    <h3>Upload new image</h3>
+
+   
+
+    <div class="controls slim "
+	data-instant-edit="true" 
+    data-ratio="16:9"	
+	data-fetcher="fetch.php">
+         <input type="file" name="slim[]"  />
+    </div>
+	 </div>
+
+
+<div class="control-group span4">
+    <h3>Upload new image</h3>
+
+   
+
+    <div class="controls slim"
+	data-instant-edit="true" 
+    data-ratio="16:9"	
+	data-fetcher="fetch.php">
+         <input type="file" name="slim[]"  />
     </div>
 	 </div>
 </div>

@@ -1,3 +1,4 @@
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -12,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Form Stuff - Form Validation</title>
+	<title>Code IT CM</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -209,7 +210,7 @@ include 'includes/sidebar.php';
 											
 include 'Get_property_id.php';
 											if(isset($_POST['submitNewProperty'])){
-$prop_id= getEmpID();
+ $prop_id= getEmpID();
 $Owner_id=$_POST['Owner_id'];
  $category_id=$_POST['category_id'];
  $Condition =$_POST['Condition'];
@@ -233,16 +234,35 @@ $Owner_id=$_POST['Owner_id'];
 
  $SQL3 = "INSERT INTO `property`(`prop_id`, `prop_category_id`, `property_condition`, `location_province`, `location_Area`, `type`, `plot_size_length`, 
  `plot_size_width`, `price_range`, `no_bathrooms`, `no_bedrooms`, `description`, `status`, `owner_id`, `featured`, `Date_posted`, `Rent_Sale`) VALUES
- ('$prop_id','$category_id','$Condition','$Location_province',
-'$Location_area','$Type','$Plot_length','$Plot_width','$price_range','$No_rooms','$No_Bathrooms','$Description','$Status','$Owner_id','$Featured','$DatePosted','$category_id')";
-  
-    $result3= mysqli_query($conn,$SQL3);
-   if($result3){
-   
+ (:prop_id,:category_id,:Condition,:Location_province,:Location_area,:Type,:Plot_length,:Plot_width,:price_range,:No_rooms,:No_Bathrooms,:Description,:Status,:Owner_id,:Featured,:DatePosted,:category_id)";
+  $stmt = $conn->prepare($SQL3);
+$stmt->bindParam(":Type",$Type);
+$stmt->bindParam(":Condition",$Condition);
+$stmt->bindParam(":Location_province",$Location_province);
+$stmt->bindParam(":Location_area",$Location_area);
+$stmt->bindParam(":Plot_length",$Plot_length);
+$stmt->bindParam(":Plot_width",$Plot_width);
+$stmt->bindParam(":price_range",$price_range);
+
+$stmt->bindParam(":No_Bathrooms",$No_Bathrooms);
+$stmt->bindParam(":No_rooms",$No_rooms);
+
+$stmt->bindParam(":Description",$Description);
+
+$stmt->bindParam(":Status",$Status);
+$stmt->bindParam(":Owner_id",$Owner_id);
+$stmt->bindParam(":Featured",$Featured);
+$stmt->bindParam(":DatePosted",$DatePosted);
+$stmt->bindParam(":category_id",$category_id);
+
+$stmt->bindParam(":prop_id",$prop_id );
+
+  if($stmt->execute()){	  
   echo '<div class="alert alert-success"> The Property has been added Successfully</div>';
-   echo "<script>window.location = 'NewProperty2_images.php?propert_id=".$prop_id."'</script>";
+   echo "<script>windowd.location.assign = 'NewProperty2_images.php?propert_id=$prop_id'</script>";
+   echo "<script>window.location = 'NewProperty2_images.php?propert_id=$prop_id';</script>";
     		
-}else {
+} else{
 
 
 			
@@ -250,7 +270,6 @@ $Owner_id=$_POST['Owner_id'];
 			
 			
 		
-//}
 
 	
 	}
@@ -286,21 +305,10 @@ $Owner_id=$_POST['Owner_id'];
 
 										<div class="controls">
 <select  name="Owner_id" >
-                                                               <Option value="">--Select Owner--</option>
-																	<?php 
-																$sql="SELECT * FROM `customer_tbl`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row = mysqli_fetch_array($q1)) {
-																$fname=$row['first_name'];
-																$lname=$row['last_name'];
-																$cif_id=$row['cif_id'];
+                                                               <Option value="1">ZNBS</option>
 																
-																?>
-																<option value="<?php echo $cif_id; ?>"> <?php echo $fname; ?>  <?php echo $lname; ?> 
-																</option>
-																<?php } ?>
+																
+																
 
 																</select>
 											
@@ -316,10 +324,9 @@ $Owner_id=$_POST['Owner_id'];
 
 										<div class="controls">
 <select  name="category_id" >
-																<Option >--Select category--</option>
+																<Option value="Sell" >Sell</option>
 																
-                                                                 <Option value="Rent" >Rent</option>
-																 <Option value="Sell" >Sell</option>
+                                                               
 																</select>
 											
 
@@ -388,12 +395,12 @@ $Owner_id=$_POST['Owner_id'];
 										<label class="control-label">type<span class="required">*</span></label>
 
 										<div class="controls">
-<select  name="Type" >
+                                                           <select  name="Type" >
                                                                 <?php	$sql="SELECT * FROM `asset_categories`";
-																$q1=mysqli_query($conn,$sql)or die(mysqli_error());
-        
-        
-																while ($row = mysqli_fetch_array($q1)) {
+																$stmt = $conn->prepare($sql);
+											  $stmt->bindParam(":lid",$lid);
+											               $stmt->execute();
+											                  while($row= $stmt->fetch()){
 																$name=$row['Name'];
 												
 																$cif_id=$row['category_id'];
@@ -403,7 +410,7 @@ $Owner_id=$_POST['Owner_id'];
 																</option>
 																<?php } ?>
 
-																</select>
+														</select>
 											
 
 										</div>
@@ -584,7 +591,7 @@ $Owner_id=$_POST['Owner_id'];
 
 		<div class="footer-inner">
 
-			2013 &copy; Metronic by keenthemes.
+			2020 &copy;CODE_IT .
 
 		</div>
 

@@ -1,3 +1,4 @@
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -197,9 +198,10 @@ $surv_id=$_GET['survey_id'];
 							Survey question 
 								<small>For "<?php  								
  $propertySQL="SELECT `survey_id`, `Survey_title`, `startdate`, `enddate`, `status` FROM `surveys` WHERE `survey_id`='$surv_id'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
 												echo $row5['Survey_title'];
 											}
 											 
@@ -230,9 +232,11 @@ $status=$_GET['status'];
 } 
 
 if($del=='Y'){
- $deleteQuery="DELETE FROM `survey_questions` WHERE `questionid`='$quest_id'";
-	 $result3= mysqli_query($conn,$deleteQuery);
-   if($result3){
+ $deleteQuery="DELETE FROM `survey_questions` WHERE `questionid`=:quest_id";
+	$stmt = $conn->prepare($propertySQL);
+$stmt->bindParam(":quest_id",$quest_id);
+
+if ($stmt->execute()){
    echo '<div class="alert alert-success"> The Question has been Deleted</div>';
     		
 }else {
@@ -347,9 +351,10 @@ echo '<div class="alert alert-danger"> The Question has NOT been Deleted </div>'
 
                                 <?php   
  $propertySQL="SELECT * FROM `survey_questions` WHERE `sureveyid`='$surv_id'";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
 											 
             ?>
 										<tr class="">
@@ -511,7 +516,7 @@ echo '<div class="alert alert-danger"> The Question has NOT been Deleted </div>'
 
 		<div class="footer-inner">
 
-			2013 &copy; Metronic by keenthemes.
+			2020 &copy; CODEIT.
 
 		</div>
 
@@ -610,7 +615,7 @@ function QuestionSave(){
 	
 	if(Question.trim()==""){
 		
-		document.getElementById("DescriptionFeedback").innerHTML='<div class="alert alert-danger"> Enter a Description</div>';
+		document.getElementById("DescriptionFeedback").innerHTML='<div class="alert alert-danger"> Enter a Question</div>';
 	}else{
     $.ajax({
        type: "POST",
@@ -659,7 +664,7 @@ function NewQuestion(surveyId){
 	   }
 	   else{
 		  //document.getElementById("NewQuestionFeedback").innerHTML='<div class="alert alert-danger"> The  Question not saved</div>'; 
-		  document.getElementById("NewQuestionFeedback").innerHTML=data;
+		  document.getElementById("NewQuestionFeedback").innerHTML='<div class="alert alert-danger">'+data+'</div>';
 	   }
 	   }
 	   

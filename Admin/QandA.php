@@ -1,5 +1,6 @@
-<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php'; ?>
-<!DOCTYPE html>
+<?php
+define('jhshjgdhgdhgdhhj',TRUE);
+ include '../includes/sessions.php'; ?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -13,7 +14,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Code-it CMS</title>
+	<title>Metronic | Data Tables - Editable Tables</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -194,26 +195,11 @@ include 'includes/sidebar.php';
 
 						<h3 class="page-title">
 
-							Property List
+							Frequently Asked Questions
 
 						</h3>
 
-						<ul class="breadcrumb">
-
-							<li>
-
-								<i class="icon-home"></i>
-
-								<a href="index.html">Home</a> 
-
-								<i class="icon-angle-right"></i>
-
-							</li>
-
-							
-							<li><a href="#">List Items</a></li>
-
-						</ul>
+					
 
 						<!-- END PAGE TITLE & BREADCRUMB-->
 
@@ -227,20 +213,26 @@ include 'includes/sidebar.php';
 				
 			<?php
 $status=$_GET['status'];
-$dit=$_GET['edit'];
 			if($status=='Yes'){
-	echo '<div class="alert alert-success"> The images for the property have been added</div>';
+	echo '<div class="alert alert-success">The  Question  has been added successfully</div>';
 }elseif($status=='No'){
-	echo '<div class="alert alert-danger"> The Images have not been added, Please try again </div>';
-}
-if($dit=='Yes'){
-	echo '<div class="alert alert-success"> The Property has been updated</div>';
-}elseif($dit=='No'){
-	echo '<div class="alert alert-danger"> The property has not been edited, Please try again </div>';
-}
+	echo '<div class="alert alert-danger"> The  Question  not  been added </div>';
+} 
 
+$del=$_GET['del'];
+			if($del=='y'){
+	echo '<div class="alert alert-success">The Item has been Deleted</div>';
+}elseif($del=='N'){
+	echo '<div class="alert alert-danger">The Item has NOT  been Deleted< due to some error</div>';
+} 
+$edit=$_GET['edit'];
+			if($edit=='Yes'){
+	echo '<div class="alert alert-success">The Item has been Edited</div>';
+}elseif($edit=='No'){
+	echo '<div class="alert alert-danger">The Item NOT has been Edited due to some error</div>';
+} 
 
- ?>
+?>
 
 				<div class="row-fluid">
 
@@ -252,7 +244,7 @@ if($dit=='Yes'){
 
 							<div class="portlet-title">
 
-								<div class="caption"><i class="icon-edit"></i>Editable Table</div>
+								<div class="caption"><i class="icon-edit"></i>Frequently Asked Questions</div>
 
 								<div class="tools">
 
@@ -274,7 +266,7 @@ if($dit=='Yes'){
 
 									<div class="btn-group">
 
-										<a href="NewProperty2.php"><button " class="btn green">
+										<a href="NewFAQ.php"><button " class="btn green">
 
 										Add New <i class="icon-plus"></i>
 
@@ -308,17 +300,17 @@ if($dit=='Yes'){
 
 										<tr>
 
+											
+
 											<th>ID</th>
+											<th>Question</th>
+											
 
-											<th>Location-province</th>
-
-											<th>Location_Area</th>
-
-											<th>Status</th>
-
-											<th>Category</th>
+											<th>Answer</th>
 
 											<th>Action</th>
+
+										
 
 										</tr>
 
@@ -328,25 +320,23 @@ if($dit=='Yes'){
                                 
 
                                 <?php   
- $propertySQL="SELECT * FROM `property` ";
+ $propertySQL="SELECT `quest_no`, `question`, `answer` FROM `q_and_a`";
 											$stmt = $conn->prepare($propertySQL);
 											$stmt->execute();
+											
 											while($row5 = $stmt->fetch()){
-											 
 											 
             ?>
 										<tr class="">
-
-											<td><?php  echo $row5['prop_id']; ?></td>
-
-											<td><?php  echo $row5['location_province']; ?></td>
-
-											<td><?php  echo $row5['location_Area']; ?></td>
-											<td><?php  echo $row5['status']; ?></td>
-
-											<td class="center"><?php  echo $row5['prop_category_id']; ?></td>
+                                             <td><?php  echo $row5['quest_no']; ?></td>
+											<td><?php  echo $row5['question']; ?></td>
 
 											
+
+											
+											<td><?php  echo $row5['answer']; ?></td>
+											
+
 
 											<td><div class="btn-group pull-right">
 
@@ -356,10 +346,10 @@ if($dit=='Yes'){
 
 										<ul class="dropdown-menu pull-right">
 
-											<li><a href="EditProperty.php?propert_id=<?php  echo $row5['prop_id']; ?>">View Details</a></li>
+											
 
-											<li><a href="EditProperty.php?propert_id=<?php  echo $row5['prop_id']; ?>">Edit Property Details</a></li>
-											<li><a href="EditImages.php?propert_id=<?php  echo $row5['prop_id']; ?>">Edit Property Images</a></li>
+											<li><a href="EditFAQ.php?quest_id=<?php  echo $row5['quest_no']; ?>">Edit Question</a></li>
+											<li><a href="DeleteFAQ.php?quest_id=<?php  echo $row5['quest_no']; ?>" onclick="return confirm('Are You sure you want to delete this item')" >Delete</a></li>
 											
 
 											
@@ -370,7 +360,7 @@ if($dit=='Yes'){
 
 										</tr>
 
-									<?php }  ?>
+									<?php } 		 ?>
 
 										
 
@@ -408,7 +398,7 @@ if($dit=='Yes'){
 
 		<div class="footer-inner">
 
-			2020 &copy; CMS By CODE IT.
+			2013 &copy; Metronic by keenthemes.
 
 		</div>
 

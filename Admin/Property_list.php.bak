@@ -1,3 +1,4 @@
+<?php include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -12,7 +13,7 @@
 
 	<meta charset="utf-8" />
 
-	<title>Metronic | Data Tables - Editable Tables</title>
+	<title>Code-it CMS</title>
 
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
@@ -232,7 +233,7 @@ $dit=$_GET['edit'];
 }elseif($status=='No'){
 	echo '<div class="alert alert-danger"> The Images have not been added, Please try again </div>';
 }
-if($dit='Yes'){
+if($dit=='Yes'){
 	echo '<div class="alert alert-success"> The Property has been updated</div>';
 }elseif($dit=='No'){
 	echo '<div class="alert alert-danger"> The property has not been edited, Please try again </div>';
@@ -328,9 +329,10 @@ if($dit='Yes'){
 
                                 <?php   
  $propertySQL="SELECT * FROM `property` ";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
+											 
 											 
             ?>
 										<tr class="">
@@ -406,7 +408,7 @@ if($dit='Yes'){
 
 		<div class="footer-inner">
 
-			2013 &copy; Metronic by keenthemes.
+			2020 &copy; CMS By CODE IT.
 
 		</div>
 

@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?>
 <!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
@@ -329,9 +329,9 @@ $statusedit=$_GET['statusedit'];
 
                                 <?php   
  $propertySQL="SELECT * FROM `surveys` INNER JOIN `survey_categories` ON `surveys`.`category_id`=`survey_categories`.`id`";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											 $stmt = $conn->prepare($propertySQL);
+											$stmt->execute();
+											while($row5 = $stmt->fetch()){
 											 
             ?>
 										<tr class="">

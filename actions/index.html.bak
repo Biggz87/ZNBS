@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Slim Examples</title>
+
+    <link rel="stylesheet" href="css/slim.min.css">
+
+    <style>
+        /* center main column */
+        html {
+            font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        main {
+            max-width:400px;
+            margin:0 auto;
+        }
+    </style>
+
+</head>
+<body>
+
+<main>
+
+    <h1>Examples</h1>
+
+    <h2>Async</h2>
+
+
+
+    <h3>Upload new image</h3>
+
+    <p>Default async upload.</p>
+
+    <div class="slim" data-service="async.php">
+        <input type="file"/>
+    </div>
+
+
+
+
+    
+
+    <script>
+
+    // load this code when the document has loaded
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // get a reference to the remove button
+        var button = document.querySelector('#remove-button');
+
+        // listen to clicks on the remove button
+        button.addEventListener('click', function() {
+
+            // get the element with id 'my-cropper'
+            var element = document.querySelector('#my-cropper');
+
+            // find the cropper attached to the element
+            var cropper = Slim.find(element);
+
+            // call the remove method on the cropper
+            cropper.remove();
+
+        });
+
+    });
+
+    </script>
+
+
+
+
+   
+
+
+   
+
+
+
+
+    
+
+
+
+</main>
+
+<script src="js/slim.kickstart.min.js"></script>
+
+</body>
+</html>

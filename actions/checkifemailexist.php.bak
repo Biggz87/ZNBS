@@ -1,11 +1,22 @@
 <?php
 
 
+if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
+
 function ifitexits($email,$surveyid){
-	include'../includes/Dbconnect.php';
-$newsquery="SELECT * FROM `survey_response` WHERE `Email`='$email' AND  `survey_id`='$surveyid'";
-						$result=mysqli_query($conn,$newsquery);
-						if(mysqli_num_rows($result)>0){
+	define('jhshjgdhgdhgdhhj',TRUE);
+	include'../includes/Dbconnect2.php';
+	
+
+$stmt = $conn->prepare("SELECT * FROM `survey_response` WHERE `Email`=:email AND `survey_id`=:surveyid");
+		$stmt->bindParam(":email",$email);
+		$stmt->bindParam(":surveyid",$surveyid);
+		
+		$stmt->execute();
+		
+						if($stmt->fetchColumn() > 0){
 							return 2;
 						}else {
 							return 0;

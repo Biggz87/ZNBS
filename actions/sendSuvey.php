@@ -1,5 +1,7 @@
 <?php 
-include'../includes/Dbconnect.php';
+
+define('jhshjgdhgdhgdhhj',true);
+include'../includes/Dbconnect2.php';
 include 'checkifemailexist.php';
 $FirstName=$_POST['Firstname'];
 $Question1=$_POST['Question1'];
@@ -8,7 +10,7 @@ $Question3=$_POST['Question3'];
 $survey_id=$_POST['survey_id'];
 $LastName=$_POST['Lastname'];
 $Email=$_POST['Email'];
-$id='';
+$id=0;
 
 $datetoday=date('Y-m-d');
 
@@ -21,10 +23,20 @@ if($exits==2){
 }else {
 	
 	
-	 $stmt = $conn->prepare("INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`) 
-	 VALUES(?,?,?,?,?,?,?,?,?)");
+	 $stmt =$conn->prepare("INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`) 
+	 VALUES(:id,:FirstName,:LastName,:Email,:Question1,:Question2,:Question3,:datetoday,:survey_id)");
 //$query="INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`)VALUES ('','$FirstName','$LastName','$Email','$Question1','$Question2','$Question3','$datetoday','$survey_id')";
-$stmt->bind_param("sssssssdi",$id,$FirstName,$LastName,$Email,$Question1,$Question2,$Question3,$datetoday,$survey_id); 
+$stmt->bindParam(":id",$id);
+$stmt->bindParam(":FirstName",$FirstName);
+$stmt->bindParam(":LastName",$LastName);
+$stmt->bindParam(":Email",$Email);
+$stmt->bindParam(":Question1",$Question1);
+$stmt->bindParam(":Question2",$Question2);
+$stmt->bindParam(":Question3",$Question3);
+$stmt->bindParam(":datetoday",$datetoday);
+$stmt->bindParam(":survey_id",$survey_id);
+
+
 
 if ($stmt->execute()) { 
    echo 'success';

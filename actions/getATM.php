@@ -1,18 +1,24 @@
 	<?php //$dbuser='mweemba';
 		//	$dbuser=$_POST['user'];
-			
-		include'../includes/Dbconnect.php';	
-	$id=$_POST['id'];
 		
-			
-	$query2="SELECT `Id`, `city`, `Loacation_coodinates`, `place_location` FROM `atms` WHERE `Id`='$id'";
+		include'../includes/Dbconnect2.php';	
+ $id=$_POST['id'];
+		
 	
-$product = mysqli_query($conn,$query2);
+	$query2="SELECT `Id`, `city`, `Loacation_coodinates`, `place_location` FROM `atms` WHERE `Id`=:id";
+$stmt = $conn2->prepare($query2);
+								
+								 $stmt->bindParam("id",$id);
+							
+											$stmt->execute();
+										
+											
+											while( $row = $stmt->fetch()){
 				
-				         
-                    while ($row = mysqli_fetch_array($product)) {
+				  
 						
-						echo $row['Loacation_coodinates'];
+						echo $value=$row['Loacation_coodinates'];
+						//echo htmlspecialchars($value);
 						 
 					}
 			

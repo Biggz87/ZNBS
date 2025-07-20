@@ -1,6 +1,9 @@
 
 <?php  
-     
+  if(!defined('jhshjgdhgdhgdhhj')){
+	EXIT('Stop');
+}
+  
 $sender=$_POST['sender'];
 $reciever=$_POST['reciever'];
 $message=$_POST['message'];
@@ -11,7 +14,7 @@ $PhoneNumber=$_POST['PhoneNumber'];
 	
 	
 $subject =$sender;
-$From =$_POST['email'];
+$From =$_POST['sender'];
 $message =$_POST['message'].'Br'.$Name.'<br>Phone No : '.$PhoneNumber; 
 $to = $reciever;
 $headers = "From: ".$From;

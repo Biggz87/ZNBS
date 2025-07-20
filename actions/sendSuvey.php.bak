@@ -1,5 +1,8 @@
 <?php 
-include'../includes/Dbconnect.php';
+
+define('jhshjgdhgdhgdhhj',true);
+include'../includes/Dbconnect2.php';
+include 'checkifemailexist.php';
 $FirstName=$_POST['Firstname'];
 $Question1=$_POST['Question1'];
 $Question2=$_POST['Question2'];
@@ -7,10 +10,11 @@ $Question3=$_POST['Question3'];
 $survey_id=$_POST['survey_id'];
 $LastName=$_POST['Lastname'];
 $Email=$_POST['Email'];
+$id='';
 
 $datetoday=date('Y-m-d');
 
-include 'checkifemailexist.php';
+
 $exits=ifitexits($Email,$survey_id);
 
 if($exits==2){
@@ -18,16 +22,28 @@ if($exits==2){
 	echo 'You have already submitted a survey. Thank you!';
 }else {
 	
-$query="INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`) 
-VALUES ('','$FirstName','$LastName','$Email','$Question1','$Question2','$Question3','$datetoday','$survey_id')";
-      
-$result=mysqli_query($conn,$query);
-if(mysqli_affected_rows($conn) == 1){
+	
+	 $stmt =$conn->prepare("INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`) 
+	 VALUES(:id,:FirstName,:LastName,:Email,:Question1,:Question2,:Question3,:datetoday,:survey_id)");
+//$query="INSERT INTO `survey_response`(`r_id`, `FirstName`, `LastName`, `Email`, `question1`, `question2`, `question3`, `Date_sumitted`,`survey_id`)VALUES ('','$FirstName','$LastName','$Email','$Question1','$Question2','$Question3','$datetoday','$survey_id')";
+$stmt->bindParam(":id",$id);
+$stmt->bindParam(":FirstName",$FirstName);
+$stmt->bindParam(":LastName",$LastName);
+$stmt->bindParam(":Email",$Email);
+$stmt->bindParam(":Question1",$Question1);
+$stmt->bindParam(":Question2",$Question2);
+$stmt->bindParam(":Question3",$Question3);
+$stmt->bindParam(":datetoday",$datetoday);
+$stmt->bindParam(":survey_id",$survey_id);
+
+
+
+if ($stmt->execute()) { 
    echo 'success';
-   
-}else{
+} else {
    echo 'The survey was not submitted due to an error please try again later';
 }
+
 }
 
 						?>

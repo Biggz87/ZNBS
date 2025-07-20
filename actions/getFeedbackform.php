@@ -1,10 +1,15 @@
-	<?php //$dbuser='mweemba';
+	<?php
+
+
+if(!defined('jhshjgdhgdhgdhhj')){
+define('jhshjgdhgdhgdhhj',TRUE);
+	//$dbuser='mweemba';
 		//	$dbuser=$_POST['user'];
 			
-		include'../includes/Dbconnect.php';	
+		include'../includes/Dbconnect2.php';	
 	$id=$_POST['id'];
 		
-			
+			$id = $mysqli->real_escape_string($id);	
 	$query2="SELECT `Id`, `city`, `Loacation_coodinates`, `place_location` FROM `atms` WHERE `Id`='$id'";
 	
 $product = mysqli_query($conn,$query2);
@@ -12,8 +17,8 @@ $product = mysqli_query($conn,$query2);
 				         
                     while ($row = mysqli_fetch_array($product)) {
 						
-						echo $row['Loacation_coodinates'];
-						 
+						$value=$row['Loacation_coodinates'];
+						 echo htmlspecialchars($value);
 					}
 			
 			?>

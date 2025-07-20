@@ -1,6 +1,9 @@
 
 <?php  
-     
+  if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}
+  
 $sender=$_POST['sender'];
 $reciever=$_POST['reciever'];
 $message=$_POST['message'];

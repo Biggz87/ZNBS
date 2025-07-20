@@ -1,4 +1,5 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE) ;include '../includes/sessions.php';?>
+<!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -327,9 +328,9 @@ $statusedel=$_GET['del'];
                                 <?php   
  $propertySQL="SELECT * FROM `articles` 
  INNER JOIN `at_categories` ON `articles`.`At_category`=`at_categories`.`ID` INNER JOIN `sub_category` ON `sub_category`.`Sub_id`=`articles`.`At_sub_cat`  WHERE `At_sub_cat`='18' ";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											 $stmt = $conn->prepare($propertySQL);
+		                                  $stmt->execute();
+										  while($row5 = $stmt->fetch()){
 											 
             ?>
 										<tr class="">

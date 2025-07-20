@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -334,9 +334,10 @@ $statusedel=$_GET['del'];
 
                                 <?php   
  $propertySQL="SELECT `loan_id`, `loan_name`, `interest`, `maximum_tanure`, `minum_tanure` FROM `loan_types`";
-											$results=mysqli_query($conn,$propertySQL);
+											$stmt = $conn2->prepare($propertySQL);
+											$stmt->execute();
 											
-											while($row5=mysqli_fetch_array($results)){
+											while($row5 = $stmt->fetch()){
 											 
             ?>
 										<tr class="">

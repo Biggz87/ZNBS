@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -334,10 +334,10 @@ $statusedel=$_GET['del'];
 
                                 <?php   
  $propertySQL="SELECT `itemrid`, `header1`, `header2`, `header_3` FROM `carausel`";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
-											 
+											$stmt = $conn->prepare($propertySQL);
+											  
+											   $stmt->execute();
+											     while($row5= $stmt->fetch()){
             ?>
 										<tr class="">
                                              <td><?php  echo $row5['itemrid']; ?></td>

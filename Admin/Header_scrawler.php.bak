@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -278,7 +278,7 @@ $statusedel=$_GET['del'];
 
 									<div class="btn-group">
 
-										<a href="NewCarouse.php"><button " class="btn green">
+										<a href="NewCarousel.php"><button " class="btn green">
 
 										Add New <i class="icon-plus"></i>
 
@@ -334,10 +334,10 @@ $statusedel=$_GET['del'];
 
                                 <?php   
  $propertySQL="SELECT `itemrid`, `header1`, `header2`, `header_3` FROM `carausel`";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
-											 
+											$stmt = $conn->prepare($propertySQL);
+											  
+											   $stmt->execute();
+											     while($row5= $stmt->fetch()){
             ?>
 										<tr class="">
                                              <td><?php  echo $row5['itemrid']; ?></td>

@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php include '../includes/sessions.php'; define('jhshjgdhgdhgdhhj',TRUE);?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -235,7 +235,7 @@ $statusedit=$_GET['statusedit'];
 			if($statusedit=='Yes'){
 	echo '<div class="alert alert-success"> Image  has been edited successfully</div>';
 }elseif($statusedit=='No'){
-	echo '<div class="alert alert-danger"> Tmage  has NOT  been edited</div>';
+	echo '<div class="alert alert-danger"> Image  has NOT  been edited</div>';
 }
 
  ?>
@@ -327,9 +327,11 @@ $statusedit=$_GET['statusedit'];
 
                                 <?php   
  $propertySQL="SELECT `Image_id`, `Name`, `Address`, `Category`, `Status` FROM `gallery`";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+							
+											  
+											               $stmt->execute();
+											                  while($row2= $stmt->fetch()){
 											 
             ?>
 										<tr class="">

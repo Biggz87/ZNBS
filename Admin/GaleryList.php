@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -327,9 +327,11 @@ $statusedit=$_GET['statusedit'];
 
                                 <?php   
  $propertySQL="SELECT `Image_id`, `Name`, `Address`, `Category`, `Status` FROM `gallery`";
-											$results=mysqli_query($conn,$propertySQL);
-											
-											while($row5=mysqli_fetch_array($results)){
+											$stmt = $conn->prepare($propertySQL);
+							
+											  
+											               $stmt->execute();
+											                  while($row2= $stmt->fetch()){
 											 
             ?>
 										<tr class="">

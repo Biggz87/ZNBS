@@ -1,4 +1,4 @@
-<?php include '../includes/sessions.php';?><!DOCTYPE html>
+<?php define('jhshjgdhgdhgdhhj',TRUE); include '../includes/sessions.php';?><!DOCTYPE html>
 
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 
@@ -321,9 +321,10 @@ $status=$_GET['status'];
                                 <?php   
   $propertySQL="SELECT `emp_id`, `first_name`, `last_name`, `date_of_birth`, `email`, `mobile_number`, `whatsapp`, `address1`, `address2`, `city_town`, `genda`, `country`, `date_joined`, `jobRole`, `Qualification_level`,
 							 `qualification_Area`, `Category`, `Picture` FROM `employees_tbl`";
-											$results=mysqli_query($conn,$propertySQL);
-											$count=0;
-											while($row5=mysqli_fetch_array($results)){ ?>
+												$stmt = $conn2->prepare($propertySQL);
+											  
+											               $stmt->execute();
+											                  while($row5= $stmt->fetch()){ ?>
 											 
            
 										<tr class="">

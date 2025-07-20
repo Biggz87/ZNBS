@@ -1,11 +1,15 @@
-<?php function getEmpID(){
+<?php if(!defined('jhshjgdhgdhgdhhj')){
+	echo '<script>window.location = "http://www.znbs.co.zm";</script>';
+}define('jhshjgdhgdhgdhhj',true);
+ function getEmpID(){
 	
-	include '../includes/Dbconnect.php';
+	include '../includes/Dbconnect2.php';
 
- $sql = "SHOW TABLE STATUS LIKE 'employees_tbl'";
-$result=$conn->query($sql);
-$row = $result->fetch_assoc();
-
+ $sql = "SHOW TABLE STATUS LIKE 'property'";
+$stmt = $conn->prepare($sql);
+							
+ $stmt->execute();
+$row= $stmt->fetch();
 return  $row['Auto_increment'];
 }
 

@@ -8,7 +8,6 @@ body {
 
 a{
 	text-decoration:none!important;
-	font-style: none;
 }
 
 img {
@@ -22,13 +21,8 @@ hr{
 	border-top: 1px solid rgba(0,0,0,.1);
 }
 
-.content-panel p{
+p{
 	font-weight: 300;
-	font-size: 15px;
-}
-
-.content-panel .display-4{
-	text-transform: uppercase;
 }
 
 /**********************Designed by Fabian Shamano, www.fabianshamano.com, fabianshamano@yahoo.com***************************/
@@ -237,8 +231,8 @@ hr{
 	padding-right: 60px;
 }
 .navbar-brand img {
-	width: 30px;
-	height: 40px;
+	width: 40px;
+	height: 50px;
 	transform: scale(1.1) translateX(10px);
 	transition: all .6s ease;
 	background: none;
@@ -255,7 +249,7 @@ hr{
 }
 
 .logo-text img{
-	width: 220px;
+	width: 230px;
 	height: auto;
 	margin-left: -30px;
 	margin-top: -7px;
@@ -266,7 +260,7 @@ hr{
 	height: 100%;
 	position: absolute;
 	left: 35px;
-	margin-top: 4px;
+	margin-top: 7px;
 }
 
 .logo-caption-full{
@@ -731,7 +725,8 @@ li.drop-down-mobile{
 }
 
 #property .card-icon{
-
+	margin: 0px;
+	padding: 0px;
 }
 
 #property .card-icon-img{
@@ -741,6 +736,10 @@ li.drop-down-mobile{
 #property i{
 	color: rgba(244,130,34,1);
 	font-size: 26px;
+}
+
+#property p{
+	font-size: 14px;
 }
 
 .example-image-link{
